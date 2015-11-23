@@ -22,9 +22,8 @@ AC_CHECK_SIZEOF(int, 4)
 AC_CHECK_SIZEOF(long, 4)
 AC_CHECK_SIZEOF(float, 4)
 AC_CHECK_SIZEOF(double, 8)
-AC_CHECK_FUNCS( isinf isnan finite )
-
-AC_CHECK_LIB(m, erf, [AC_DEFINE(HAVE_ERF)])
+AC_CHECK_LIB(m, erf)
+AC_CHECK_FUNCS( isinf isnan finite erf )
 
 AC_CONFIG_HEADER(src/sysconf.h:src/config.hin)
 AC_OUTPUT(Makefile demo/Makefile)
