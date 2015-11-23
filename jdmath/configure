@@ -2946,7 +2946,6 @@ END
   fi
 fi
 
-#JD_INIT
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether ${MAKE-make} sets \$(MAKE)" >&5
@@ -3144,11 +3143,6 @@ IFS=$ac_save_IFS
 case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 
-
-#JD_ANSI_CC
-#JD_IEEE_CFLAGS
-#ELF_CFLAGS="$ELF_CFLAGS $IEEE_CFLAGS"
-#CFLAGS="$CFLAGS $IEEE_CFLAGS"
 
 DEPDIR="${am__leading_dot}deps"
 
@@ -4996,19 +4990,6 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
-for ac_func in isinf isnan finite
-do :
-  as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
-ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
-if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
-  cat >>confdefs.h <<_ACEOF
-#define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
-_ACEOF
-
-fi
-done
-
-
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for erf in -lm" >&5
 $as_echo_n "checking for erf in -lm... " >&6; }
 if ${ac_cv_lib_m_erf+:} false; then :
@@ -5046,17 +5027,26 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_m_erf" >&5
 $as_echo "$ac_cv_lib_m_erf" >&6; }
 if test "x$ac_cv_lib_m_erf" = xyes; then :
-  $as_echo "#define HAVE_ERF 1" >>confdefs.h
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBM 1
+_ACEOF
+
+  LIBS="-lm $LIBS"
 
 fi
 
+for ac_func in isinf isnan finite erf
+do :
+  as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
+  cat >>confdefs.h <<_ACEOF
+#define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
+_ACEOF
 
-#JD_LARGE_FILE_SUPPORT
+fi
+done
 
-#JD_SET_OBJ_SRC_DIR
-#JD_GCC_WARNINGS
-#JD_GET_MODULES(src/modules.lis)
-#JD_CREATE_MODULE_ORULES
 
 ac_config_headers="$ac_config_headers src/sysconf.h:src/config.hin"
 
@@ -6518,6 +6508,3 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
-
-#JD_APPEND_RULES(src/Makefile)
-#JD_APPEND_ELFRULES(src/Makefile)
