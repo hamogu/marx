@@ -24,7 +24,7 @@
 #include "jdmath.h"
 #include "jdsys.h"
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
 static void byte_swap64 (unsigned char *ss, unsigned int n) /*{{{*/
 {
    unsigned char *p, *pmax, ch;
@@ -97,7 +97,7 @@ static void byte_swap16 (unsigned char *p, unsigned int nread) /*{{{*/
 unsigned int JDMread_int32 (int32 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nread = fread (ss, 4, n, fp);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, nread);
 #endif
    return nread;
@@ -108,7 +108,7 @@ unsigned int JDMread_int32 (int32 *ss, unsigned int n, FILE *fp) /*{{{*/
 unsigned int JDMread_int16 (int16 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nread = fread (ss, 2, n, fp);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) ss, nread);
 #endif
    return nread;
@@ -120,7 +120,7 @@ unsigned int JDMread_float64 (float64 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nread = fread (ss, 8, n, fp);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *)ss, nread);
 #endif
    return nread;
@@ -132,7 +132,7 @@ unsigned int JDMread_float32 (float32 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nread = fread (ss, 4, n, fp);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *)ss, nread);
 #endif
    return nread;
@@ -376,11 +376,11 @@ unsigned int JDMwrite_float32 (float32 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nwrote;
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, n);
 #endif
    nwrote = fwrite (ss, 4, n, fp);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, n);
 #endif
    return nwrote;
@@ -392,11 +392,11 @@ unsigned int JDMwrite_int32 (int32 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nwrote;
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, n);
 #endif
    nwrote = fwrite (ss, 4, n, fp);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, n);
 #endif
    return nwrote;
@@ -408,11 +408,11 @@ unsigned int JDMwrite_int16 (int16 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nwrote;
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) ss, n);
 #endif
    nwrote = fwrite (ss, 2, n, fp);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) ss, n);
 #endif
    return nwrote;
@@ -424,11 +424,11 @@ unsigned int JDMwrite_float64 (float64 *ss, unsigned int n, FILE *fp) /*{{{*/
 {
    unsigned int nwrote;
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *) ss, n);
 #endif
    nwrote = fwrite (ss, 8, n, fp);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *) ss, n);
 #endif
    return nwrote;
@@ -619,7 +619,7 @@ unsigned char *JDMstr_read_int32 (int32 *ss, unsigned int n, unsigned char *s) /
    unsigned int len = 4 * n;
    if (s != (unsigned char *) ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, n);
 #endif
    return s + len;
@@ -633,7 +633,7 @@ unsigned char *JDMstr_read_int16 (int16 *ss, unsigned int n, unsigned char *s) /
 
    if (s != (unsigned char *)ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) ss, n);
 #endif
    return s + len;
@@ -647,7 +647,7 @@ unsigned char *JDMstr_read_float64 (float64 *ss, unsigned int n, unsigned char *
 
    if (s != (unsigned char *)ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *)ss, n);
 #endif
    return s + len;
@@ -660,7 +660,7 @@ unsigned char *JDMstr_read_float32 (float32 *ss, unsigned int n, unsigned char *
    unsigned int len = 4 * n;
    if (s != (unsigned char *)ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *)ss, n);
 #endif
    return s + len;
@@ -878,7 +878,7 @@ unsigned char *JDMstr_write_int32 (int32 *ss, unsigned int n, unsigned char *s) 
 
    memcpy ((char *) s, (char *) ss, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) s, n);
 #endif
    return s + len;
@@ -892,7 +892,7 @@ unsigned char *JDMstr_write_int16 (int16 *ss, unsigned int n, unsigned char *s) 
 
    memcpy ((char *) s, (char *) ss, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) s, n);
 #endif
    return s + len;
@@ -906,7 +906,7 @@ unsigned char *JDMstr_write_float32 (float32 *ss, unsigned int n, unsigned char 
 
    memcpy ((char *) s, (char *) ss, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) s, n);
 #endif
    return s + len;
@@ -920,7 +920,7 @@ unsigned char *JDMstr_write_float64 (float64 *ss, unsigned int n, unsigned char 
 
    memcpy ((char *) s, (char *) ss, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *) s, n);
 #endif
    return s + len;
