@@ -1,63 +1,46 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
-
-AC_PREREQ([2.69])
-
-AC_INIT([jdmath],[1.83],[marx-help@space.mit.edu])
-# Version is for informational purposes here only.
-# See jdmath.h for the version definition.
+AC_INIT([jdmath], 1.83, [marx-help@space.mit.edu])
+AC_PREFIX_DEFAULT(/usr/local)
+AM_INIT_AUTOMAKE
+#JD_INIT
 
 AC_CONFIG_SRCDIR(src/vector.c)
-AC_CONFIG_AUX_DIR(build-aux)
-AC_CONFIG_MACRO_DIR(build-aux)
-
-AM_INIT_AUTOMAKE
-
-# Checks for programs.
-AC_PROG_CC
-AM_PROG_AR
-
-# Which of the ones below are needed?
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL
-#AC_CANONICAL_HOST
+AC_CANONICAL_HOST
+
+#JD_ANSI_CC
+#JD_IEEE_CFLAGS
+#ELF_CFLAGS="$ELF_CFLAGS $IEEE_CFLAGS"
+#CFLAGS="$CFLAGS $IEEE_CFLAGS"
 
 AC_C_BIGENDIAN
 
-# Checks for header files.
-AC_CHECK_HEADERS([limits.h stdlib.h string.h unistd.h])
-
-# Checks for typedefs, structures, and compiler characteristics.
-AC_TYPE_SIZE_T
-# Line above was suggested by autoscan.
-# But I'm not sure the resulting symbol is currently used in the code.
+#Check these header since they cause trouble
+AC_CHECK_HEADERS( \
+stdlib.h \
+unistd.h \
+)
 
 # Check sizeof various types
-AC_CHECK_SIZEOF(short)
-AC_CHECK_SIZEOF(int)
-AC_CHECK_SIZEOF(long)
-AC_CHECK_SIZEOF(float)
-AC_CHECK_SIZEOF(double)
+AC_CHECK_SIZEOF(short, 2)
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF(float, 4)
+AC_CHECK_SIZEOF(double, 8)
+AC_CHECK_FUNCS( isinf isnan finite )
 
-AC_SYS_LARGEFILE
-AC_FUNC_FSEEKO
-AC_TYPE_OFF_T
-AC_CHECK_SIZEOF(off_t)
+AC_CHECK_LIB(m, erf, [AC_DEFINE(HAVE_ERF)])
 
-# Define preprocessor FSEEK to be other fseek or fseeko
-if test "x$ac_cv_func_fseeko" != xyes; then
-  AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
-  AC_DEFINE([FTELL(a)], [ftello(a)],[Def of ftell / ftello])
-else
-  AC_DEFINE([FSEEK(a,b,c)], [fseek(a,b,c)],[Def of fseek / fseeko])
-  AC_DEFINE([FTELL(a)], [ftell(a)],[Def of ftell / ftello])
-fi
+#JD_LARGE_FILE_SUPPORT
 
-# Checks for library functions.
-AC_CHECK_FUNCS([memset pow sqrtisinf isnan finite erf])
-AC_CHECK_LIB(m, erf)
+#JD_SET_OBJ_SRC_DIR
+#JD_GCC_WARNINGS
+#JD_GET_MODULES(src/modules.lis)
+#JD_CREATE_MODULE_ORULES
 
-AC_CONFIG_HEADER(src/config.h)
-AC_CONFIG_FILES([Makefile demo/Makefile])
-AC_OUTPUT
+AC_CONFIG_HEADER(src/sysconf.h:src/config.hin)
+AC_OUTPUT(Makefile demo/Makefile)
+
+#JD_APPEND_RULES(src/Makefile)
+#JD_APPEND_ELFRULES(src/Makefile)
