@@ -34,7 +34,6 @@
 @src/misc.c
 @src/dsort.c
 @src/fsort.c
-@src/sysconf.c
 @src/vector.c
 @src/hist.c
 @src/random.c

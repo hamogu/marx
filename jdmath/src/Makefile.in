@@ -80,11 +80,11 @@ fftn_O_DEP = $(SRCDIR)/fftn-inc.c
 all: $(TARGET_OBJ_LIB) $(OTHERSTUFF)
 elf: $(ELFDIR) $(CONFIG_H) $(ELFDIR_ELF_LIB)
 
-$(TARGET_OBJ_LIB): $(CONFIG_H) $(OBJDIR) $(OBJDIR)/jdsys.h $(OBJS)
+$(TARGET_OBJ_LIB): $(CONFIG_H) $(OBJDIR) $(OBJS)
 	$(RM) $(TARGET_OBJ_LIB)
 	cd $(OBJDIR); $(AR_CR) $(TARGET_LIB) $(OFILES)
 	$(RANLIB) $(TARGET_OBJ_LIB)
-$(ELFDIR_ELF_LIB): $(CONFIG_H) $(ELFDIR) $(OBJDIR) $(OBJDIR)/jdsys.h $(ELFOBJS) 
+$(ELFDIR_ELF_LIB): $(CONFIG_H) $(ELFDIR) $(OBJDIR) $(ELFOBJS) 
 	-$(RM) $(ELFDIR_ELF_LIB)
 	cd $(ELFDIR); $(ELF_LINK),$(ELFLIB_MAJOR) -o $(ELFLIB_MAJOR_MINOR) $(OFILES)
 	@echo ""
@@ -102,17 +102,6 @@ $(CONFIG_H) : $(SRCDIR)/sysconf.h
 runtests: 
 	cd test; $(MAKE) runtests
 #
-#---------------------------------------------------------------------------
-# Since this library needs to know about byteswapping, etc... we need to
-# build and run an executable to determine this information
-#---------------------------------------------------------------------------
-$(OBJDIR)/jdsys.h: $(OBJDIR)/sysconf
-	$(OBJDIR)/sysconf > $(OBJDIR)/jdsys.h
-$(OBJDIR)/sysconf: $(OBJDIR)/sysconf.o
-	$(CC) $(LDFLAGS) $(OBJDIR)/sysconf.o -o $(OBJDIR)/sysconf
-$(OBJDIR)/sysconf.o: $(SRCDIR)/jdmath.h $(SRCDIR)/sysconf.c
-	-$(RM) $(OBJDIR)/*.o
-	cd $(OBJDIR); $(COMPILE_CMD) $(SRCDIR)/sysconf.c
 #---------------------------------------------------------------------------
 # Intallation rules
 #---------------------------------------------------------------------------

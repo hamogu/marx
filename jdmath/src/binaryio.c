@@ -22,7 +22,6 @@
 #include <string.h>
 
 #include "jdmath.h"
-#include "jdsys.h"
 
 #ifndef WORDS_BIGENDIAN
 static void byte_swap64 (unsigned char *ss, unsigned int n) /*{{{*/
