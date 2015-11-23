@@ -71,22 +71,6 @@ int main (int argc, char **argv)
 	fprintf (stdout, "#define NEEDS_BYTE_SWAP\n");
      }
    
-   /* Now determine the floating point style */
-   
-   u.f = 1.2345678f;
-   if (u.n == 0x3F9E0651)
-     {
-	fprintf (stdout, "#define USES_IEEE_FLOAT\n");
-     }
-   else if (u.n == 0x0651409E)
-     {
-	fprintf (stdout, "#define USES_VAX_FLOAT\n");
-     }
-   else 
-     {
-        error ("Unknown floating point format.  Not supported.");
-     }
-   
    fprintf (stdout, "#endif /* INT16_DEFINED */\n");
    return 0;
 }
