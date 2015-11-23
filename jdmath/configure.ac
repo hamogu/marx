@@ -1,9 +1,9 @@
 AC_INIT([jdmath], 1.83, [marx-help@space.mit.edu])
 AC_PREFIX_DEFAULT(/usr/local)
-JD_INIT
+AM_INIT_AUTOMAKE
+#JD_INIT
 
 AC_CONFIG_SRCDIR(src/vector.c)
-AC_CONFIG_AUX_DIR(autoconf)
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL
@@ -34,13 +34,13 @@ AC_CHECK_LIB(m, erf, [AC_DEFINE(HAVE_ERF)])
 
 #JD_LARGE_FILE_SUPPORT
 
-JD_SET_OBJ_SRC_DIR
-JD_GCC_WARNINGS
-JD_GET_MODULES(src/modules.lis)
-JD_CREATE_MODULE_ORULES
+#JD_SET_OBJ_SRC_DIR
+#JD_GCC_WARNINGS
+#JD_GET_MODULES(src/modules.lis)
+#JD_CREATE_MODULE_ORULES
 
 AC_CONFIG_HEADER(src/sysconf.h:src/config.hin)
-AC_OUTPUT(Makefile:autoconf/Makefile.in src/Makefile demo/Makefile)
+AC_OUTPUT(Makefile demo/Makefile)
 
-JD_APPEND_RULES(src/Makefile)
-JD_APPEND_ELFRULES(src/Makefile)
+#JD_APPEND_RULES(src/Makefile)
+#JD_APPEND_ELFRULES(src/Makefile)
