@@ -54,12 +54,6 @@ int main (int argc, char **argv)
    
    fprintf (stdout, "#ifndef INT16_DEFINED\n#define INT16_DEFINED\n");
    
-   fprintf (stdout, "#define SIZEOF_SHORT\t%d\n", (int) sizeof (short));
-   fprintf (stdout, "#define SIZEOF_INT\t%d\n", (int) sizeof (int));
-   fprintf (stdout, "#define SIZEOF_LONG\t%d\n", (int) sizeof (long));
-   fprintf (stdout, "#define SIZEOF_FLOAT\t%d\n", (int) sizeof (float));
-   fprintf (stdout, "#define SIZEOF_DOUBLE\t%d\n", (int) sizeof (double));
-   
    if (sizeof (int16) != 2) 
      error ("Sizeof int16 != 2");
    if (sizeof (int32) != 4)
