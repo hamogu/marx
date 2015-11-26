@@ -8,6 +8,7 @@ AC_PROG_RANLIB
 AC_PROG_INSTALL
 AC_CANONICAL_HOST
 
+AC_CHECK_HEADERS
 AC_C_BIGENDIAN
 
 #Check these header since they cause trouble
