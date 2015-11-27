@@ -26,7 +26,6 @@
 #endif
 
 #include "jdfits.h"
-#include "jdfitssys.h"
 #include "_jdfits.h"
 
 int jdfits_read_open_data (JDFits_Type *ft)
@@ -87,7 +86,7 @@ static int read_pad (JDFits_Type *ft)
    return 0;
 }
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
 static void byte_swap32 (unsigned char *ss, unsigned int n)
 {
    unsigned char *p, *pmax, ch;
@@ -190,7 +189,7 @@ unsigned int jdfits_read_int16 (JDFits_Type *ft, int16 *ss, unsigned int n)
 	jdfits_error ("jdfits_read_int16: read error.");
      }
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) ss, nread);
 #endif
 
@@ -218,7 +217,7 @@ unsigned int jdfits_read_int32 (JDFits_Type *ft, int32 *ss, unsigned int n)
 	jdfits_error ("jdfits_read_int32: read error.");
      }
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, nread);
 #endif
 
@@ -246,7 +245,7 @@ unsigned int jdfits_read_float64 (JDFits_Type *ft, float64 *ss, unsigned int n)
 	jdfits_error ("jdfits_read_float64: read error.");
      }
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *) ss, nread);
 #endif
 
@@ -274,7 +273,7 @@ unsigned int jdfits_read_float32 (JDFits_Type *ft, float32 *ss, unsigned int n)
 	jdfits_error ("jdfits_read_float32: read error.");
      }
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, nread);
 #endif
 
@@ -307,11 +306,11 @@ int jdfits_read_close_data (JDFits_Type *ft)
 int jdfits_write_float32 (JDFits_Type *ft, float32 *x, unsigned int n)
 {
    int ret;
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) x, n);
 #endif
    ret = jdfits_write (ft, (unsigned char *) x, 4 * n);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) x, n);
 #endif
    return ret;
@@ -320,11 +319,11 @@ int jdfits_write_float32 (JDFits_Type *ft, float32 *x, unsigned int n)
 int jdfits_write_float64 (JDFits_Type *ft, float64 *x, unsigned int n)
 {
    int ret;
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *) x, n);
 #endif
    ret = jdfits_write (ft, (unsigned char *) x, 8 * n);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *) x, n);
 #endif
    return ret;
@@ -333,11 +332,11 @@ int jdfits_write_float64 (JDFits_Type *ft, float64 *x, unsigned int n)
 int jdfits_write_int32 (JDFits_Type *ft, int32 *x, unsigned int n)
 {
    int ret;
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) x, n);
 #endif
    ret = jdfits_write (ft, (unsigned char *) x, 4 * n);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) x, n);
 #endif
    return ret;
@@ -346,11 +345,11 @@ int jdfits_write_int32 (JDFits_Type *ft, int32 *x, unsigned int n)
 int jdfits_write_int16 (JDFits_Type *ft, int16 *x, unsigned int n)
 {
    int ret;
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) x, n);
 #endif
    ret = jdfits_write (ft, (unsigned char *) x, 2 * n);
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) x, n);
 #endif
    return ret;
@@ -436,7 +435,7 @@ unsigned char *jdfits_str_read_int32 (int32 *ss, unsigned int n, unsigned char *
    unsigned int len = 4 * n;
    if (s != (unsigned char *) ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *) ss, n);
 #endif
    return s + len;
@@ -450,7 +449,7 @@ unsigned char *jdfits_str_read_int16 (int16 *ss, unsigned int n, unsigned char *
 
    if (s != (unsigned char *)ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap16 ((unsigned char *) ss, n);
 #endif
    return s + len;
@@ -464,7 +463,7 @@ unsigned char *jdfits_str_read_float64 (float64 *ss, unsigned int n, unsigned ch
 
    if (s != (unsigned char *)ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap64 ((unsigned char *)ss, n);
 #endif
    return s + len;
@@ -477,7 +476,7 @@ unsigned char *jdfits_str_read_float32 (float32 *ss, unsigned int n, unsigned ch
    unsigned int len = 4 * n;
    if (s != (unsigned char *)ss) memcpy ((char *) ss, (char *) s, len);
 
-#ifdef NEEDS_BYTE_SWAP
+#ifndef WORDS_BIGENDIAN
    byte_swap32 ((unsigned char *)ss, n);
 #endif
    return s + len;

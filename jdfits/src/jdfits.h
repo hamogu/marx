@@ -231,7 +231,6 @@ typedef struct JDFits_Header_Type
    JDFits_Keyword_Type *keys;	       /* these contain char * which
 					* point to header_data
 					*/
-#ifdef JDFITS_SOURCE
    unsigned char *header_data_buf;	       /* This is malloced. */
    off_t size;		       /* size of the data */
 
@@ -254,7 +253,6 @@ typedef struct JDFits_Header_Type
      }
    ext;
    void (*free_routine)(struct JDFits_Header_Type *);
-#endif
 }
 JDFits_Header_Type;
 
@@ -266,14 +264,12 @@ typedef struct
 #define JDFITS_WRITE_MODE 2
    JDFits_Header_Type *header;
 
-#ifdef JDFITS_SOURCE
    /* private members. */
    off_t bytes_left_to_read;
    off_t bytes_padded;
 
    unsigned char *write_buffer;	       /* JDFITS_RECORD_SIZE long */
    unsigned int write_buffer_len;
-#endif
 }
 JDFits_Type;
 
@@ -525,12 +521,10 @@ typedef struct
    unsigned int num_rows;
    JDFits_Col_Data_Type *col_data;
 
-#ifdef JDFITS_SOURCE
    /* private */
    unsigned char *row_bytes;
    off_t num_bytes;
    off_t num_rows_to_read;
-#endif
 }
 JDFits_Row_Type;
 
