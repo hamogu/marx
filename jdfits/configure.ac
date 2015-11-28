@@ -1,35 +1,40 @@
-AC_INIT([jdfits],[1.66],[marx-help@space.mit.edu])
-# Version is for informational purposes here only.
-# See jdfits.h for the version definition.
+AC_INIT(src/jdfits.h)
+JD_INIT
 
-AC_CONFIG_SRCDIR(src/fitsio.c)
-AC_CONFIG_AUX_DIR(build-aux)
-AC_CONFIG_MACRO_DIR(build-aux)
+JD_ANSI_CC
 
-AM_INIT_AUTOMAKE
-AM_PROG_AR
-
+AC_CONFIG_AUX_DIR(autoconf)
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL
 
 #Check these header since they cause trouble
-AC_CHECK_HEADERS([stdlib.h unistd.h limits.h])
+AC_CHECK_HEADERS( \
+stdlib.h \
+unistd.h \
+)
 
-AC_CHECK_FUNCS([fseeko memset strchr])
-AC_FUNC_MALLOC
-AC_FUNC_REALLOC
+AC_CHECK_FUNCS(\
+fseeko \
+)
+
+ 
+JD_SET_OBJ_SRC_DIR
+JD_GCC_WARNINGS
+JD_GET_MODULES(src/modules.lis)
+JD_CREATE_MODULE_ORULES
+
 
 #Check endianess
 AC_CHECK_HEADERS
 AC_C_BIGENDIAN
 
 # Check sizeof various types
-AC_CHECK_SIZEOF(short)
-AC_CHECK_SIZEOF(int)
-AC_CHECK_SIZEOF(long)
-AC_CHECK_SIZEOF(float)
-AC_CHECK_SIZEOF(double)
+AC_CHECK_SIZEOF(short, 2)
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF(float, 4)
+AC_CHECK_SIZEOF(double, 8)
 AC_CHECK_LIB(m, erf)
 AC_CHECK_FUNCS( isinf isnan finite erf )
 
@@ -40,18 +45,12 @@ AC_FUNC_FSEEKO
 AC_TYPE_OFF_T
 AC_CHECK_SIZEOF(off_t)
 
-# Define preprocessor FSEEK to be other fseek or fseeko
-# HMG: This seems to dublicate code in _jdfits.h
-# Thus I'm commenting it out here for testing.
-#if test "x$ac_cv_func_fseeko" != xyes; then
-#  AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
-#  AC_DEFINE([FTELL(a)], [ftello(a)],[Def of ftell / ftello])
-#else
-#  AC_DEFINE([FSEEK(a,b,c)], [fseek(a,b,c)],[Def of fseek / fseeko])
-#  AC_DEFINE([FTELL(a)], [ftell(a)],[Def of ftell / ftello])
-#fi
+AC_CONFIG_HEADER(../src/sysconf.h:../src/config.hin)
+AC_OUTPUT(Makefile:autoconf/Makefile.in src/Makefile)
 
-AC_CONFIG_HEADER(src/config.h:src/config.hin)
-AC_CONFIG_FILES([Makefile])
-AC_OUTPUT
+JD_CREATE_EXEC_RULE(fitsdump)
+JD_CREATE_EXEC_RULE(copyfits)
+JD_CREATE_EXEC_RULE(makefits)
+JD_CREATE_EXEC_RULE(saoray)
 
+JD_APPEND_RULES(src/Makefile)
