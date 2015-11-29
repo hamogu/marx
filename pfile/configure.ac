@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 AC_INIT([pfile],[2.4.1],[marx-help@space.mit.edu])
 # Version is for informational porpuses here only.
 # See pfile.h for the version definition.
@@ -9,6 +10,12 @@ AC_CONFIG_MACRO_DIR(build-aux)
 AM_INIT_AUTOMAKE
 AM_PROG_AR
 
+=======
+AC_INIT([pfile], 2.4.1, [marx-help@space.mit.edu])
+AM_INIT_AUTOMAKE
+
+AC_CONFIG_SRCDIR(src/pfile.c)
+>>>>>>> flatten directory structure and use automake
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL
@@ -40,4 +47,5 @@ fi
 AC_CONFIG_HEADER(src/config.h:src/config.hin)
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
+
 
