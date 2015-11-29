@@ -1,9 +1,7 @@
-AC_INIT(src/jdfits.h)
-JD_INIT
+AC_INIT([jdfits], 1.66 [marx-help@space.mit.edu])
+AM_INIT_AUTOMAKE
 
-JD_ANSI_CC
-
-AC_CONFIG_AUX_DIR(autoconf)
+AC_CONFIG_SRCDIR(src/fitsio.c)
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL
@@ -17,12 +15,6 @@ unistd.h \
 AC_CHECK_FUNCS(\
 fseeko \
 )
-
- 
-JD_SET_OBJ_SRC_DIR
-JD_GCC_WARNINGS
-JD_GET_MODULES(src/modules.lis)
-JD_CREATE_MODULE_ORULES
 
 
 #Check endianess
@@ -45,12 +37,6 @@ AC_FUNC_FSEEKO
 AC_TYPE_OFF_T
 AC_CHECK_SIZEOF(off_t)
 
-AC_CONFIG_HEADER(../src/sysconf.h:../src/config.hin)
-AC_OUTPUT(Makefile:autoconf/Makefile.in src/Makefile)
+AC_CONFIG_HEADER(src/config.h:src/config.hin)
+AC_OUTPUT(Makefile)
 
-JD_CREATE_EXEC_RULE(fitsdump)
-JD_CREATE_EXEC_RULE(copyfits)
-JD_CREATE_EXEC_RULE(makefits)
-JD_CREATE_EXEC_RULE(saoray)
-
-JD_APPEND_RULES(src/Makefile)

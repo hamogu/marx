@@ -1,5 +1,4 @@
 AC_INIT([jdmath], 1.83, [marx-help@space.mit.edu])
-AC_PREFIX_DEFAULT(/usr/local)
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SRCDIR(src/vector.c)
