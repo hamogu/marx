@@ -1,5 +1,8 @@
 AUTOMAKE_OPTIONS = subdir-objects
+<<<<<<< HEAD
 ACLOCAL_AMFLAGS = -I build-aux
+=======
+>>>>>>> flatten marx directory and convert to automake
 
 lib_LIBRARIES = libpfile.a
 include_HEADERS = src/pfile.h

@@ -6,6 +6,7 @@ ACLOCAL_AMFLAGS = -I build-aux
 include_HEADERS = src/jdmath.h
 
 lib_LIBRARIES = libjdmath.a
+
 libjdmath_a_SOURCES = \
 src/bilinear.c \
 src/fftn.c \

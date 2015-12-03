@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
+<<<<<<< HEAD
 ACLOCAL_AMFLAGS = -I build-aux
 
 SUBDIRS = jdmath jdfits pfile . rsp
@@ -14,10 +15,16 @@ SUBDIRS = jdmath jdfits pfile . rsp
 #   that the reference to the build tree should come before the
 #   reference to the source tree, so that accidentally leftover
 #   generated files in the source directory are ignored.
+=======
+SUBDIRS = jdmath jdfits pfile
+
+#   When a file to be included is generated during the build and not part of a distribution tarball, its location is under $(builddir), not under $(srcdir). This matters especially for packages that use header files placed in sub-directories and want to allow builds outside the source tree (see VPATH Builds). In that case we recommend to use a pair of -I options, such as, e.g., ‘-Isome/subdir -I$(srcdir)/some/subdir’ or ‘-I$(top_builddir)/some/subdir -I$(top_srcdir)/some/subdir’. Note that the reference to the build tree should come before the reference to the source tree, so that accidentally leftover generated files in the source directory are ignored.
+>>>>>>> flatten marx directory and convert to automake
 
 AM_CPPFLAGS = \
 -I$(top_builddir)/jdmath/src -I$(top_srcdir)/jdmath/src \
 -I$(top_builddir)/jdfits/src -I$(top_srcdir)/jdfits/src \
+<<<<<<< HEAD
 -I$(top_builddir)/pfile/src -I$(top_srcdir)/pfile/src \
 -I$(top_builddir)/libsrc -I$(top_srcdir)/libsrc
 
@@ -26,15 +33,26 @@ if HAVE_LIBDL
 endif
 
 include_HEADERS = libsrc/marx.h libsrc/marx-feat.h
+=======
+-I$(top_builddir)/pfile/src -I$(top_srcdir)/pfile/src
+
+
+include_HEADERS = libsrc/marx.h
+>>>>>>> flatten marx directory and convert to automake
 
 lib_LIBRARIES = libmarx.a
 libmarx_a_SOURCES = \
 libsrc/argcargv.h \
 libsrc/argcargv.c \
+<<<<<<< HEAD
 libsrc/_marx.h \
 libsrc/chandra.h \
 libsrc/acis.h \
 libsrc/hrc.h \
+=======
+libsrc/marx-feat.h \
+libsrc/_marx.h \
+>>>>>>> flatten marx directory and convert to automake
 libsrc/caldb.c \
 libsrc/photon.c \
 libsrc/acis_geom.c \
@@ -80,7 +98,10 @@ libsrc/s-line.c \
 libsrc/s-rayfile.c \
 libsrc/s-disk.c \
 libsrc/s-user.c \
+<<<<<<< HEAD
 libsrc/s-simput.c \
+=======
+>>>>>>> flatten marx directory and convert to automake
 libsrc/ixoccd.h \
 libsrc/ixocatgs.c \
 libsrc/ixoccd.c \
@@ -89,16 +110,45 @@ libsrc/ixomirror.c \
 libsrc/ffield.c \
 libsrc/qefuns.c
 
+<<<<<<< HEAD
+=======
+
+## TBD: Should be used during install to reformat data file. 
+#libsrc/fix_ee.c 
+# Not sure this is used at all. Can it be removed?
+#libsrc/dump_ee.c 
+
+
+# TBD: These are used for interpreted marx in SLANG, I assume:
+#libsrc/interp.c
+#libsrc/disperse.c
+
+# TBD: What are those good for?
+#libsrc/parm.h
+#libsrc/parm.c
+
+
+>>>>>>> flatten marx directory and convert to automake
 # TBD: Can turn this into marx_LDADD, marx2fits_LDADD etc.?
 # Or does every program need all libraries?
 LDADD = jdmath/libjdmath.a jdfits/libjdfits.a pfile/libpfile.a libmarx.a
 
+<<<<<<< HEAD
 bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup \
                bestfocus detinfo geff geffdump
 
 marx_SOURCES = libsrc/_marx.h src/marx.c
 marx2dpde_SOURCES = src/marx2dpde.c
 marx2fits_SOURCES = src/marx2fits.c
+=======
+
+
+bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup
+
+marx_SOURCES = libsrc/_marx.h src/marx.c
+marx2dpde_SOURCES = src/marx2dpde.c
+marx2fits_SOURCES = libsrc/marx-feat.h src/marx2fits.c
+>>>>>>> flatten marx directory and convert to automake
 marx2img_SOURCES = src/marx2img.c
 marxasp_SOURCES = src/marxasp.c
 marxcat_SOURCES = src/marxcat.c
@@ -108,6 +158,7 @@ src/henke.c \
 src/acissim.h \
 src/acissim.c \
 src/marxpileup.c
+<<<<<<< HEAD
 bestfocus_SOURCES = src/bestfocus.c
 detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c
@@ -268,3 +319,9 @@ doc/examples/user-source/eventlist.c \
 doc/examples/user-source/image.c \
 doc/examples/user-source/point.c \
 doc/examples/user-source/user.h 
+=======
+
+# TBD: Missing: bestfocus detinfo geff geffdump
+# TBD: are rfl and sky2chip ever used? They are not installed...
+# Maybe I can remove them?
+>>>>>>> flatten marx directory and convert to automake
