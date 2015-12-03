@@ -1,0 +1,37 @@
+###########    AXAF Aimpoint Definition for FLIGHT system       ########
+#                                                                      #
+#  Aim point coordinates (mm)  or                                      #
+#  the SIM/Stage reference for STF coordinates                         #
+#                                                                      #
+#  STT coords of Detector LSI origin in mm                             #
+#                                                                      #
+#                                                                      #
+#  Reference: "ASC Coordinates", July 31, 1996 version                 #
+#         Table 19:   SIM Offset Table                                 #
+#                                                                      #
+#  @(#)pix_sim_table_flight.par	1.1   Last Checkin: 98/03/10 10:12:52
+#                                                                      
+########################################################################
+#                                                                      #
+aimpt-AI1,s,ql,"( 0.00,  0.00, -237.500)",,,"aimpoint on ACIS-I1"
+aimpt-AI2,s,ql,"( -0.782,  0.00, -233.592)",,,"aimpoint on ACIS-I3"
+aimpt-AS1,s,ql,"( -0.683,  0.00, -190.133)",,,"aimpoint on ACIS-S3"
+aimpt-HI1,s,ql,"( -1.040,  0.00,  126.985)",,,"aimpoint on HRC-I"
+aimpt-HS1,s,ql,"( -1.430,  0.00,  250.456)",,,"aimpoint on HRC-S2"
+aimpt-HSI1,s,ql,"none",,,"aimpoint on HSI"
+aimpt-A2C0,s,ql,"none",,,"aimpoint on ACIS-C0"
+origin-ACIS,s,ql,"( 0.684,  0.750, 236.552)",,,"STT coords of ACIS LSI origin"
+origin-HRCI,s,ql,"( 1.040,  0.978,  -132.028)",,,"STT coords of HRC-I LSI origin"
+origin-HRCS,s,ql,"( 1.533,  1.53,  -251.437)",,,"STT coords of HRC-S LSI origin"
+origin-HSI,s,ql,"( 0.00,  0.00, 0.00)",,,"STT coords of HSI LSI origin"
+origin-ACIS2C,s,ql,"( 0.00,  0.00, 0.00)",,,"STT coords of ACIS-2C LSI origin"
+
+theta-ACIS,r,  ql,0.0,,,"STT rotation angle from LSI for ACIS"
+theta-HRCI,r,  ql,0.0,,,"STT rotation angle from LSI for HRC-I"
+theta-HRCS,r,  ql,0.0,,,"STT rotation angle from LSI for HRC-S"
+theta-HSI,r,   ql,0.0,,,"STT rotation angle from LSI for HSI"
+theta-ACIS2C,r,ql,0.0,,,"STT rotation angle from LSI for ACIS-2C"
+mode,s,h,"h",,,
+
+
+

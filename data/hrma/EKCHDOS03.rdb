@@ -1,0 +1,42 @@
+# OSAC mirror parameters, taken from memo of P. Zhao,
+# 24 June 1996
+#
+# The lengths are from WAP's email of 29 September 1995
+#   (WAP-19950929.txt)
+# The offsets and origins are are taken from WAP's email of 10 April 1996
+#   (WAP-19960410.txt)
+# The clocking angles are from WAP's memo of 29 May 1996 WAP-FY96-001, Rev 4
+#   (WAP-19960529.ps)
+# The zero point of the coordinate system is Datum A of the CAP.
+#
+# Alignment parameters derived by TJG from QN, X_corr values in WAP email of
+# 1996 Sep 25 ("Re: Cross Check (revised sign)"):
+# . obtain alignment coefficients in double-pass saodrat coordinates:
+#   . assume Q2 coma arises from pure H tilts [F_H = 9607 mm]:
+#       azmis_dp[arcsec] ~= -q2_real /(2 F_H)  *  rad_to_arcsec
+#       elmis_dp[arcsec] ~= +q2_imag /(2 F_H)  *  rad_to_arcsec
+#   . remove H-tilt effect from Q0:  Q0' = Q0 - Q2*  ['*' = complex conjugate]
+#   . remove R^2-weighted Q0':  Q0'' = Q0' - (R^2-weighted sum of Q0')
+#   . interpret Q0'' as pure lateral translation of mirror pair as a whole:
+#       dX_dp_H = dX_dp_P ~= (1/2) Q0''_real
+#       dY_dp_H = dY_dp_P ~= (1/2) Q0''_imag
+#   . evaluate defocus relative to MP6:
+#       dZ_dp_H ~= +(4/5) (X_corr - X_corr[MP6])
+# . convert from double-pass saosac coordinates to standard saosac coordinates:
+#   azmis = -azmis_dp;  elmis =  elmis_dp
+#   dX = +dX_dp;  dY = -dY_dp;  dZ = -dZ_dp
+# (References:  TJG-19961007A.txt, TJG-19961007B.txt, TJG-19961007C.txt,
+#               WAP-19961008.txt)
+#
+# alignment parameters
+#
+mirror	x0	y0	z0	p	k	rho0	theta0	az_mis	el_mis	l	node	z_f	z_a	rho_f	rho_a
+6S	10N	10N	9N	23N	20N	18N	6N	20N	21N	8N	7N	9N	8N	8N	8N
+h1	1.971e-03	-6.870e-04	480.7847	-1.7797716637950735E-03	-26.0506034413416841	579.89015840093919	0	-3.125e-05	1.03444444444444e-05	842.1920	24.9555	59.6887	901.8807	598.5083	560.6541
+h3	1.279e-03	-7.570e-04	480.7297	-1.1532395834759916E-03	-16.875942397594130	466.64379784205380	0	1.55916666666667e-05	-8.1e-06	842.1970	24.9555	59.6312	901.8282	481.6319	451.1580
+h4	5.100e-04	-1.780e-04	480.7138	-8.9864417477996457E-04	-13.150318066441841	411.91935912458604	0	1.46833333333333e-05	-1.36666666666667e-06	842.2250	24.9555	59.6013	901.8263	425.1507	398.2487
+h6	-1.094e-02	4.543e-03	479.2150	-4.9625995845653374E-04	-7.2620248152618760	306.09851668776219	0	7.85555555555555e-05	-2.67638888888889e-05	842.2000	24.9555	58.1150	900.3150	315.9310	295.9396
+p1	1.971e-03	-6.870e-04	-426.6955	0.0	-8.9333113530131421	606.86080963697918	0	0	0	842.2150	24.9555	-847.8030	-5.5880	613.0284	600.6299
+p3	1.279e-03	-7.570e-04	-436.7000	0.0	-5.7939624154424676	488.46244215611011	0	0	0	842.2080	24.9555	-857.8040	-15.5960	493.4321	483.4417
+p4	5.100e-04	-1.780e-04	-440.3060	0.0	-4.5165799273846270	431.26225933154404	0	0	0	842.2080	24.9555	-861.4100	-19.2020	435.6501	426.8293
+p6	-1.094e-02	4.543e-03	-445.0565	0.0	-2.4957050467401789	320.56977725634789	0	0	0	842.2090	24.9555	-866.1610	-23.9520	323.8316	317.2745

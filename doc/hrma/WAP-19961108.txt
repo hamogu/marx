@@ -1,0 +1,92 @@
+Return-Path: <wap@cface4.harvard.edu>
+Received: from cfa.harvard.edu by head-cfa (SMI-8.6/SMI-SVR4)
+	id RAA20335; Fri, 8 Nov 1996 17:24:06 -0500
+Received: from cface4.harvard.edu (cface4.harvard.edu [131.142.20.104]) by cfa.harvard.edu (8.7.5/8.7.3) with SMTP id RAA02500; Fri, 8 Nov 1996 17:24:05 -0500 (EST)
+Received: by cface4.harvard.edu (950413.SGI.8.6.12/920502.SGI)
+	 id RAA26876; Fri, 8 Nov 1996 17:24:04 -0500
+From: "William Podgorski" <wap@cface4.harvard.edu>
+Message-Id: <9611081724.ZM26875@cface4.harvard.edu>
+Date: Fri, 8 Nov 1996 17:24:04 -0500
+X-Mailer: Z-Mail (3.2.3 08feb96 MediaMail)
+To: jerius@cfa.harvard.edu, gaetz@cfa.harvard.edu
+Subject: EKCHDOS04
+Cc: wap@cface4.harvard.edu
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-UIDL: babf8c8b4679ec6d7fed1146cb72e31a
+
+
+Diab, Terry,
+
+I sent the E-mail below on 25 Sept to document the rigid body alignment params.
+I noticed today that when EKCHDOS03.rdb is used along with 3 term optic fits we
+get the following focus positions relative to MP6:
+
+
+               EKCHDOS03                           EKCHDOS04     EKCHDOS04
+               Raytrace    X_corrected wrt MP6      Raytrace    Raytrace(abs)
+     ZC, MP1:  -0.3540         -0.3578              -0.3611      10079.4059
+         MP3:  -0.2520         -0.2636              -0.2616      10079.5054
+         MP4:  -0.4456         -0.4921              -0.4912      10079.2758
+         MP6:   0.0000          0.0000               0.0002      10079.7672
+
+I have also put into the above table the X_corr values from my E-mail below.
+It seems that the raytrace using EKCHDOS03 does not duplicate the
+measured values very well for MP4. I talked to Terry, and he is
+modifying the rdb mirror table to better agree with the data. Then
+we will try to figure out why it happened.
+
+Bill
+
+PS: I added EKCHDOS04 results, which are closer to X_corr, and I have added
+    an absolute position of focus wrt CAP datum A.
+
+--------------------------- Old E-Mail ----------------------------------------
+
+
+From: "William Podgorski" <wap>
+Date: Wed, 25 Sep 1996 08:25:48 -0400
+To: Gary_Matthews@kodak.com, cgha@Kodak.com
+Subject: Cross_check, revised
+Cc: vanspeybroeck@cfa, gaetz@cfa, mfreeman@vger, wap
+
+Selected Tests:
+09/23/1996  12:37:16.000
+09/23/1996  11:54:28.000
+09/23/1996  11:11:38.000
+09/23/1996  10:28:49.000
+09/23/1996  09:46:00.000
+09/23/1996  09:03:15.000
+09/23/1996  08:20:30.000
+09/23/1996  07:37:49.000
+09/23/1996  06:55:05.000
+
+Absolute:
+
+                        MP1         MP3         MP4        MP6
+Q0_real          -0.0454255   -0.031098  -0.0329422  -0.034436
+Q0_imag           0.0321301    0.038456   0.0350395   0.034114
+X_corr            0.2039560    0.109697   0.3382670  -0.153863
+Q2_real          -0.0104824    0.005229   0.0049242   0.026339
+Q2_imag           0.0034693   -0.002716  -0.0004583  -0.008975
+2nd Order resid   0.0175684    0.013188   0.0069180   0.003096
+3rd Order resid   0.0139335    0.015339   0.0130358   0.015618
+
+
+With Respect to MP6:
+
+                        MP1         MP3         MP4         MP6
+Q0_real_6:       -0.0109895   0.0033380   0.0014938   0.0000000
+Q0_imag_6:       -0.0019839   0.0043420   0.0009255   0.0000000      Look here
+X_corr_6:         0.3578190   0.2635600   0.4921300   0.0000000   <------------
+Q1_corr_6:        0.0431627   0.0256132   0.0422067   0.0000000
+
+
+-- 
+===============================================================================
+William A. Podgorski                Harvard-Smithsonian Center for Astrophysics,
+                                       Smithsonian Astrophysical Observatory
+Email: wpodgorski@cfa.harvard.edu   60 Garden Street, MS 5
+Phone: 617 495 7363                 Cambridge, MA  02138
+FAX:   617 495 7098                 USA
+

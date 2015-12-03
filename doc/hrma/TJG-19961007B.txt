@@ -1,0 +1,379 @@
+[Note added: 0.3937036 corrected to -0.3937036 in two places.
+             TJG 1996 Oct 08]
+
+[Note added: table of "R^2 weighted lateral mean removed" for double-pass
+             saosac corrected; original version did not have R^2 mean removed.
+             The single-pass version was correct in the original.
+             TJG 1996 Oct 10]
+
+Date: Mon, 7 Oct 1996 12:09:17 -0400
+From: gaetz@ymir (Terry Gaetz)
+To: wap@ymir
+Subject: Derivation of SAOsac alignment coefficients
+Cc: gaetz@ymir, mfreeman@ymir
+-------------
+                              MEMO
+
+From:     T. J. Gaetz
+Subject:  Derivation of SAOsac alignment coefficients
+Date:     1996 Oct 07
+          1996 Oct 09 (REVISED)
+
+In this note I convert the HATS alignment parameters into equivalent
+saodrat alignment descriptions.  The strategy is:
+
+  (1) Perform double-pass raytraces to determine sensitivities to
+      double-pass saosac body-centered motions.  (See memo re: 
+      "Rigid Body Shifts (double-pass saosac coordinates)"
+
+  (2) Reduce HATS Q terms to double-pass saosac dp_azmis, dp_elmis, 
+      decenters, and despaces.  I assume that coma is pure H-tilt.
+      From this, the corresponding tilt-induced lateral shift is 
+      removed from the Q0 terms.  The resulting adjusted Q0 terms
+      are interpreted in terms of a decentering of the mirror pair as a
+      whole.  An R^2-weighted average lateral shift is subtracted from
+      all mirror pairs (equivalent to redefinition of the coordinate
+      origin).  The X_corr values are interpreted in terms of pure
+      H axial shifts.
+
+  (3) Convert from double-pass saodrat coordinates to standard saodrat
+      coordinates.
+
+Derivation of alignment coefficients for (double-pass) saosac:
+----------------------------------------------------------------
+
+  Motions of an optic relative to its body center induce 'Q' terms in
+  the following way:
+
+    decenter H:    Q0 & Q2 terms
+    decenter P:         Q2 terms
+
+    tilt H:        Q0 & Q2 terms
+    tilt P:        Q0 & Q2 terms
+
+    despace H:     X_corr
+    despace P:     X_corr
+
+  Note that decenters and despaces both produce Q2 (coma), so at some
+  level the decomposition into decenters and tilts from the is ambigous -
+  one can always trade H-decenters against H-tilts (and compensate for
+  resulting net decenter by applying a decenter to both P and H at once).
+
+  If we recall the alignment procedure:
+    . match axial & lateral alignment, then
+    . zero coma
+  and note that relative importance of induced coma is half as large
+  (relative to induced lateral shift) for decenters vs. tilts,
+  it is plausible to interpret the coma term as resulting primarily
+  from a tilt.  This suggests a strategy for deducing the element
+  tilts & despaces:
+
+  (1) assume coma is pure H-tilt.  From this, determine the concomitant
+      lateral shift; subtract it from the Q0 terms.
+
+      dp_azmis ~= -Q2_real /(2 F_H)
+      dp_elmis ~= +Q2_imag /(2 F_H)
+
+      Q0' = Q0 - Q2*
+
+  (2) interpret the remaining Q0 values in terms of a decenter of the
+      mirror pair as a whole.
+
+      X_dp + i Y_dp = (1/2) Q0' = (1/2) (Q0 - Q2*)
+
+      dX_dp_H = dX_dp_P ~= (1/2) Q0'_real
+      dY_dp_H = dY_dp_P ~= (1/2) Q0'_imag
+
+  The axial focus problem is almost uncoupled from the lateral focus
+  error/tilt problem.  The double-pass raytraces and the analytical
+  treatments both indicate that the effect of an H mirror axial shift
+  has about five times the effect of a P mirror axial shift.  It
+  seems reasonable therefore to interpret the axial focus errors in
+  terms of H mirror axial shifts.
+
+      dZ_dp_H ~= +(4/5) X_corr
+
+
+Derivation of mirror position in double-pass saosac coordinates:
+---------------------------------------------------------------
+
+  From W. Podgorski's e-mail we have:
+
+    From: "William Podgorski" <wap@cface4.harvard.edu>
+    Message-Id: <9609251719.ZM898@cface4.harvard.edu>
+    Date: Wed, 25 Sep 1996 17:19:20 -0400
+    To: matthews%vxcnsa@vxcnsa.ias.kodak.com (Gary Matthews)
+    Subject: Re: Cross Check (revised sign)
+    Cc: cgha@Kodak.com, vanspeybroeck@cfa.harvard.edu,
+        mfreeman@vger.harvard.edu, gaetz@cfa.harvard.edu,
+        wap@cface4.harvard.edu
+    [...]
+    Absolute:
+  
+                            MP1         MP3         MP4        MP6
+    Q0_real          -0.0454255   -0.031098  -0.0329422  -0.034436
+    Q0_imag           0.0321301    0.038456   0.0350395   0.034114
+    X_corr            0.2039560    0.109697   0.3382670  -0.153863
+    Q2_real          -0.0104824    0.005229   0.0049242   0.026339
+    Q2_imag           0.0034693   -0.002716  -0.0004583  -0.008975
+    2nd Order resid   0.0175684    0.013188   0.0069180   0.003096
+    3rd Order resid   0.0139335    0.015339   0.0130358   0.015618
+
+  Using these Q values, I derive the double-pass saosac mirror alignment
+  parameters:
+
+    Determine the H-tilts from the Q2 components (F_H = 9607 mm):
+
+                            MP1          MP3        MP4         MP6
+      dp_azmis (arcsec)  +0.11253     -0.05613   -0.05286    -0.28275
+      dp_elmis (arcsec)  +0.03724     -0.02916   -0.04920    -0.09635
+
+    Adjust the Q0 coefficients to remove the amount implied by the tilt-coma:
+
+                          MP1          MP3        MP4         MP6
+      Q0'_real         -0.0349431   -0.036327  -0.0378664  -0.060775
+      Q0'_imag          0.0355994    0.035740   0.0345812   0.025139
+
+   Interpret the adjusted Q0 in terms of decenters of the mirror pair:
+
+                          MP1          MP3        MP4         MP6
+      X_dp_H (mm)      -0.017472    -0.018164  -0.018933   -0.030388
+      X_dp_P (mm)      -0.017472    -0.018164  -0.018933   -0.030388
+
+                          MP1          MP3        MP4         MP6
+      Y_dp_H (mm)       0.017800     0.017870   0.017291    0.012570
+      Y_dp_P (mm)       0.017800     0.017870   0.017291    0.012570
+
+    Translate nest of four mirror pairs (as a whole);
+    subtract out an R^2-weighted mean of the lateral positions:
+
+      X_dp_av = -0.019443
+      Y_dp_av =  0.017113
+
+    to get:
+
+                          MP1          MP3        MP4         MP6
+      X_dp_H (mm)       0.001971     0.001279   0.000510   -0.010945
+      X_dp_P (mm)       0.001971     0.001279   0.000510   -0.010945
+
+                          MP1          MP3        MP4         MP6
+      Y_dp_H (mm)       0.000687     0.000757   0.000178   -0.004543
+      Y_dp_P (mm)       0.000687     0.000757   0.000178   -0.004543
+
+    [alternatively, subtracting out the straight mean of the lateral 
+     positions:
+
+      X_dp_av = -0.0212393
+      Y_dp_av =  0.0163828
+
+                          MP1          MP3        MP4         MP6
+      X_dp_H' (mm)      0.003767     0.003075   0.002306   -0.009149
+      X_dp_P' (mm)      0.003767     0.003075   0.002306   -0.009149
+
+                          MP1          MP3        MP4         MP6
+      Y_dp_H' (mm)      0.001417     0.001487   0.000908   -0.003813
+      Y_dp_P' (mm)      0.001417     0.001487   0.000908   -0.003813
+    ]
+      
+    Finally, from the X_corr coefficients:
+
+      In this case we have the adjusted axial focus position (instead of
+      focus circle radius), from which we need to determine the H axial
+      adjustment:
+
+         Z_dp_H = +(4/5) X_corr
+
+                               MP1          MP3        MP4         MP6
+         X_corr              0.2039560    0.109697   0.3382670  -0.153863
+         Z_dp_H (mm)         0.1631648    0.087758   0.2706136  -0.123090
+
+      Subtract out MP6 value:
+
+                               MP1          MP3        MP4         MP6
+         Z_dp_H (mm)         0.2862548    0.210848   0.3937036   0.0
+
+  In summary:
+
+    R^2 weighted lateral mean removed:
+
+      double-pass saosac      MP1         MP3         MP4         MP6
+      -------------------------------------------------------------------
+      delta X_dp_P (mm)     0.001971     0.001279    0.000510   -0.010945
+      delta Y_dp_P (mm)     0.000687     0.000757    0.000178   -0.004543
+      delta Z_dp_P (mm)     0.0          0.0         0.0         0.0
+      azmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+      elmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+
+      double-pass saosac      MP1         MP3          MP4         MP6
+      -------------------------------------------------------------------
+      delta X_dp_H (mm)     0.001971     0.001279    0.000510   -0.010945
+      delta Y_dp_H (mm)     0.000687     0.000757    0.000178   -0.004543
+      delta Z_dp_H (mm)     0.2862548    0.210848    0.3937036   0.0
+      azmis_dp_H (arcsec)  +0.11253     -0.05613    -0.05286    -0.28275
+      elmis_dp_H (arcsec)  +0.03724     -0.02916    -0.00492    -0.09635
+
+    R^0 weighted lateral mean removed:
+
+      double-pass saosac      MP1         MP3          MP4         MP6
+      -------------------------------------------------------------------
+      delta X_dp_P (mm)     0.003767     0.003075    0.002306   -0.009149
+      delta Y_dp_P (mm)     0.001417     0.001487    0.000908   -0.003813
+      delta Z_dp_P (mm)     0.0         0.0          0.0         0.0
+      azmis_dp_P (arcsec)   0.0         0.0          0.0         0.0
+      elmis_dp_P (arcsec)   0.0         0.0          0.0         0.0
+
+      double-pass saosac      MP1         MP3         MP4         MP6
+      -------------------------------------------------------------------
+      delta X_dp_H (mm)     0.003767     0.003075    0.002306   -0.009149
+      delta Y_dp_H (mm)     0.001417     0.001487    0.000908   -0.003813
+      delta Z_dp_H (mm)     0.1631648    0.087758    0.2706136  -0.123090
+      azmis_dp_H (arcsec)  +0.11253    -0.05613     -0.05286    -0.28275
+      elmis_dp_H (arcsec)  +0.03724    -0.02916     -0.00492    -0.09635
+
+Relation between double-pass and standard saosac alignment parameters:
+---------------------------------------------------------------------
+
+  The following diagram sketches out the relation between the 3 coordinate
+  systems of concern:
+
+      A     = HRMA/AXAF coords
+      SAO   = saosac    coords
+      DPSAO = "double pass" saosac coords
+
+  Here I am only concerned with the coordinate directions; the coordinate
+  origin is not specified.
+
+  Coordinate convention:
+
+                    ^ Y_SAO
+                    |
+                    |                 \
+                    |                 |\                   [Y_A]
+        /           |                 | \                   X_DPSAO
+       *-           x--------->       | |       <---------x
+        \         X_SAO     Z_SAO     | /         Z_DPSAO |
+     source                           |/         [X_A]    |
+                                      /                   |
+                                     HRMA                 |
+                                                          v Y_DPSAO
+                                                           [Z_A]
+  In the diagram,
+    "x" means a vector pointing into page,
+    "o" means vector points out of page,
+
+  From this we get the following relations between the coordinate directions:
+
+    +Z_A = -Y_SAO = +Y_DPSAO
+    +Y_A = +X_SAO = +X_DPSAO
+    +X_A = -Z_SAO = +Z_DPSAO
+
+  According to the OSAC convention,
+
+    azmis: positive rotation about axis parallel to saosac Y axis;
+           positive is right-hand-rule rotation with angle increasing
+           from Z axis towards X axis.
+           (X' axis is new X axis after azmis rotation;
+            Z' axis is new Z axis after azmis rotation).
+
+    elmis: negative rotation about axis parallel to saosac X' axis
+           positive direction is right-hand-rule taking Y axis towards
+           Z' axis.  Positive elmis rotation takes Z' axis towards Y axis.
+
+  In the double-pass configuration, the above definitions are interpreted
+  in terms of the double-pass coordinate system.  The relation between
+  the double-pass system and the standard saodrat system can be stated as:
+
+    azmis_SAO = -azmis_DPSAO
+    elmis_SAO =  elmis_DPSAO
+
+    X_SAO = +X_DPSAO
+    Y_SAO = -Y_DPSAO
+    Z_SAO = -Z_DPSAO
+
+Mirror position in standard saosac coordinates:
+----------------------------------------------
+
+  Applying these relations (and dropping the SAO suffix henceforth)
+  we get:
+
+  Based on "Absolute" Q values; R^2 mean of lateral displacement removed:
+
+      standard saosac         MP1          MP3         MP4        MP6
+      -------------------------------------------------------------------
+      delta X_dp_P (mm)     0.001971     0.001279    0.000510   -0.010945
+      delta Y_dp_P (mm)    -0.000687    -0.000757   -0.000178    0.004543
+      delta Z_dp_P (mm)     0.0          0.0         0.0         0.0
+      azmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+      elmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+
+      standard saosac         MP1          MP3         MP4        MP6
+      -------------------------------------------------------------------
+      delta X_dp_H (mm)     0.001971     0.001279    0.000510   -0.010945
+      delta Y_dp_H (mm)    -0.000687    -0.000757   -0.000178    0.004543
+      delta Z_dp_H (mm)    -0.2862548   -0.210848   -0.3937036   0.0
+      azmis_dp_H (arcsec)  -0.11253      0.05613     0.05286     0.28275
+      elmis_dp_H (arcsec)   0.03724     -0.02916    -0.00492    -0.09635
+
+  Based on "Absolute" Q values; R^0 mean of lateral displacement removed:
+
+      standard saosac         MP1          MP3         MP4        MP6
+      -------------------------------------------------------------------
+      delta X_dp_P' (mm)    0.003767     0.003075    0.002306   -0.009149
+      delta Y_dp_P' (mm)   -0.001417    -0.001487   -0.000908    0.003813
+      delta Z_dp_P  (mm)    0.0          0.0         0.0         0.0
+      azmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+      elmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+
+      standard saosac         MP1          MP3         MP4        MP6
+      -------------------------------------------------------------------
+      delta X_dp_H' (mm)    0.003767     0.003075    0.002306   -0.009149
+      delta Y_dp_H' (mm)   -0.001417    -0.001487   -0.000908    0.003813
+      delta Z_dp_H (mm)    -0.2862548   -0.210848   -0.3937036   0.0
+      azmis_dp_H (arcsec)  -0.11253      0.05613     0.05286     0.28275
+      elmis_dp_H (arcsec)   0.03724     -0.02916    -0.00492    -0.09635
+
+
+Comparison with W. Podgorski values:
+-----------------------------------
+
+  I converted the /ceaxaf1/ekc/studies/HRMA_model/HRMA.rdb values for 
+  comparison with the above values.  Compare to the values with R^0 
+  weighted lateral displacement removed; this should be most comparable 
+  to the WAP values.  (However, my values with the R^2-weighted lateral
+  displacement removed actually agree a bit better with Bill's values.)
+
+          standard saosac         MP1          MP3         MP4        MP6
+          -------------------------------------------------------------------
+    
+    TJG   delta X_dp_P' (mm)    0.003767     0.003075    0.002306   -0.009149
+    WAP   delta X_dp_P  (mm)    0.001247    -0.000601   -0.001493   -0.01216
+    
+    TJG   delta Y_dp_P' (mm)   -0.001417    -0.001487   -0.000908    0.003813
+    WAP   delta Y_dp_P  (mm)   -0.000766    -0.000654    0.0002233   0.004200
+    
+    TJG   delta Z_dp_P (mm)     0.0          0.0         0.0         0.0
+    WAP   delta Z_dp_P (mm)     0.0          0.0         0.0         0.0
+    
+    TJG   azmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+    WAP   azmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+    
+    TJG   elmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+    WAP   elmis_dp_P (arcsec)   0.0          0.0         0.0         0.0
+    
+    
+    TJG   delta X_dp_H' (mm)    0.003767     0.003075    0.002306   -0.009149
+    WAP   delta X_dp_H  (mm)    0.001247    -0.000601   -0.001493   -0.01216
+    
+    TJG   delta Y_dp_H' (mm)   -0.001417    -0.001487   -0.000908    0.003813
+    WAP   delta Y_dp_H  (mm)   -0.000766    -0.000654    0.0002233   0.004200
+    
+    TJG   delta Z_dp_H (mm)    -0.2862548   -0.210848    0.3937036   0.0
+    WAP   delta Z_dp_H (mm)    -0.292       -0.2185     -0.4305      0.0
+    
+    TJG   azmis_dp_H (arcsec)  -0.11253      0.05613     0.05286     0.28275
+    WAP   azmis_dp_H (arcsec)  -0.11253      0.05613     0.05286     0.28275
+    
+    TJG   elmis_dp_H (arcsec)   0.03724     -0.02916    -0.00492    -0.09635
+    WAP   elmis_dp_H (arcsec)   0.03724     -0.02916    -0.00492    -0.09635
+    
+

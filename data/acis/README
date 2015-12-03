@@ -1,0 +1,3 @@
+All of these files are fully commented.  Simply view them with a pager
+such as `most' or `more'.  Alternatively, compile ../src/bdat2tbl.c and
+use the result to dump them.

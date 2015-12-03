@@ -1,0 +1,27 @@
+The .dat binary files in this directory and its subdirectories consists
+of a 32 byte header, followed by a comment section, and finally by the
+data.  
+
+The header has the format:
+
+Offset  length   Interpretation
+----------------------------------------------------------------------------
+  0       4      Magic number: 0x83 0x43 0x59 0x8E
+  4       1      Data type: 
+                     'A'    8 bit signed integer (character)
+		     'I'   16 bit signed integer
+		     'J'   32 bit signed integer
+		     'E'   32 bit float
+		     'F'   64 bit float
+  5       4      Number of Rows
+  9       4      Number of Columns
+ 13       4      Comment Length
+ 17      15      Reserved
+
+The comment section immediately follows the header.
+After that, the data follows ordered according to columns.
+
+The .dat files were generated from ASCII tables via tbl2bdat.c and may
+be converted back to ASCII via bdat2tbl.c.  See the Makefile.
+
+

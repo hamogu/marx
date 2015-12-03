@@ -1,0 +1,94 @@
+#filename:	hetgmp3D1996-11-01marxsectorN0002.tbl
+#
+#--------------------------------------------------------------------------
+# This file consists of a number of whitespace delimited columns.  
+# The first two columns define a sector, and the rest of the columns 
+# specify values for that sector.
+# 
+# The first column specifies the starting angle of the sector (in degrees)
+# measured from the top (+Z axis) of the UN-ROTATED torus.  Thus, the 
+# spacecraft +Y axis is at 90 degrees and the -Y axis is at 270.
+#
+# The second column specifies the location of the send of the sector.
+#
+# The 3rd and 4th columns specifies the alignment error as follows.  The 
+# 3rd column specifies the alignment error offset, call it 'a'.  The 4th 
+# column specifies the uncertaintly in 'a'.  Call it da.  Then the actual
+# alignment error a ray will experience is given by 'a + da*g' where g is
+# a normally distributed random number with unit variance.
+# The units for the 3rd and 4th columns are in arc-minutes.
+#
+# The 5th and 6th columns specify the dp_over_p that the ray will experience.
+# Call the 5th column 'p' and the 6th column 'dp'.  The dp_over_p value
+# will be computed via 'p + dp*g' where g is a normally distributed 
+# random number with unit variance.
+#
+#--------------------------------------------------------------------------
+# Notes on creating the 980930 values:
+# Start, Stop: 30 degrees per sector, then assume gratings fill sector
+#    shell 1 has 9 facets, shell 3 has 7
+#  a : taken from $CALDBaxafcal/hetg/fcp/MEG_misaligned.rdb
+# da : (roll rms in arc seconds from most recent LR test) / 60.
+#  p : (lr_active_period / LR_Average_Period of MEGs) - 1.0
+#      where average_LR_period_of_MEGs = 4001.17
+# dp : taken from lr_active_plot, dp/p in the active region for the facet
+#
+#--------------------------------------------------------------------------
+# Mis-aligned Gratings: Shell 3
+# 3EE2 ME1411: 30.*(4. + 5./7.) to 30.*(4. + 6./7.)
+# a= +7.6
+# da= 32./60.
+# p=( 4000.18/ 4001.17)-1.= 
+# dp= 44.0E-6
+#
+# 3FF4 MD1312: 30.*(3. + 3./7.) to 30.*(3. + 4./7.)
+# a= -8.7
+# da= 36./60.
+# p=( 4000.80/ 4001.17)-1.= 
+# dp= 71.0E-6
+#
+# 3FF5 MD1307: 30.*(3. + 2./7.) to 30.*(3. + 3./7.)
+# a= +24.8
+# da= 19./60.
+# p=( 4000.45/ 4001.17)-1.= 
+# dp= 54.0E-6
+#
+# 3E1  ME1405: 30.*(10. + 6./7.) to 30.*(10. + 7./7.)
+# a= +7.
+# da= 34./60.
+# p=( 4000.15/ 4001.17)-1.= 
+# dp= 41.0E-6
+#
+# Rest of gratings:
+#  Preliminary analysis of the XRCF Mg-K slit scan data
+# suggests a broad distribution in angle, approximated here
+# by setting a to +1 and -1 arc minute and assigning a da
+# of 1.5 arc minutes.  See HETG Report, Version 2.0, Sec. 6.3.3 .
+# Values here were entered by hand.
+#
+# . . . . . . . . . . . . . . . . . . Shell 3 . . . . . .
+#Start  Stop    a       da      	p       	dp
+0	20.0	-1.0	1.5		0		235e-6
+20.0	40.0	+1.0	1.5		0		235e-6
+40.0	60.0	-1.0	1.5		0		235e-6
+60.0	80.0	+1.0	1.5		0		235e-6
+80.0	89.2857	-1.0	1.5		0		235e-6
+89.2857	98.5714	+1.0	1.5		0		235e-6
+98.5714	102.857	24.8	0.316667	-0.000179946	54.0E-6
+102.857	107.143	-8.7	0.600000	-9.24468e-05	71.0E-6
+107.143	124.286	-1.0	1.5		0		235e-6
+124.286	141.429	+1.0	1.5		0		235e-6
+141.429	145.714	7.6	0.533333	-0.000247419	44.0E-6
+145.714	155.714	-1.0	1.5		0		235e-6
+155.714	165.714	+1.0	1.5		0		235e-6
+165.714	185.714	-1.0	1.5		0		235e-6
+185.714	205.714	+1.0	1.5		0		235e-6
+205.714	225.714	-1.0	1.5		0		235e-6
+225.714	245.714	+1.0	1.5		0		235e-6
+245.714	265.714	-1.0	1.5		0		235e-6
+265.714	285.714	+1.0	1.5		0		235e-6
+285.714	305.714	-1.0	1.5		0		235e-6
+305.714	325.714	+1.0	1.5		0		235e-6
+325.714	330.000	7.0	0.566667	-0.000254929	41.0E-6
+330.000	345.0	-1.0	1.5		0		235e-6
+345.000	360.0	+1.0	1.5		0		235e-6

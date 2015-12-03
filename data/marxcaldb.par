@@ -1,0 +1,9 @@
+GEOM,f,h,"caldb/telD1999-07-23geomN0006.fits",,,"Name of GEOM file"
+AIMPTS,f,h,"caldb/telD1999-07-23aimptsN0002.fits",,,"Name of AIMPOINTS file"
+ACISQE,f,h,"caldb/acisD1997-04-17qeN0006.fits",,,"Name of ACIS QE file"
+ACISFEF,f,h,"caldb/acisfef.fits",,,"Name of ACIS FEF file"
+HETGEFF,f,h,"caldb/hetgD1996-11-01greffpr001N0007.fits",,,"Name of HETG GEFF file"
+LETGEFF,f,h,"caldb/letgD1996-11-01greffpr001N0007.fits",,,"Name of LETG GEFF file"
+ACISCONTAM,f,h,"caldb/acisD1999-08-13contamN0012_marx.fits",,,"Name of ACIS contam file"
+ACISSUBPIX,f,h,"caldb/acisD1999-07-22subpixN0001_marx.fits",,,"Name of ACIS subpixel file"
+mode,s,h,"h",,,

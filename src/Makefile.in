@@ -1,0 +1,103 @@
+# -*- sh -*-
+
+#---------------------------------------------------------------------------
+# 1. Choose a C compiler.  It must understand prototypes.
+#-----------------------------------------------------------------------------
+CC = @CC@
+CFLAGS = @CFLAGS@
+LDFLAGS = @LDFLAGS@ @DYNAMIC_LINK_FLAGS@
+
+#-----------------------------------------------------------------------------
+# 2. Location where object files are placed (Absolute path)
+#-----------------------------------------------------------------------------
+SRCDIR = @CONFIG_DIR@/src
+OBJDIR = @CONFIG_DIR@/src/$(ARCH)objs
+
+#-----------------------------------------------------------------------------
+# System library that contains functions for dynamic linking (-ldl)
+#-----------------------------------------------------------------------------
+DL_LIB= @DYNAMIC_LINK_LIB@
+
+#-----------------------------------------------------------------------------
+# 4. Directory where the various libraries are located.
+#-----------------------------------------------------------------------------
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+datarootdir = @datarootdir@
+PFILEINC = @PFILE_INCLUDE@#      pfile.h location
+PFILELIB = @PFILE_LIB_DIR@#      libpfile.a location
+JDMATHINC = @JDMATH_INCLUDE@#    jdmath.h location
+JDMATHLIB = @JDMATH_LIB_DIR@#    libjdmath.a location
+JDFITSINC = @JDFITS_INCLUDE@#    jdfits.h location
+JDFITSLIB = @JDFITS_LIB_DIR@#    libjdfits.a location
+
+MARX_INCLUDE = $(SRCDIR)/../libsrc#             location of marx.h
+MARX_LIB = $(MARX_INCLUDE)/$(ARCH)objs#     location of libmarx.a
+PFILEDIR	= $(datarootdir)/marx/pfiles
+
+
+#----------------------------------------------------------------------------
+# End of user configuration
+#----------------------------------------------------------------------------
+@SET_MAKE@
+SHELL = /bin/sh
+PROGRAMS = marx marx2fits marx2img marxcat marxpileup detinfo \
+  marx2dpde rfl geff bestfocus dumpwfold acis-qe geffdump sky2chip \
+  marxasp
+CONFIG_H = config.h
+
+INCS = -I$(MARX_INCLUDE) -I$(JDMATHINC) -I$(PFILEINC)
+ALL_CFLAGS = $(CFLAGS) -DMARX -Dunix $(INCS)
+
+COMPILE_CMD = $(CC) -c $(ALL_CFLAGS)
+EXECLIBS = -L$(MARX_LIB) -lmarx -L$(JDMATHLIB) -ljdmath \
+  -L$(PFILELIB) -lpfile $(DL_LIB) -L$(JDFITSLIB) -ljdfits -lm
+EXECDEPS = $(MARX_LIB)/libmarx.a
+EXECINC =
+#---------------------------------------------------------------------------
+MARX_PFILE_DIR=$(PFILEDIR)
+
+marx_O_DEP = marx-feat.h Makefile
+marx_INC = -I$(JDFITSINC) -DMARX -DMARX_HOSTNAME='"$(HOSTNAME)"' -DMARX_PFILE_DIR='"$(MARX_PFILE_DIR)"'
+marx2fits_INC = -I$(JDFITSINC)
+marxasp_INC = -I$(JDFITSINC)
+marx2img_INC = -I$(JDFITSINC)
+
+
+marxpileup_DEPS = # $(OBJDIR)/acissim.o $(OBJDIR)/henke.o
+marxpileup_LIBS = # $(OBJDIR)/acissim.o $(OBJDIR)/henke.o
+
+testacis_DEPS = $(OBJDIR)/acissim.o $(OBJDIR)/henke.o
+testacis_LIBS = $(OBJDIR)/acissim.o $(OBJDIR)/henke.o
+
+acis-qe_LIBS = $(OBJDIR)/henke.o
+acis-qe_DEPS = $(OBJDIR)/henke.o
+acis-qe_O_DEP = $(SRCDIR)/acissim.c
+
+#---------------------------------------------------------------------------
+all: $(OBJDIR) $(CONFIG_H) $(PROGRAMS)
+
+$(CONFIG_H) : $(MARX_LIB)/libmarx.a $(MARX_INCLUDE)/config.h
+	/bin/cp $(MARX_INCLUDE)/config.h $(CONFIG_H)
+
+$(MARX_LIB)/libmarx.a :
+	cd $(MARX_INCLUDE); $(MAKE)
+#
+$(OBJDIR):
+	@mkdir $(OBJDIR)
+#---------------------------------------------------------------------------
+# Housekeeping
+#---------------------------------------------------------------------------
+clean:
+	-/bin/rm -f $(OBJDIR)/* *~
+distclean: clean
+	-/bin/rm -rf $(OBJDIR) Makefile
+symlinks:
+	-/bin/rm -f $(ARCH)objs
+	-mkdir -p $(HOME)/sys/$(ARCH)/objs/marx/src
+	ln -s $(HOME)/sys/$(ARCH)/objs/marx/src $(ARCH)objs
+
+
+#---------------------------------------------------------------------------
+# Everything else from configure script
+#---------------------------------------------------------------------------

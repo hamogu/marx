@@ -1,0 +1,138 @@
+# -*- sh -*- 
+# Note: This Makefile is meant to be invoked from the top-level 
+# marx-dist Makefile.
+#
+
+DATADIR = /usr/local/share/marx/data
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+MKINSTDIR = ../../autoconf/mkinsdir.sh
+
+DESTDIR = 
+DEST_DATADIR = $(DESTDIR)$(DATADIR)
+
+TOP_FILES = README FORMAT.TXT marxcaldb.par
+SRC_FILES = Makefile bdat2tbl.c tbl2bdat.c
+OBS_FILES = acis_i_obs.par acis_s_obs.par hrc_i_obs.par hrc_s_obs.par
+PIXLIB_FILES = pix_corner_lsi.par pix_sim_table_flight.par
+ACIS_FILES = README
+EA_MIRROR_FILES = README Ae_s1346.dat Mirror_EE.bin
+
+GRATING_FILES = README optical-constants.dat optical-constants.xray \
+ hetgmp1D1996-11-01marxsectorN0002.tbl hetgmp3D1996-11-01marxsectorN0002.tbl \
+ hetgmp4D1996-11-01marxsectorN0003.tbl hetgmp6D1996-11-01marxsectorN0003.tbl \
+ letgD1996-11-01greffMARXpr001N0004.dat
+
+HRC_FILES = README carbon.dat carbon.xray chromium.dat chromium.xray \
+ gold.dat gold.xray hrc_s_geom.txt hrc_i_geom.txt mcp_qe_i.v2.2.dat \
+ mcp_qe_s.v3.dat uvis_i.v4.dat uvis_s1.v4.dat uvis_s2.v4.dat \
+ uvis_s34.v4.dat uvis_s56.v4.dat
+
+HRMA_FILES = README iridium.dat corr_1.dat corr_3.dat corr_4.dat \
+ corr_6.dat iridium.xray scat_p1_M.bin scat_p3_M.bin scat_p4_M.bin \
+ scat_p6_M.bin scat_h1_M.bin scat_h3_M.bin scat_h4_M.bin scat_h6_M.bin \
+ EKCHDOS01.rdb EKCHDOS02.rdb EKCHDOS03.rdb EKCHDOS04.rdb EKCHDOS05.rdb \
+ EKCHDOS06.rdb ideal.rdb
+
+CALDB_FILES = telD1999-07-23geomN0006.fits \
+ telD1999-07-23aimptsN0002.fits \
+ acisD1997-04-17qeN0006.fits \
+ letgD1996-11-01greffpr001N0007.fits \
+ hetgD1996-11-01greffpr001N0007.fits \
+ acisD1999-08-13contamN0012_marx.fits \
+ acisD1999-07-22subpixN0001_marx.fits \
+ acisfef.fits fixfef.sl
+
+install-dirs:
+	$(MKINSTDIR) $(DEST_DATADIR)
+	$(MKINSTDIR) $(DEST_DATADIR)/caldb
+	$(MKINSTDIR) $(DEST_DATADIR)/hrma
+	$(MKINSTDIR) $(DEST_DATADIR)/hrc
+	$(MKINSTDIR) $(DEST_DATADIR)/grating
+	$(MKINSTDIR) $(DEST_DATADIR)/ea-mirror
+	$(MKINSTDIR) $(DEST_DATADIR)/acis
+	$(MKINSTDIR) $(DEST_DATADIR)/pixlib
+	$(MKINSTDIR) $(DEST_DATADIR)/obs
+	$(MKINSTDIR) $(DEST_DATADIR)/src
+install: install-dirs
+	@for X in $(TOP_FILES); do \
+		Y=$(DEST_DATADIR); \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) $$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(SRC_FILES); do \
+		Y=$(DEST_DATADIR)/src; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) src/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(OBS_FILES); do \
+		Y=$(DEST_DATADIR)/obs; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) obs/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(PIXLIB_FILES); do \
+		Y=$(DEST_DATADIR)/pixlib; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) pixlib/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(ACIS_FILES); do \
+		Y=$(DEST_DATADIR)/acis; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) acis/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(EA_MIRROR_FILES); do \
+		Y=$(DEST_DATADIR)/ea-mirror; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) ea-mirror/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(GRATING_FILES); do \
+		Y=$(DEST_DATADIR)/grating; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) grating/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(HRC_FILES); do \
+		Y=$(DEST_DATADIR)/hrc; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) hrc/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(HRMA_FILES); do \
+		Y=$(DEST_DATADIR)/hrma; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) hrma/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(CALDB_FILES); do \
+		Y=$(DEST_DATADIR)/caldb; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) caldb/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+#

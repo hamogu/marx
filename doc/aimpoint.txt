@@ -1,0 +1,112 @@
+From dd@spectra.mit.edu  Thu Apr 27 17:14:00 2000
+Date: Thu, 27 Apr 2000 17:13:48 -0400 (EDT)
+From: Dan Dewey <dd>
+To: sot@head-cfa.harvard.edu
+Subject:  simulating the offsets...
+Cc: davis, dph, wise
+
+
+SOT folks, 
+
+ Currently when Chandra "points at" a target that means that the
+target is expected to fall in detector coordinates at the
+"Image locations" in the table below.  The Chandra optical
+axis, however, points at a different region of the sky
+given by the "HRMA opt.-axis  intercepts" values in the table
+below (all for other offsets = 0.)
+
+ In order to properly simulate an observation with MARX, then,
+it is necessary that MARX simulate this difference (some might
+say error!) between the optical axis and the target locations
+on the detector so that, e.g., simulated chip gaps occurr
+where they will with real flight data.      
+
+ --> Are the values below, if implemented by MARX, adequate
+and accurate for proposal planning?
+
+  -Dan D for MARX folks...
+
+
+
+       Table of "0,0,0,0" Defaults for "Instruments"
+
+    This table summarizes what the result is for a pointing with
+    the specified Instrument selected; "0,0,0,0" refers to an
+    OR submitted with SIM-Z(trans_offset)=0, SIM-X(focus_offset)=0,
+    y_(pointing)offset=0, and z_(pointing)offset=0.
+    This is under the assumption of no additional S/C pointing error.
+
+
+"Instrument"            "0,0,0,0" Result
+-----------            ---------------------------------------------
+  ACIS-I  
+                     Image location centroid at I3 CHIPX =   966
+                      (designed: 949, 963)         CHIPY =   956
+                     HRMA opt.-axis  intercepts at CHIPX =   984.4 +/-?
+                                                   CHIPY =   994.8 +/-?
+                     Focus property =         "best aimpoint focus"
+
+  ACIS-S  
+                     Image location centroid at S3 CHIPX =   263
+                      (designed: 252, 496)         CHIPY =   507
+                     HRMA opt.-axis  intercepts at CHIPX =   220.7 +/-?
+                                                   CHIPY =   531.8 +/-?
+                     Focus property =         "best aimpoint focus"
+
+  HRC-I  
+                     Image location  <some HRC-I coord>X = 7667
+                                     <some HRC-I coord>Y = 7693
+                     HRMA opt.-axis  intercepts at CHIPX = 7529.9 +/-?
+                                                   CHIPY = 7745.0 +/-?
+                     Focus property =        "best aimpoint focus"
+
+  HRC-S  
+                     Image location  <some HRC-S coord>X = 2137
+                                     <some HRC-S coord>Y = 8844
+                     HRMA opt.-axis  intercepts at CHIPX = 2201.0 +/-?
+                                                   CHIPY = 8976.5 +/-?
+                     Focus property =        "best focus for LETGS"
+
+  - - -
+Useful Conversion factors:
+
+    SIMT (Z)  ODB_TSC_STEPS = 2.51432D-06   meters per motor step
+
+    SIMV (X)  FA            ~ 676 motor steps per mm
+
+"-676 steps/mm is of course a linear approximation appropriate "not
+too far" from zero absolute motor steps.  A sixth-order polynomial is
+available for better representation (see M. Duncan, Ball System
+Engineering Report S98.20874.SYS.386, 2/17/98, "SIM final performance
+requirements compliance" pp. 8-9).  Implemented in
+/proj/jvrtilek/AXAF_general/sim-focus.exe " - Jan V
+
+ - - - references:
+6. Updated optical axis locations from McDowell's March 9th 2000 memo
+   "Coordinate Systems Paper 1"
+   http://hea-www.harvard.edu/QEDT/jcm/asc/docs
+5. HRC "-991" from Schwartz Wed, 10 Nov 1999 11:27:31
+4. Updated aimpoints from maxim Wed Nov 10 00:36:21 1999
+3. HRC-I updated and converted to other detectors:
+    From maxim@head-cfa.harvard.edu  Mon Oct 11 22:41:36 1999
+    and added ODB_SI_SIMT and ODB_SI_SIMV values from Schwartz
+    (10/22/99) :
+
+ detector    SIM_Z      Opt. axis position      ODB_SI_
+             mm         chipx chipy          SIMT     SIMV
+
+ ACIS-I     -233.587     983   992          92905    -536 
+ ACIS-S     -190.120     228   523          75620    -468
+ HRC-I       126.983    7530  7744         -50505    -716
+ HRC-S       250.466    2199  8976         -99612    -991 (with LETG)
+                                                    -1065 (no LETG)
+
+The results for instruments other than HRC-I are accurate only to about
+10-15" (while for HRC-I it is better than 5"); a more accurate conversion
+has to wait for a PIXLIB update.
+2. HRC-I info from:
+    From maxim@head-cfa.harvard.edu  Tue Oct  5 16:27:03 1999
+1. ACIS CHIPX,Y from:
+    From maxim@head-cfa.harvard.edu  Fri Aug  6 16:20:36 1999
+
+ - - - end - - -

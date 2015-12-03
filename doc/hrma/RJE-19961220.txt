@@ -1,0 +1,126 @@
+From edgar@head-cfa.harvard.edu Fri Dec 20 18:28:35 1996
+Return-Path: <edgar@head-cfa.harvard.edu>
+Received: from marple by head-cfa (SMI-8.6/SMI-SVR4)
+	id SAA08958; Fri, 20 Dec 1996 18:28:34 -0500
+Message-Id: <199612202328.SAA08958@head-cfa>
+To: gaetz, dj
+cc: edgar
+Subject: quad shutter axial positions
+Date: Fri, 20 Dec 1996 18:28:33 -0500
+From: "Richard J. Edgar" <edgar@head-cfa.harvard.edu>
+Status: OR
+Content-Length: 3737
+X-Lines: 110
+X-Display-Position: 2
+
+
+I still don't know where the drawings of the quad shutters are;
+presumably Jon can rustle some up here, or get some from Kodak.
+But here's the info about the axial positions.  There are photos
+of the aft HRMA structure on page 
+
+	http://hea-www.harvard.edu/asctrw/pix_hetg_install.html
+
+on the WWW.  They show which corner has the hinge, which way
+opening shutters rotate (with angular momentum vector parallel to
+the x-ray propagation direction; our Z axis).
+
+					good luck;
+					Dick
+
+------- Forwarded Message
+
+Date:    Fri, 22 Sep 1995 14:45:54 -0500
+From:    maj@kodak.com (Mike Johnston)
+To:      jwa@amelia.sp.trw.com
+cc:      vallimont%vxcnsa@vxcnsa.ias.kodak.com, edgar@head-cfa.harvard.edu,
+	 edgar@head-cfa.harvard.edu
+Subject: Re: XRCF configuration question
+
+Jon,
+
+John didn't realize that we were looking for fairly accurate numbers and
+the ones in the table below are in fact the distances to the -X side of the
+Y-axis shutters.  The Z-axis shutters are 0.375" in the +X direction from
+the Y-axis shutters.  These numbers are nominal dimensions and the actual
+tolerance between the blades and the CAP midplane is in the order of +/-
+0.250".  Also, note the typo for MP6; it's 118.25".
+
+
+>X-Sender: jwa@amelia.sp.trw.com
+>X-Mailer: Windows Eudora Version 2.0.3
+>Mime-Version: 1.0
+>Date: Thu, 21 Sep 1995 15:29:59 -0700
+>To: "Richard J. Edgar" <edgar@head-cfa.harvard.edu>
+>From: jwa@amelia.sp.trw.com (Jonathan W. Arenberg)
+>Subject: Re: XRCF configuration question
+>Cc: jph@cfa.harvard.edu, maj@Kodak.COM
+>
+>Hi Dick
+>
+>I have some more quantitative data for you re: your question.The axial
+>distance in inches between the HRMA midplane and the shutter for the various
+>mirror pairs is given below:
+>
+>MP1     125.00 in
+>MP3     122.75 in
+>MP4     120.50 in
+>MP6     188.25 in
+>
+>Please let me know if you are in need of more data.
+>
+>Regards,
+>
+>Jon
+>
+>>
+>>John,
+>>
+>>I'm working with Jack Hughes at SAO, doing ray-trace models of the AXAF
+>>telescope.  In an effort to simulate some focus tests to be done
+>>at the XRCF in Huntsville, we started to wonder where, along the
+>>optical axis, the quadrant shutters are placed.  Perhaps you can
+>>refer us to an appropriate document or drawing, or just dig up a
+>>number.  We generally measure things from either the front of the
+>>HRMA paraboloid elements, or the Central Aperture Plate of the HRMA,
+>>but any other fiducial point would do.
+>>
+>>Thanks for your attention.
+>>
+>>Dick Edgar
+>>
+>>
+>>=============================================================================
+>>Richard J. Edgar edgar@head-cfa.harvard.edu | "It all depends, of course,
+>>Harvard-Smithsonian Center for Astrophysics | upon whether or not it depends
+>>60 Garden St., MS 81, Cambridge, MA 02138   | or not, of course, if you take
+>>phone: (617)495-7249; fax: (617)495-7356    | my meaning."  --John Woolley
+>>
+>>
+>>
+>******************************************
+>Had I been present at the creation, I would have given some useful hints for
+>the better ordering of the universe.
+>
+>                      -Alphonso the Wise. 1221-1284.
+>
+>
+>
+
+
+===================================================================
+* Mike Johnston (MJ)      *                                       *
+* -----------------       *  "The goal of every engineer is to    *
+* AXAF Interface Engineer *  retire without getting blamed for    *
+* Eastman Kodak Company   *  a major catastrophe."                *
+* Ph 716-722-4138         *                         - Dilbert     *
+* Fx 716-722-1155         *                                       *
+* maj@kodak.com           *                                       *
+===================================================================
+
+
+
+
+------- End of Forwarded Message
+
+

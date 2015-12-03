@@ -1,0 +1,54 @@
+# -*- sh -*- 
+# Note: This Makefile is meant to be invoked from the top-level 
+# marx-dist Makefile.
+#
+
+DOCDIR = /usr/local/share/doc/marx
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+MKINSTDIR = ../../autoconf/mkinsdir.sh
+
+DESTDIR = 
+DEST_DOCDIR = $(DESTDIR)$(DOCDIR)
+
+TOP_FILES = ../COPYING ../COPYRIGHT README dump.txt parms.txt tma.txt \
+ source.tex aimpoint.txt marx.html
+
+EXAMPLES_FILES = Makefile image.c point.c eventlist.c user.h README
+
+HRMA_FILES = hrma-OLD.txt DG-19961223-1.txt PZ-19951128.txt \
+ WAP-19950929.txt WAP-19970327.txt RJE-19961220.txt WAP-19960328.txt \
+ JPH-19960304.txt TJG-19961007A.txt WAP-19960410.txt JWA-19960603.txt \
+ TJG-19961007B.txt WAP-19961008.txt LVS-19960614.txt TJG-19961007C.txt \
+ WAP-19961108.txt fields.txt
+
+install-dirs:
+	$(MKINSTDIR) $(DEST_DOCDIR)
+	$(MKINSTDIR) $(DEST_DOCDIR)/examples/user-source
+	$(MKINSTDIR) $(DEST_DOCDIR)/hrma
+
+install: install-dirs
+	@for X in $(TOP_FILES); do \
+		Y=$(DEST_DOCDIR); \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) $$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(HRMA_FILES); do \
+		Y=$(DEST_DOCDIR)/hrma; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) hrma/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done
+	@for X in $(EXAMPLES_FILES); do \
+		Y=$(DEST_DOCDIR)/examples/user-source; \
+		echo Installing $$X in $$Y; \
+		$(INSTALL_DATA) examples/user-source/$$X $$Y/; \
+		if [ "$$?" != "0" ]; then \
+		  exit 1; \
+		fi; \
+	done

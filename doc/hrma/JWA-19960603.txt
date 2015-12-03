@@ -1,0 +1,56 @@
+From jwa@amelia.sp.trw.com Mon Jun  3 12:45 EDT 1996
+Return-Path: <jwa@amelia.sp.trw.com>
+Received: from head-cfa (head-cfa.harvard.edu) by pelf (5.0/SMI-SVR4)
+	id AA00824; Mon, 3 Jun 1996 12:45:52 -0400
+Received: from cfa.harvard.edu by head-cfa (SMI-8.6/SMI-SVR4)
+	id MAA21108; Mon, 3 Jun 1996 12:45:50 -0400
+Received: from amelia.sp.trw.com (amelia.sp.TRW.COM [129.4.101.196]) by cfa.harvard.edu (8.7.5/8.7.3) with SMTP id MAA26934 for <djerius@cfa.harvard.edu>; Mon, 3 Jun 1996 12:45:49 -0400 (EDT)
+Received: from jarenberg by amelia.sp.trw.com (SMI-8.6/SMI-SVR4)
+	id JAA06919; Mon, 3 Jun 1996 09:45:07 -0700
+Message-Id: <199606031645.JAA06919@amelia.sp.trw.com>
+X-Sender: jwa@amelia.sp.trw.com
+X-Mailer: Windows Eudora Pro Version 2.1.2
+Mime-Version: 1.0
+Date: Mon, 03 Jun 1996 09:44:00 -0700
+To: djerius@cfa.harvard.edu
+From: "Jonathan W. Arenberg" <jwa@amelia.sp.trw.com>
+Subject: Re: XSS to HRMA distance
+Content-Type: text/plain; charset="us-ascii"
+Status: OR
+Content-Length: 914
+X-Lines: 32
+X-Display-Position: 2
+
+Yes I can.  The best number at the moment can be found in XC05, Book 2, DWG
+E4459700, sheet 2. It is 1730 +/- 0.5 ft. We will be making a direct
+measurement sometime soon. We will make that measurement whne there is time.
+
+Jon
+
+ At 07:00 PM 5/28/96 -0400, you wrote:
+>
+>Jon,
+>
+>I'm trying to track down the distance from the XSS to the HRMA, preferrably
+>to the CAP (Datum A to be exact).  Could you point me to a source for that
+>distance, or to someone who might know?
+>
+>Thanks,
+>
+>Diab
+>
+>-------------
+>Diab Jerius                       Harvard-Smithsonian Center for Astrophysics
+>                                  60 Garden St, MS 70, Cambridge MA 02138 USA
+>djerius@cfa.harvard.edu           vox: 617 496 7575         fax: 617 495 7356
+>
+>
+******************************************
+"Do, Or do not."  
+
+                                  Yoda
+
+(310)813-6352 Fax
+http://hea-www.harvard.edu/asctrw/index.htm
+
+

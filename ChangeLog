@@ -1,0 +1,626 @@
+See changes.txt for more recent updates.
+
+2007-12-21  John E. Davis  <davis@space.mit.edu>
+
+	*  data/caldb/: Updated aimpoints and ACIS QE file.
+
+2007-12-12  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c: Changed Chandra to CHANDRA
+
+2005-12-16  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION): Updated to 4.2.1
+
+2005-11-30  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (get_marx_pfile_info): Undo the change from
+	2003-2-6 affecting the calculation of SIM_*.
+
+2005-1-18  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx.c (setup_tstart): Use timegm instead of mktime so
+	that times are expressed in UTC.
+
+2005-1-12  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/acis_fef.c (normalize_gaussians): turned off acis-fef
+	warning message.
+
+2005-1-10  John E. Davis  <davis@space.mit.edu>
+
+        * data/hrc/mcp*,uvis*: Updated HRC-I/S QE and transmission
+	files.
+
+	* libsrc/hrc-s.c (_marx_hrc_read_efficiencies): commented out
+	section of code that converts to keV since new hrc cal files
+	are in keV units
+
+	* libsrc/hrc-i.c (_marx_hrc_i_init): changed "HRC-S" in a
+	string to "HRC-I".
+
+2004-12-20  John E. Davis  <davis@space.mit.edu>
+
+	* data/marxcaldb.par: updated caldb files: new letg file and acis-qe.
+
+	* src/marx2fits.c: added more DS keywords.
+
+2004-11-16  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c: added DS* keywords to enable GTIs to be
+	copied by dmcopy.
+
+2004-11-13  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/aciscontam.c (_marx_acis_contam_init): new file to
+	implement AV's contamination model.
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to d4.2.0
+
+2004-8-26  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/hrc_s_geom.c (rotate_mcp): new function to rotate the
+	MCP instead of the earlier hack which included the effect in
+	the dither.  The advantage of rotating it here is the the HRC
+	rotation manifests itself in simulations with no dither.
+
+	* src/marx.par: Focal length changed to 10079mm
+
+2004-8-25  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx.par: changed sign of letg dispersion angle
+
+	* data/hrc/hrc_s_geom.txt: change sign of HRC rotation to better match
+	observations.
+
+2003-12-15  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped version to d4.1.0
+
+	* libsrc/diffract.c: added code for reading fine/coarse leg
+	geometry from marx.par
+
+	* par/marx.par: added parameters for leg fine/coarse geometry
+
+2003-11-28  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 4.0.10
+
+	* libsrc/acis_fef.c (normalize_gaussians): Avoid CCD regions
+	parameterized by a gaussian with a large negative center and
+	small sigma.  Such gaussians have little area positive area.
+
+2003-2-6  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 4.0.9
+
+	* src/marx2fits.c (get_marx_pfile_info): DetOffset_* was being
+	added to stf_stt_offset instead of subtracted, producing the wrong
+	values for SIM_*.
+
+2002-11-12  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 4.0.8
+
+	* libsrc/marx.c: Make the values of the TSTART/TSTOP keywords
+	consistent with MJDREF.
+
+2002-10-7  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 4.0.6
+
+	* libsrc/dither.c (init_internal_dither): allow internal
+	dither to work with SAOSAC rays except for the amplitude to be
+	zero.  This permits sub-pixel resolution for SAOSAC rays.
+
+2002-9-19  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION): bumped to 4.0.5
+
+	* libsrc/pixlib.c (marx_init_chip_to_mnc): use the tweaked
+	pixel size and not the value specified in the caldb file.
+
+	* src/marx2fits.c (compute_detxy): No need to add 0.5 to the
+	DETX/Y values because the effect is already included by
+	marx_mnc_to_fpc.
+
+2002-9-5  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 4.0.4
+
+	* src/marx2fits.c: fix computation of DTCOR for non-piled
+	observations.
+
+	* libsrc/hrma.c (_marx_hrma_mirror_reflect): found a bug in
+	using the correction factors for a monochromatic source.
+
+2002-6-4  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 4.0.3
+
+	* par/marx.par: updated marxsector files
+
+2002-5-9  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/detpix.c: Use 0.1318 asec/pixel for FP-2.3 system.
+
+2002-4-5  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (compute_expno): Apparantly according to
+	Glenn, TIMEDEL *should* include the read-out time.  Sigh.
+
+2002-4-1  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): updated to 4.0.2
+
+	* libsrc/acis_fef.c (marx_apply_acis_rmf): if gaussians have a
+	negative area, just absorb the ray.  I am not going to work
+	around fef bugs.
+
+2002-3-28  John E. Davis  <davis@space.mit.edu>
+
+	* src/pileup.c (write_event): to get the pha from the energy,
+	use the gain curve instead of using the RMF.
+
+	* src/marxasp.c (read_obspar_file): write out exposure based
+	upon the value of DTCOR.
+
+2002-3-27  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (get_marx_pfile_info): the value for TIMEDEL
+	should not include the ACIS read-out time.  That is, it should
+	be 3.2 instead of 3.24104.
+
+2002-3-11  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): updated to 4.0.1
+
+2002-2-28  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/acis_fef.c (normalize_gaussians): only perform the
+	normalizations if the total area is non-zero.  This fixes a
+	SIGFPE on the alpha.
+
+2002-2-7  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): changed to 4.0.0 for release.
+
+	* *.c, *.h: updated copyright date to 2002
+
+	* par/marx.par: updated MEG and HEG Rowland diameter values.
+
+2002-1-21  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/hrma.c (init_hrma_shells): increase the shell
+	aperature min radius to allow off-axis rays to hit the
+	paraboloid without obstructions.
+
+	* data/hrma/iridium.dat: Update to constants from Nov 2000.
+
+2001-12-17  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): 4.0.0 beta-2
+
+	* src/marx.par: updated Rowland diameters and added grating
+	specific rowland diameter parameters.
+
+2001-12-10  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (patch_min_max_values): add tlmin/max for PI
+	column. 
+
+2001-11-8  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/spectrum.c (_marx_init_flat_spectrum): For the flat
+	spectrum the flux parameter specifies the integrated flux.
+
+	* libsrc/marx.h (MARX_VERSION_STRING): 4.0 beta
+
+	* libsrc/caldb.c: new file: read caldb compliant files such as
+	the ACIS QE, FEF, GEOM, AIMPTS, and LETG/HETG GEFF files.
+
+	* libsrc/acis_fef.c: new file: use fef file for acis response.
+
+	* libsrc/s-saosac.c (saosac_create_photons): added patch to
+	ensure that photon bunch starts at t=0.
+
+2001-1-25  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (compute_tdetxy): be sure to add 1 to tiled system.
+
+2000-11-16  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx.c (write_obs_par): write out ra/dec/roll_nom as
+	positive angles.
+
+2000-6-26  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (compute_detxy): randomize within a pixel
+
+2000-5-30  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION): updated to 3.01
+
+2000-5-26  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/s-line.c (line_create_photons): modified to make
+	source obey SourceOffsetY/Z angles.
+
+2000-5-22  John E. Davis  <davis@space.mit.edu>
+
+	* marx.lis: aimpoint.txt added
+
+	* doc/aimpoint.txt: new document (email from Dan)
+
+	* par/marx.par: Fix prompt for SourceOffsetY/Z to agree with
+	parameter name.
+
+2000-5-19  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/s-image.c (image_create_photons): sign error fixed
+	involving image flip in Y.
+
+2000-5-11  John E. Davis  <davis@space.mit.edu>
+
+	* src/detinfo.c (main): init name to avoid compiler warning
+
+	* libsrc/acis_gain.c (check_gain_map_for_holes): `i' was used where
+	`ccdid' should have been (not serious).
+
+2000-5-2  John E. Davis  <davis@space.mit.edu>
+
+	* par/marx.par: updated from MW copy
+
+	* par/marxasp.par: updated from MW copy
+
+	* par/pileup.par: updated from MW copy
+
+	* libsrc/marx.h (MARX_VERSION_STRING): 2.41
+	(MARX_VERSION_STRING): bumped to 3.0 for release
+
+	* par/marx.par: SourceOffsetY/Z prompt changed.
+
+	* libsrc/source.c (select_source): rewritten to make aimpoint
+	invariant under roll_nom.
+
+2000-5-1  John E. Davis  <davis@space.mit.edu>
+
+	* par/marx.par: replace hrc_s_qe.dat with hrcs_mcpqe_030900_pr001.dat
+
+	* marx.lis: replace hrc_s_qe.dat with hrcs_mcpqe_030900_pr001.dat
+
+2000-4-30  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/dither.c (unapply_dither): even if dither amplitudes
+	are 0, apply roll correction.
+
+	* libsrc/marx.h (MARX_VERSION): bumped to 2.40
+
+	* src/marx.par: changed letg vignetting to 1.0 and changed the
+	effic files to letgD1996-11-01greffMARXpr001N0004.dat.
+
+	* libsrc/marx.h: marx_get_pointing added.
+
+	* src/marx.c (write_obs_par): use marx_get_pointing to fill
+	ra_pnt, etc obs.par values.
+
+	* libsrc/dither.c (marx_get_pointing): new function
+
+	* src/marxasp.c (read_obspar_file): ra_nom,dec_nom read from
+	par file.
+
+2000-4-29  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx.par: new parameters: Pointing_RA/Dec, PointingOffsetX/Y.
+	RA_NOM/DEC_NOM removed.
+
+	* libsrc/_marx.h: _marx_init_dither has extra parameter that
+	enables no dither to be forced.
+
+	* libsrc/dither.c (init_no_dither): new function to init some
+	things even when dither is not selected.  Dither models
+	rewritten to take aimpoint/optical axis alignment into account.
+
+2000-4-28  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/dither.c: backed out yesterdays (undocumented) edits
+	affecting dither.
+
+2000-4-27  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (compute_pileup_acis_energy): modified if
+	gain map is used.
+	RA_NOM,DEC_NOM,ROLL_NOM now read from obs.par instead of marx.par.
+
+	* libsrc/_marx.h (_MARX_DITHER_MODE_ASPSOL): renamed from
+	_MARX_DITHER_MODE_TRUTH.
+
+	* libsrc/dither.c (_marx_init_dither): updated to rename
+	gadsooks to ASPSOL.
+
+	* par/marx.par: updated from Mike Wise copies, and changed
+	GADSOOKS to ASPSOL, and TruthFile to DitherFile.
+
+2000-4-21  John E. Davis  <davis@space.mit.edu>
+
+	* marx.lis: updated to N004 hetg grating efficiencies
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 2.39
+
+	* libsrc/acis-s.c (get_acis_parms): only use gain parameters
+	when not using gain map.
+
+	* libsrc/_marx.h (_Marx_Acis_Chip_Type): use read_noise, etc
+	if not using gain map.
+
+	* libsrc/acis-i.c (get_acis_parms): Only check for acis gain
+	parameters if not using the gain map.
+
+2000-4-14  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (marx2fits): MFORM keywords added.
+
+2000-4-12  John E. Davis  <davis@space.mit.edu>
+
+	* src/marxasp.c (setup_dither): Roll_Amp was interpreted as
+	degrees instead of arc-secs.
+
+2000-3-22  John E. Davis  <davis@space.mit.edu>
+
+	* src/marxcat.c (main): marx2fits.info replaced by obs.par
+
+	* src/pileup.c (copy_files): marx2fits.info replaced by obs.par
+
+2000-3-21  John E. Davis  <davis@space.mit.edu>
+
+	* par/marxasp.par: updated *_Sigma values to 0.12 arc-secs
+
+2000-3-17  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): version 2.38
+
+	* src/marx2fits.c (get_marx_pfile_info): origin and aimpoint
+	parameters swapped.
+
+	* libsrc/hrc_s_geom.c (_marx_patch_hrc_s_geom): HRC-S1 and S3
+	were flipped to correspond to geometry in hrc_s_geom.txt file.
+
+	* libsrc/marx.h (MARX_VERSION): bumped to 2.37
+
+	* data/pixlib/pix_sim_table_flight.par: sign of X coordinate
+	of origin-* parameters corrected after alerting JMcD that they
+	were wrong.
+
+	* libsrc/detpix.c (hrc_s_to_tiled): Back to tiled system
+	AXAF-HRC-2.7S after typos and errors in JMcD's memo corrected.
+
+2000-3-16  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/hrc_i_geom.c (_marx_patch_hrc_i_geom): make sure
+	x/ypixel_offset gets initialized.
+
+	* marx.lis: pix_sim_table_flight.par added to dist
+
+	* libsrc/detpix.c (patch_aimpoint): new function to patch up
+	stt offsets from pixlib par file.
+
+2000-3-15  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/detpix.c (hrc_s_to_tiled): back to AXAF-HRC-2.4S
+
+	* libsrc/hrc_s_geom.c (_marx_patch_hrc_s_geom): go back to
+	AXAF-HRC-2.4S until I am provided with the correct numbers.
+
+	* libsrc/marx.h (Marx_Detector_Geometry_Type): changed
+	tdet_x/yoff from unsigned int to float (yuk)
+
+	* libsrc/hrc_i_geom.c (_marx_patch_hrc_i_geom): Update to
+	AXAF-HRC-2.4I.
+
+	* libsrc/hrc_s_geom.c (_marx_patch_hrc_s_geom): Update tdet
+	parameters to AXAF-HRC-2.7S.
+
+2000-3-13  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/detpix.c: updated stt_lsi_offset values.
+
+2000-3-7  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx.c (write_obs_par): write out ra_nom, et al in
+	degress to obs.par.
+
+	* libsrc/marx.h (MARX_VERSION_STRING): 2.36
+
+	* src/marxasp.c (write_marxasp): write out ra/dec/roll as
+	float64 to avoid breaking calc_asp_offsets which hard codes
+	these column sizes.
+
+	* data/obs/acis_i_obs.par: LIVETIMn-->LIVTIMEn
+
+	* data/obs/acis_s_obs.par: LIVETIMn-->LIVTIMEn
+
+	* src/marxasp.c: TELESCOP: AXAF-->CHANDRA
+
+	* src/marx2fits.c: TELESCOP set to Chandra
+	LIVETIMn --> LIVTIMEn
+	MTYPE1, MFORM1, METYP1 removed from GTI extensions.
+
+2000-3-6  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c: EXTVER keyword value improperly written out.
+	(write_parfile_value): ACIS TLMIN/TLMAX values changed to 2/1023.
+
+2000-3-2  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/hrc_s_geom.c (_marx_patch_hrc_s_geom): update hrc-s
+	tdet system to axaf-hrc-2.6s.
+
+	* data/obs/acis_i_obs.par: LIVETIMn and friends added
+
+	* src/marx2fits.c (add_goodtime_extensions): a gti per ccdid
+	is added to output file.
+	(marx2fits): write ONTIMEn, EXPOSURn, and LIVETIMn keywords.
+
+	* marx.lis: eventlist.c added
+
+	* libsrc/marx.h (MARX_VERSION_STRING): changed to 2.35
+
+2000-3-1  John E. Davis  <davis@space.mit.edu>
+
+	* src/marxasp.par: New file 
+
+	* libsrc/dither.c (init_gadsooks_dither): bug fix involving
+	subtraction of TSTART from Gadzooks.t1.
+
+2000-2-29  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/acis_geom.c (patch_acis_geom): disable messaging of
+	the pixlib file.
+
+	* src/marxasp.c: new file; generates an ASOL aspect solution
+	file describing marx's internal dither.  This file together
+	with obs.par may be used by the CXC tool asp_calc_offsets
+	to create aspect histgrams, etc.
+
+2000-2-28  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (read_obspar_file): new function; rewritten
+	to use obs.par instead of marx2fits.info
+
+	* src/marx.c: instead of creating marx2fits.info, an obs.par
+	file is created.
+
+	* autoconf/configure.in: marxasp added
+
+2000-2-25  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/dither.c: Ra_Nom, Roll_Nom, Dec_Nom read in from parameter
+	file for internal dither model.  Roll_0 parm renamed.
+
+2000-2-23  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (get_marx_pfile_info): Use symbolic
+	constants MARX_GRATING_?ETG instead of ints.
+
+2000-2-9  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2img.c (main): Make sure b_energy is not used for HRC.
+
+2000-2-7  John E. Davis  <davis@space.mit.edu>
+
+	* par/marx.par: DitherBlur changed to 0.35
+
+2000-2-3  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/s-saosac.c (open_saosac_fits_file): Check whether or
+	not RT_TIME column exists and use it.
+
+2000-2-2  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (marx2fits): ACSYS* keywords added for ACIS
+	simulations.
+
+2000-1-31  John E. Davis  <davis@space.mit.edu>
+
+	* doc/source.tex: updated to reflect chang to user_open_source.
+
+	* libsrc/s-user.c (cmdline_to_argv_argc): New function.  Now
+	user sources get passed an argv/argc list.
+
+2000-1-30  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2img.c (main): min/max detector energyy filtering added.
+
+2000-1-26  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/hrma.c: HRMA_Ideal parameter added.  This turns off
+	blur, scattering, and makes refelectivity = 1.
+
+2000-1-10  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): changed to 2.34
+
+	* libsrc/dither.c (apply_dither_blur): blur changed from
+	gaussian in the direction of p to gaussian in sky.
+
+	* par/marx.par: HRMA_Use_Blur parameter added
+
+	* libsrc/hrma.c (reflect_from_conic): Use_Blur_Factors
+	variable added to control use of blur.
+
+1999-12-14  John E. Davis  <davis@space.mit.edu>
+
+	* src/marx2fits.c (main): print error message if unable to
+	open fits file.
+	Replace writes to stderr with calls to marx_error.
+
+	* src/marxcat.c: read b_energy.dat
+
+	* libsrc/marx.h (MARX_VERSION): 2.33
+
+	* src/marx2fits.c (open_marx_file_internal): stderr->stdout change
+	Use b_energy.dat when computing pi.
+
+	* par/marx.par: new parameter: ACIS_Gain_Map_File
+
+	* libsrc/detpix.c (tweak_acis_pixel_size): new function to
+	make pixel size * 1024 = length of chip
+
+1999-12-13  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/marx.h (MARX_VERSION_STRING): bumped to 2.32
+
+	* marx.lis: added acis_gain.c and gain file.
+
+	* libsrc/acis-s.c: modified to use ACIS gaintables
+
+	* libsrc/acis-i.c: modified to use ACIS gaintables
+
+	* libsrc/acis_gain.c: new file.   This file implements ACIS
+	energy->pha conversion.
+
+1999-12-4  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/acis-i.c (_marx_acis_apply_streak): at->x and at->p
+	needed to be modified to reflect streak position.
+
+	* libsrc/marx.h (PHOTON_ACIS_STREAKED): defined to mark streaked
+	photons.
+
+1999-12-3  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/detpix.c (compute_detector_normals): [xy]_pixel_size
+	added to each detector geometry object.
+
+	* libsrc/marx.h (MARX_VERSION_STRING): updated to 2.30
+
+	* src/marx2fits.c: updated to use quantized times based upon exposure.
+
+	* src/marx.c (version): MARX_HAS_ACIS_STREAK
+
+	* libsrc/dither.c (_marx_dither_photons): Dither_Blur added.
+
+1999-12-2  John E. Davis  <davis@space.mit.edu>
+
+	* libsrc/acis-s.c: added ACIS streak
+
+	* libsrc/acis-i.c: added ACIS streak
+
+	* libsrc/marx-feat.h (MARX_HAS_ACIS_STREAK): new feature
+
+1999-11-23  John E. Davis  <davis@space.mit.edu>
+
+	* marx.lis: ChangeLog, libsrc/acis_geom.c,
+	data/acis/pix_corner_lsi.par added.
+
+	* libsrc/modules.lis: acis_geom added
+
+	* libsrc/_marx.h: _marx_patch_acis_i/s_geom prototypes added
+
+	* libsrc/acis_geom.c: new file
+
+	* libsrc/detpix.c (marx_get_detector_info): added calls to
+	_marx_patch_acis_i/s_geom.
+
+	* par/marx.par: updated rowland spacing and MEG/HEG angles.
+

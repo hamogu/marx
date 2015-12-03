@@ -1,0 +1,52 @@
+# This data file describes what is known about the HRC-I geometry.
+#
+# The format of the file is very simple.  Comment lines start with a
+# `#' chracter.  Blank lines are ignored.  All other lines are
+# meaningful.  They contain a keyword name followed by 1 or more whitespace
+# separated numbers.
+#
+#---------------------------------------------------------------------------
+# HRC-I Geometry
+#---------------------------------------------------------------------------
+# The HRC-I geometry is represented by the following figure:
+#
+#        +------------------+
+#        |                  |
+#        |                  |
+#        |                  |
+#        |        C         |
+#        |                  |
+#        |                  |
+#        | LL            LR |
+#        +------------------+
+#
+# This diagram shows two fiducial points: the lower-left corner (LL)
+# and the geometric center (C).  The location of a third point
+# is necessary to complete the specification of the rectangular
+# geometry.  The third point is the lower-right corner of the rectangle
+# and is denoted by LR in the figure.  To avoid over-specifying the
+# geometry, only the vector in the direction from LL to LR is required
+# to fully specify the location of LR.
+#
+# Unless otherwise specified, units are in mm.
+#
+
+# Note: 65.4783 = (92.6/105.343)*74.489
+HRC_I_Center_UV
+HRC_I_Center_XYZ	0	0	0
+
+HRC_I_LL_UV
+HRC_I_LL_XYZ		0	0	65.4783
+
+HRC_I_LL_to_LR_Vector	0	65.4783	-65.4783
+
+
+# To create the mapping from (X,Y,Z) to pixels, it is necessary to
+# know the pixel sizes and the pixel coordinate at the center.
+HRC_I_X_Pixel_Size	0.0064294 (mm/pixel)
+HRC_I_Y_Pixel_Size	0.0064294 (mm/pixel)
+HRC_I_Center_CXCY	8192	8192
+
+# Finally, knowledge of the pixel coordinates of the HI1 aimpoint is
+# required.
+HRC_I_Aimpoint_CXCY	8192	8192

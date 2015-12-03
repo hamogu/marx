@@ -1,0 +1,26 @@
+The files in this directory include:
+
+  uvisnlr.1052.82.dat
+  uvisnlr.565.82.dat
+  uvisnlr.1092.82.dat
+  uvisnlr.1174.82.dat
+  hrcs_r2.dat
+  chromium.dat
+  carbon.dat
+  gold.dat
+  HRC_I_csi_qe_model.dat
+  hrc_s_qe.dat
+
+All of these files are fully commented.  Simply view them with a pager
+such as `most' or `more'.  Alternatively, compile ../src/bdat2tbl.c and
+use the result to dump them.
+
+The files:
+
+  chromium.xray
+  carbon.xray
+  gold.xray
+
+were input into Mark Schattenburg's xray program to produce
+chromium.dat, carbon.dat, and gold.dat.  Contact marks@space.mit.edu
+for information about `xray'.

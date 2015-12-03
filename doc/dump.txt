@@ -1,0 +1,30 @@
+This file documents the binary files output by marx.  Such files may be
+dumped using: 
+  
+  marx --dump FILENAME...
+
+An output data file consists of a 32 byte header followed by data bytes.
+The header consists of:
+
+Offset  length   Interpretation
+----------------------------------------------------------------------------
+  0       4      Magic number: 0x83 0x13 0x89 0x8D
+  4       1      Data type: 
+                     'A'    8 bit signed integer (character)
+		     'I'   16 bit signed integer
+		     'J'   32 bit signed integer
+		     'E'   32 bit float
+		     'D'   64 bit float
+
+  5      15      Data column name.  If the length of the name is less than 15
+		 characters, it will be padded with 0.  If the name is 15
+		 characters, there will be no padding.
+
+ 20      4       Number of Rows
+ 24      4       Number of Columns, if 0 it is a vector
+ 28      4       Reserved
+ 32      ??      Data
+ 
+ 
+ 
+	      

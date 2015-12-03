@@ -1,0 +1,86 @@
+AC_INIT([marx], 5.1, [marx-help@space.mit.edu])
+AM_INIT_AUTOMAKE
+
+AC_CONFIG_SUBDIRS(jdmath pfile jdfits)
+
+AC_CONFIG_SRCDIR(libsrc/diffract.c)
+
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AC_PROG_INSTALL
+AC_CANONICAL_HOST
+
+AC_PATH_XTRA
+
+# TBD: for marxasp
+#JD_CHECK_FOR_LIBRARY(cfitsio, fitsio.h)
+
+#Check these header since they cause trouble
+AC_CHECK_HEADERS( \
+stdlib.h \
+unistd.h \
+)
+
+
+AC_CHECK_FUNCS( timegm )
+
+AC_CHECK_HEADERS(dlfcn.h)
+# Can I simplify this logic?
+AC_CHECK_LIB(dl,dlopen,[
+	AC_CHECK_HEADER(dlfcn.h, [
+		DYNAMIC_LINK_LIB="-ldl"
+		AC_DEFINE(HAVE_DLFCN_H)
+	       ],[
+	        DYAMIC_LINK_LIB=""
+		AC_MSG_WARN(cannot perform dynamic linking)
+               ])],[
+	DYAMIC_LINK_LIB=""
+	AC_MSG_WARN(cannot perform dynamic linking)])
+AC_SUBST(DYNAMIC_LINK_LIB)
+
+case "$host_os" in
+  linux )
+    DYNAMIC_LINK_FLAGS="-Wl,-export-dynamic"
+    ;;
+  * )
+    DYNAMIC_LINK_FLAGS=""
+    ;;
+esac
+AC_SUBST(DYNAMIC_LINK_FLAGS)
+
+
+dnl  Check sizeof various types
+AC_CHECK_SIZEOF(short)
+AC_CHECK_SIZEOF(int)
+AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(float)
+AC_CHECK_SIZEOF(double)
+
+#JD_LARGE_FILE_SUPPORT
+# TBD: Is this needed here? Or enough in jdfits and pfile?
+AC_SYS_LARGEFILE
+AC_FUNC_FSEEKO
+AC_TYPE_OFF_T
+AC_CHECK_SIZEOF(off_t)
+
+AC_CONFIG_HEADER(libsrc/config.h:libsrc/config.hin)
+
+
+AC_OUTPUT(Makefile)
+# TBD: marxrsp
+# marxrsp/Makefile)
+
+
+echo ""
+echo "You are compiling MARX with the following compiler configuration:"
+echo "       CC =" "$CC"
+echo "   CFLAGS =" "$CFLAGS"
+echo "  LDFLAGS =" "$LDFLAGS" "$DYNAMIC_LINK_FLAGS"
+echo ""
+echo "MARX executables will be installed in $prefix/bin/."
+echo "MARX documentation will be installed in $prefix/share/doc/marx/."
+echo "MARX data files will be installed in $prefix/share/marx/data/."
+echo "MARX parameter files will be installed in $prefix/share/marx/pfiles/."
+echo ""
+echo "To continue the build process, run 'make'."
+echo ""

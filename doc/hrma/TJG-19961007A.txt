@@ -1,0 +1,204 @@
+From: gaetz@ymir (Terry Gaetz)
+To: wap@ymir
+Subject: Rigid Body Shifts (double-pass saosac coordinates)
+Cc: gaetz@ymir, mfreeman@ymir
+--------------
+
+                              MEMO
+
+From:     T. J. Gaetz
+Subject:  Rigid Body Shifts (double-pass saosac coordinates)
+Date:     1996 Oct 07
+
+In this note I perform a set of double-pass saosac raytrace experiments
+to assess the sensitivities of the fourier coefficients (HATS "Q" terms)
+to rigid body-centered motions of the mirror elements.  These are combined
+using analytic considerations to obtain approximate formulae for the
+dependence of the Q terms on rigid body motions.
+
+Relation of Q coefficients to double-pass saodrat body-centered motions:
+-----------------------------------------------------------------------
+
+  P1H1:
+     Perfect figures
+     Z = 0 at CAP midplane
+     z offset of focal plane:   -9179.8
+     distance to source:         9179.8
+     P1  Z0 =  459.500
+     H1  Z0 = -459.500
+
+
+  tilts                Q0_r       Q0_i       Q1_r        Q2_r        Q2_i
+  -----------------    ------------------------------------------------------
+  H: d_az +1 arcsec   -0.093138   ---        ---        -0.093047    ---
+  H: d_az -1 arcsec    0.093138   ---        ---         0.093047    ---
+
+  H: d_el +1 arcsec    ---       -0.093138   ---         ---         0.093047
+  H: d_el -1 arcsec    ---        0.093138   ---         ---        -0.093047
+
+  P: d_az +1 arcsec    0.097670   ---        ---         0.097483    ---
+  P: d_az -1 arcsec   -0.097670   ---        ---        -0.097483    ---
+
+  P: d_el +1 arcsec    ---        0.097671   ---         ---        -0.097483
+  P: d_el -1 arcsec    ---       -0.097671   ---         ---         0.097483
+
+  P: d_az +1 arcsec &
+  H: d_az +1 arcsec    0.0045321  ---        ---         0.0044367   ---
+
+  P: d_el +1 arcsec &
+  H: d_el +1 arcsec    ---        0.0045322  ---         ---        -0.0044367
+
+
+  decenters            Q0_r       Q0_i       Q1_r        Q2_r         Q2_i
+  -----------------    ------------------------------------------------------
+  H: dX = +0.1 mm      0.20007    ---        ---         0.097581    ---
+  H: dX = -0.1 mm     -0.20007    ---        ---        -0.097581    ---
+  
+  P: dX = +0.1 mm      ---        ---        ---        -0.097581    ---
+  P: dX = -0.1 mm      ---        ---        ---         0.097581    ---
+  
+  H: dY = +0.1 mm      ---        0.20007    ---         ---        -0.097581
+  H: dY = -0.1 mm      ---       -0.20007    ---         ---         0.097580
+  
+  P: dY = +0.1 mm      ---        ---        ---         ---         0.097580
+  P: dY = -0.1 mm      ---        ---        ---         ---        -0.097581
+  
+  P: dX = +0.1 mm &
+  H: dX = +0.1 mm      0.20000    ---        ---         ---         ---
+  
+  
+  defocus              Q0_r       Q0_i       Q1_r        Q2_r        Q2_i
+  -----------------    -------------------------------------------------------
+  H: dZ = -0.1 mm      ---        ---        0.014968    ---         ---
+  H: dZ = +0.1 mm      ---        ---       -0.014968    ---         ---
+  
+  P: dZ = -0.1 mm      ---        ---       -0.0028750   ---         ---
+  P: dZ = +0.1 mm      ---        ---       -0.0028749   ---         ---
+  
+  P: dZ = +0.1 mm &
+  H: dZ = +0.1 mm      ---        ---       -0.012094    ---         ---
+  
+  P: dZ = -0.1 mm &
+  H: dZ = -0.1 mm      ---        ---        0.012093    ---         ---
+
+  P: dZ = -0.1 mm &
+  H: dZ = +0.1 mm      ---        ---       -0.017843    ---         ---
+
+  P: dZ = +0.1 mm &
+  H: dZ = -0.1 mm      ---        ---        0.017843    ---         ---
+
+  From AXAF-94-0096-WALDMAN:  "Focal Lengths and Apertures for HATS 
+                               Alignment Calculations"
+  we have
+
+    Effective H focal length:  F_H =  9607 mm
+    Effective P focal length:  F_P = 20077 mm
+
+  Thus, for a 1 arcsec H-element tilt,
+
+         delta r = 2 F delta theta = 0.093152
+
+
+  Pure tilts of optical elements about body centers:
+  -------------------------------------------------
+  
+    H Tilts:
+  
+      Q0 ~= -2 F_H ( azmis_dp_H + i elmis_dp_H )
+      Q1 ~=  0
+      Q2 ~= -2 F_H ( azmis_dp_H - i elmis_dp_H )
+  
+      Q0[H-tilt] = Q2[H-tilt]*   (where '*' denotes complex conjugate)
+  
+    P Tilts:
+  
+      Q0 ~=  2.097 F_H ( azmis_dp_P + i elmis_dp_P )
+      Q1 ~=  0
+      Q2 ~=  2.097 F_H ( azmis_dp_P - i elmis_dp_P )
+  
+      Q0[P-tilt] = Q2[P-tilt]*   (where '*' denotes complex conjugate)
+  
+    Combining P & H tilt:
+  
+      Q0 ~= -2 F_H [   (azmis_dp_H - 1.049 azmis_dp_P)
+                   + i (elmis_dp_H - 1.049 elmis_dp_P) ]
+  
+      Q1 ~=  0
+  
+      Q2 ~= -2 F_H [   (azmis_dp_H - 1.049 azmis_dp_P)
+                   - i (elmis_dp_H - 1.049 elmis_dp_P) ]
+  
+      Q0[tilt] = Q2[tilt]*   (where '*' denotes complex conjugate)
+  
+    Note that in the case of the the same tilt for both P and H, a
+    small residual tilt/decenter still occurs:
+  
+      azmis_dp = azmis_dp_H = azmis_dp_P
+      elmis_dp = elmis_dp_H = elmis_dp_P
+  
+      Q0 ~= -2 F_H [ 0.049 azmis_dp + 0.049 i elmis_dp ]
+      Q1 ~=  0
+      Q2 ~= -2 F_H [ 0.049 azmis_dp - 0.049 i elmis_dp ]
+  
+
+  Pure decenters of optical elements about body centers:
+  -----------------------------------------------------
+  
+    H Decenter:
+  
+      Q0 ~=  2      ( dX_dp_H + i dY_dp_H )
+      Q1 ~=  0
+      Q2 ~=  0.9758 ( dX_dp_H - i dY_dp_H )
+  
+    P Decenter:
+
+      Q0 ~=  0
+      Q1 ~=  0
+      Q2 ~= -0.9758 ( dX_dp_P - i dY_dp_P )
+  
+    Combining P & H decenters:
+  
+      Q0 ~=  2 ( dX_dp_H + i dY_dp_H )
+      Q1 ~=  0
+      Q2 ~=  0.9758 [ (dX_dp_H - dX_dp_P) - i (dY_dp_H - dY_dp_P) )
+  
+    Note also:  if a P and H are given the same decenters, the net
+    Q terms are:
+  
+      dX_dp = dX_dp_H = dX_dp_P
+      dY_dp = dY_dp_H = dY_dp_P
+  
+      Q0 ~=  2 ( dX_dp + i dY_dp )
+      Q1 ~=  0
+      Q2 ~=  0
+  
+
+  Pure despace of optical elements:
+  --------------------------------
+  
+    Appendix K of the "Telescope Scientist Semiannual
+    Report #3, 4, 5, 6, 7, 8, and 9" states:
+  
+      "The principal effect of an axial location error is to change the
+       location of the system focus; elementary geometry gives the following
+       approximations:
+            \Delta_F \simeq \frac{-1}{4} \delta_P + \frac{5}{4} \delta_H
+       Where the terms $\Delta_F$, $\delta_P$, and $\delta_H$ refer to
+       the axial motions of the system focus, the parabola, and the hyperbola
+       respectively."
+  
+    A pair of double-pass raytrace experiment was performed in order
+    to test this; a displacement of a P or H was applied to the
+    optic and the predicted focal length change was applied to
+    the source and detector planes.  The traces confirmed the
+    approximate relation
+
+      delta Z_dp_focus ~= (5/4) dZ_dp_H - (1/4) dZ_dp_P
+
+   where
+
+     dZ_dp_focus > 0    ==>   *decreasing* focal length
+     dZ_dp_H     > 0    ==>   H moves *away* from focal plane
+     dZ_dp_P     > 0    ==>   P moves *away* from focal plane
+
+

@@ -1,0 +1,17 @@
+The files in this directory include:
+
+  Mirror_EE.bin
+
+    This file contains data for the EA-MIRROR blur. It was generated
+    by Dave H. via Leon's fold program.
+
+  mirr-ee.bin  
+
+    This file is created when marx is compiled.  It contains the same
+    data as Mirror_EE.bin but arranged in a format more suitable to
+    marx (see ../../libsrc/fix_ee.c).
+
+  Ae_s1346.dat
+  
+    This is a binary data file containing the energy dependent effective
+    are curves for the four shells of the HRMA.

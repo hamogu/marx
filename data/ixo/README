@@ -1,0 +1,17 @@
+# Note:  Better history tracking is required.  The data here were
+# culled from various source, which themselves came from other
+# sources.  As such, the history is muddled.
+#
+csv2fits.sl              (script to convert mirror.csv to ixomirror.fits)
+mirror.csv               (CSV mirror data from Paul Reid)
+ixomirror.fits           (File used for mirror geometry)
+#
+ixo_ccd_qe_100A.fits     (QE/Filter file for CAT CCD camera)
+mkixoqe.sl               (Script to covert Dave's ascii table to fits)
+#
+Si-ox_p200_th15_dc15_d6492.fits    (left module grating eff file)
+Si-ox_p230_th15_dc15_d6492.fits    (right module grating eff file)
+mkixogeff.sl                       (script to convert Ralf's geff files)
+#
+ixoxms_qe.fits           (Inner XMS QE/Filter file)
+ixoxms_qe_outer.fits     (Outer XMS QE/Filter file)

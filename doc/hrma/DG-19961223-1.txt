@@ -1,0 +1,54 @@
+From bharris@head-cfa.harvard.edu Thu Jan 23 13:56:04 1997
+Return-Path: <bharris@head-cfa.harvard.edu>
+Received: from yutan by head-cfa (SMI-8.6/SMI-SVR4)
+	id NAA29604; Thu, 23 Jan 1997 13:56:02 -0500
+Message-Id: <199701231856.NAA29604@head-cfa>
+To: dj
+Date: Thu, 23 Jan 1997 13:55:45 -0500
+From: Bernard Harris <bharris@head-cfa.harvard.edu>
+Status: OR
+Content-Length: 1363
+X-Lines: 40
+X-Display-Position: 4
+
+
+------- Forwarded Message
+
+Return-Path: <graessle@head-cfa.harvard.edu>
+Received: from cfa270.harvard.edu by head-cfa (SMI-8.6/SMI-SVR4)
+	id NAA16288; Mon, 23 Dec 1996 13:28:50 -0500
+Message-Id: <199612231828.NAA16288@head-cfa>
+To: ELSNER@ssl.msfc.nasa.gov, das, dj, jjf, bharris, graessle
+Subject: Previous message
+Date: Mon, 23 Dec 1996 13:28:49 -0500
+From: Dale Graessle <graessle@head-cfa.harvard.edu>
+X-UIDL: e537a2e09db1a1e15b60d197fb53e3f7
+Status: U
+
+
+These are the best available optical constants (current standard results)
+for the mirror 065 (P6 Qualification, position A1, off the large end of
+P6). The results from other mirrors are to be compared with these
+results. The optical constants fitting quality is not to our specification
+in the 11215-11224 eV range (Ir L-III edge trough), but the rest of
+the fits are acceptable by and large.
+
+No smoothing of the n(E) or k(E) versus energy has been done, so these
+are essentially all real data points directly from the fits to the
+raw reflectance data. Some weighted averaging has been done for
+data points between 2800 and 2900 eV to resolve an overlap error
+between two data sets.
+
+
+Dale
+
+
+========
+dgraessle@head-cfa.harvard.edu 	Harvard-Smithsonian Center for Astrophysics
+phone: (617)495-7041		60 Garden Street, MS 81
+fax:   (617)495-7356		Cambridge, MA  02138
+
+
+------- End of Forwarded Message
+
+

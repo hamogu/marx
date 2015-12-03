@@ -1,0 +1,365 @@
+# -*-sh-*--------------------------------------------------------------------
+#----------------------------------------------------------------------------
+#----------------------------------------------------------------------------
+#
+#
+# MIT MARX Simulator Parameter file           XRCF / Version 2.0 (09-14-97)
+#
+#
+#----------------------------------------------------------------------------
+#----------------------------------------------------------------------------
+#----------------------------------------------------------------------------
+#
+# Simulation setup and control
+#
+#----------------------------------------------------------------------------
+NumRays,i,a,1000000,1,,"Enter TOTAL number of rays to generate"
+dNumRays,i,a,50000,1,100000,"Enter number of rays per iteration"
+ExposureTime,r,a,10000,,,"Enter exposure time (0.0 for none)"
+OutputDir,f,a,"marx-out",,,"Enter output directory name"
+DataDirectory,s,h,"$MARX_DATA_DIR",,,"Enter directory for input data"
+OutputVectors,s,a,"ETXYZ123DxyMPOabcd",,,"Enter output data columns (one or more of ETXYZ123DxyMPOabcd)"
+RandomSeed,i,a,0,,,"Enter random number seed (-1 means use current time)"
+DumpToRayFile,b,h,no,,,"Output in MARX rayfile format?"
+Verbose,b,a,yes,,,"Verbose mode"
+#---------------------------------------------------------------------------
+#
+# Science Instrument set up and control
+#
+#---------------------------------------------------------------------------
+MirrorType,s,a,"HRMA","HRMA|EA-MIRROR",,"Select mirror type"
+GratingType,s,a,"HETG","HETG|LETG|NONE",,"Select grating type"
+DetectorType,s,a,"ACIS-S","HRC-S|ACIS-S|HRC-I|ACIS-I|NONE",,"Select detector type"
+DetOffsetX,r,a,-195.002109,,,"Enter Detector X offset from nominal (mm)"
+DetOffsetY,r,a,0,,,"Enter Detector Y offset from nominal (mm)"
+DetOffsetZ,r,a,0,,,"Enter Detector Z offset from nominal (mm)"
+DetIdeal,b,a,no,,,"Is Detector perfect (QE=1)?"
+#
+#  Note:  If the drake flat is used, set DetOffsetZ to -5.471
+#
+#DetOffsetZ,r,a,-5.741,,,"Enter Detector Z offset from nominal (mm)"
+#
+#---------------------------------------------------------------------------
+#
+# Source spectral parameters
+#
+#---------------------------------------------------------------------------
+SourceFlux,r,a,1.0,,,"Enter incoming ray flux (photons/sec/cm^2)"
+SpectrumType,s,a,"FLAT","FLAT|FILE",,"Select spectrum type"
+SpectrumFile,f,a,"spect.dat",,,"Enter input spectrum filename"
+#
+#  Energy limits  (for flat spectrum model)
+#
+MinEnergy,r,a,0.03,0.03,10.0,"Enter MIN ray energy"
+MaxEnergy,r,a,10.0,0.03,10.0,"Enter MAX ray energy"
+#---------------------------------------------------------------------------
+#
+# Source spatial parameters
+#
+#---------------------------------------------------------------------------
+#
+# Source model to use
+#
+SourceType,s,a,"POINT","POINT|GAUSS|LINE|BETA|RAYFILE|DISK|USER|SAOSAC",,"Select source"
+#
+# Source position (center of source)
+#
+SourceDistance,r,a,537.35881,,,"Enter Source distance (meters) (0 if infinite)"
+SourceElevation,r,a,0,,,"Enter source elevation (ARC Minutes)"
+SourceAzimuth,r,a,0,,,"Enter source azimuth (ARC Minutes)"
+#
+# Gaussian source parameters
+#
+S-GaussSigma,r,a,3,0.0,14000.0,"Enter gauss source sigma (ARC seconds)"
+#
+# LINE source parameters
+#
+S-LinePhi,r,a,0,,,"Enter line source orientation angle (degrees)"
+S-LineTheta,r,a,5,,,"Enter line source length (arc-secs)"
+#
+# BETA source parameters
+#
+S-BetaCoreRadius,r,a,2.5,,,"Enter core radius (ARC SECONDS)"
+S-BetaBeta,r,a,0.7,0.5001,,"Enter BETA value"
+#
+# RAYFILE source parameters
+#
+#      This option allows a MARX internal format rayfile to be used.
+#
+RayFile,s,a,"marx.output",,,"Enter marx input source/output ray filename"
+#
+# DISK source parameters
+#
+S-DiskTheta0,r,a,0,,,"Enter min disk theta in arc-sec"
+S-DiskTheta1,r,a,60,,,"Enter max disk theta in arc-sec"
+#
+# USER Source parameters
+#
+#      This type is for use by a dynamically linked user-defined source.
+#      On most systems, this should be an absolute path.
+#
+UserSourceFile,f,a,"../doc/examples/grayscale.so",,,"Enter dynamically linked source filename"
+UserSourceArgs,s,a,"/tmp/casa.dat",,,"Enter user source parameter"
+#
+# SAOSAC Source parameters
+# 
+#      This option allows SAOSAC FITS raytrace files to read.
+#
+SAOSACFile,s,a,"saosac.fits",,,"Enter marx input source/output ray filename"
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+#
+#        PARAMETERS BEYOND THIS POINT SHOULD NOT BE MODIFIED
+#               UNLESS YOU KNOW WHAT YOU ARE DOING.
+#
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+#
+# XRCF Shutter Control
+#
+#    Note: These parameters are only relevant for XRCF simulations
+#
+#    Shutters: "ABCD" where:
+#    A = Top shutter (+y), Right (+z), Bottom (-y), Left (-z)
+#
+#---------------------------------------------------------------------------
+Shutters1,s,a,"0000",,,"Enter mirror 1 shutter bitmap (0 == open, 1 == closed)"
+Shutters3,s,a,"0000",,,"Enter mirror 3 shutter bitmap (0 == open, 1 == closed)"
+Shutters4,s,a,"0000",,,"Enter mirror 4 shutter bitmap (0 == open, 1 == closed)"
+Shutters6,s,a,"0000",,,"Enter mirror 6 shutter bitmap (0 == open, 1 == closed)"
+#----------------------------------------------------------------------------
+#
+# HRMA setup
+#
+#----------------------------------------------------------------------------
+HRMA_Use_WFold,b,a,yes,,,"Use WFold scattering tables?"
+WFold_P1_File,f,h,"scat_p1_T.bin",,,"Enter wfold filename for HRMA"
+WFold_H1_File,f,h,"scat_h1_T.bin",,,"Enter wfold filename for HRMA"
+WFold_P3_File,f,h,"scat_p3_T.bin",,,"Enter wfold filename for HRMA"
+WFold_H3_File,f,h,"scat_h3_T.bin",,,"Enter wfold filename for HRMA"
+WFold_P4_File,f,h,"scat_p4_T.bin",,,"Enter wfold filename for HRMA"
+WFold_H4_File,f,h,"scat_h4_T.bin",,,"Enter wfold filename for HRMA"
+WFold_P6_File,f,h,"scat_p6_T.bin",,,"Enter wfold filename for HRMA"
+WFold_H6_File,f,h,"scat_h6_T.bin",,,"Enter wfold filename for HRMA"
+HRMAOptConst,f,h,"iridium.dat",,,"Enter optical const filename for HRMA"
+HRMAOptConstScale,r,h,1.0,0.01,,"Enter Scale factor for HRMA opt constants"
+HRMAVig,r,h,0.9,0.0,1.0,"Enter HRMA Vignetting factor"
+HRMABlur,r,h,0.0,0.0,,"Enter HRMA Blur angle (arc seconds)"
+HRMA_Yaw,r,h,0.0,,,"Enter HRMA Yaw (arc-minutes)"
+HRMA_Pitch,r,h,0.0,,,"Enter HRMA Pitch (arc-minutes)"
+#
+# Do not mess with these parameters.  They were derived from table 10.4
+# of the XRCF Phase1 document and simulations.
+#
+HRMA_Cap_X,r,h,10079.771,,,"Enter HRMA Cap X position (mm)"
+HRMA_P1H1_XOffset,r,h,-3.274354,,,"Enter HRMA P1H1 X offset (mm)"
+HRMA_P3H3_XOffset,r,h,-0.256876,,,"Enter HRMA P3H3 X offset (mm)"
+HRMA_P4H4_XOffset,r,h,0.735539,,,"Enter HRMA P4H4 X offset (mm)"
+HRMA_P6H6_XOffset,r,h,-0.539117,,,"Enter HRMA P6H6 X offset (mm)"
+#----------------------------------------------------------------------------
+#
+# EA Mirror Setup
+#
+#----------------------------------------------------------------------------
+MirrorF,r,h,10.0692,0.0,,"Enter HRMA focal length (meters)"
+MirrorRadius1,r,h,600,0.0,,"Enter Mirror 1 radius (mm)"
+MirrorRadius3,r,h,480,0.0,,"Enter Mirror 3 radius (mm)"
+MirrorRadius4,r,h,425,0.0,,"Enter Mirror 4 radius (mm)"
+MirrorRadius6,r,h,310,0.0,,"Enter Mirror 6 radius (mm)"
+MirrorVig,r,h,0.9,0.0,1.0,"Enter HRMA Vignetting factor"
+MirrorUseEA,b,a,yes,,,"Use effective area for HRMA?"
+MirrorEAFile,f,h,"Ae_s1346.dat",,,"Enter mirror effective filename"
+MirrorBlur,b,a,yes,,,"Perform mirror blur?"
+MirrorBlurFile,f,h,"mirr-ee.bin",,,"Enter mirror blur filename"
+#---------------------------------------------------------------------------
+#
+# Grating setup
+#
+#---------------------------------------------------------------------------
+RowlandDiameter,r,h,8594.0,1000,,"Enter Rowland Torus Diameter (mm)"
+GratingOptConsts,f,h,"optical-constants.dat",,,"Enter optical constants filename"
+UseGratingEffFiles,b,a,no,,,"Use grating efficiency tables?"
+#--------------------------------------------------------------------------
+# HETG Paramters if UseGratingEffFiles = "yes"
+#--------------------------------------------------------------------------
+# HETG MARX Parameters supplied by Dan Dewey 9/11/97
+# These values are for FLIGHT configuration.
+#
+# The vignetting is 1.0 because the efficiency tables include
+# the inter-grating vignetting.
+HETG_Shell1_File,f,h,"HETG_shell1_effic.dat",,,"Enter grating efficiency table for shell 1"
+HETG_Shell3_File,f,h,"HETG_shell3_effic.dat",,,"Enter grating efficiency table for shell 3"
+HETG_Shell4_File,f,h,"HETG_shell4_effic.dat",,,"Enter grating efficiency table for shell 4"
+HETG_Shell6_File,f,h,"HETG_shell6_effic.dat",,,"Enter grating efficiency table for shell 6"
+HETG_Shell1_Vig,r,h,1.0,,,"Enter grating vignetting for shell 1"
+HETG_Shell3_Vig,r,h,1.0,,,"Enter grating vignetting for shell 3"
+HETG_Shell4_Vig,r,h,1.0,,,"Enter grating vignetting for shell 4"
+HETG_Shell6_Vig,r,h,1.0,,,"Enter grating vignetting for shell 6"
+# The XRCF measured angles modified by the as-installed clocking of the
+# HETG to HRMA (+ 46 arc second):
+#  MEG = 4.74  + 46./3600. = +4.75
+#  HEG = -5.19 + 46./3600. = -5.18
+HETG_Shell1_Theta,r,a,4.75,,,"Enter dispersion angle for shell 1 (degrees)"
+HETG_Shell3_Theta,r,a,4.75,,,"Enter dispersion angle for shell 3 (degrees)"
+HETG_Shell4_Theta,r,a,-5.18,,,"Enter dispersion angle for shell 4 (degrees)"
+HETG_Shell6_Theta,r,a,-5.18,,,"Enter dispersion angle for shell 6 (degrees)"
+HETG_Shell1_dTheta,r,a,1.5,,,"Enter shell 1 grating alignment error (sigma arc min)"
+HETG_Shell3_dTheta,r,a,1.5,,,"Enter shell 3 grating alignment error (sigma arc min)"
+HETG_Shell4_dTheta,r,a,1.5,,,"Enter shell 4 grating alignment error (sigma arc min)"
+HETG_Shell6_dTheta,r,a,1.5,,,"Enter shell 6 grating alignment error (sigma arc min)"
+# Subassembly periods used until XRCF data analysis (and mechanical detailss)
+# are further along.
+HETG_Shell1_Period,r,a,0.400141,,,"Enter shell 1 grating period (um)"
+HETG_Shell3_Period,r,a,0.400141,,,"Enter shell 3 grating period (um)"
+HETG_Shell4_Period,r,a,0.200081,,,"Enter shell 4 grating period (um)"
+HETG_Shell6_Period,r,a,0.200081,,,"Enter shell 6 grating period (um)"
+HETG_Shell1_dPoverP,r,a,162e-6,0,1,"Enter shell 1 grating dP/P (rms)"
+HETG_Shell3_dPoverP,r,a,162e-6,0,1,"Enter shell 3 grating dP/P (rms)"
+HETG_Shell4_dPoverP,r,a,146e-6,0,1,"Enter shell 4 grating dP/P (rms)"
+HETG_Shell6_dPoverP,r,a,146e-6,0,1,"Enter shell 6 grating dP/P (rms)"
+#---------------------------------------------------------------------------
+# LETG Parameters if UseGratingEffFiles = "yes"
+#---------------------------------------------------------------------------
+LETG_Shell1_File,f,h,"LETG_shell1_effic.dat",,,"Enter grating efficiency table for shell 1"
+LETG_Shell3_File,f,h,"LETG_shell3_effic.dat",,,"Enter grating efficiency table for shell 3"
+LETG_Shell4_File,f,h,"LETG_shell4_effic.dat",,,"Enter grating efficiency table for shell 4"
+LETG_Shell6_File,f,h,"LETG_shell6_effic.dat",,,"Enter grating efficiency table for shell 6"
+LETG_Shell1_Vig,r,h,1.0,,,"Enter grating vignetting for shell 1"
+LETG_Shell3_Vig,r,h,1.0,,,"Enter grating vignetting for shell 3"
+LETG_Shell4_Vig,r,h,1.0,,,"Enter grating vignetting for shell 4"
+LETG_Shell6_Vig,r,h,1.0,,,"Enter grating vignetting for shell 6"
+LETG_Shell1_Theta,r,a,0.0,,,"Enter dispersion angle for shell 1 (degrees)"
+LETG_Shell3_Theta,r,a,0.0,,,"Enter dispersion angle for shell 3 (degrees)"
+LETG_Shell4_Theta,r,a,0.0,,,"Enter dispersion angle for shell 4 (degrees)"
+LETG_Shell6_Theta,r,a,0.0,,,"Enter dispersion angle for shell 6 (degrees)"
+LETG_Shell1_dTheta,r,a,0.0,,,"Enter shell 1 grating alignment error (sigma arc min)"
+LETG_Shell3_dTheta,r,a,0.0,,,"Enter shell 3 grating alignment error (sigma arc min)"
+LETG_Shell4_dTheta,r,a,0.0,,,"Enter shell 4 grating alignment error (sigma arc min)"
+LETG_Shell6_dTheta,r,a,0.0,,,"Enter shell 6 grating alignment error (sigma arc min)"
+LETG_Shell1_Period,r,a,0.991249,,,"Enter shell 1 grating period (um)"
+LETG_Shell3_Period,r,a,0.991249,,,"Enter shell 3 grating period (um)"
+LETG_Shell4_Period,r,a,0.991249,,,"Enter shell 4 grating period (um)"
+LETG_Shell6_Period,r,a,0.991249,,,"Enter shell 6 grating period (um)"
+LETG_Shell1_dPoverP,r,a,8.67592e-5,0,1,"Enter shell 1 grating dP/P"
+LETG_Shell3_dPoverP,r,a,8.67592e-5,0,1,"Enter shell 3 grating dP/P"
+LETG_Shell4_dPoverP,r,a,8.67592e-5,0,1,"Enter shell 4 grating dP/P"
+LETG_Shell6_dPoverP,r,a,8.67592e-5,0,1,"Enter shell 6 grating dP/P"
+#---------------------------------------------------------------------------
+#
+# HEG grating setup  (UseGratingEffFiles = "no")
+#
+#---------------------------------------------------------------------------
+HEGVig,r,h,0.73,0.0,,"Enter HEG Grating Vignetting Factor"
+hegGold,r,h,0.02,0.0,,"Enter HEG gold thickness (microns)"
+hegChromium,r,h,0,0.0,,"Enter HEG chromium thickness (microns)"
+hegNickel,r,h,0,0.0,,"Enter HEG nickel thickness (microns)"
+hegPolyimide,r,h,1,0.0,,"Enter HEG polyimide thickness (microns)"
+hegPeriod,r,h,0.2002,0.01,,"Enter HEG period (microns)"
+hegdPoverP,r,h,2.2e-4,0,1.0,"Enter HEG dP/P"
+hegBarHeight,r,h,0.55,0.0,,"Enter HEG bar height (microns)"
+hegBarWidth,r,h,0.1201,0.0,,"Enter HEG bar width (microns)"
+hegNumOrders,i,h,23,0,100,"Enter HEG num orders (2n+1)"
+hegTheta,r,h,-5.0,-90,90,"Enter HEG dispersion angle"
+hegdTheta,r,h,0.46,,,"Enter HEG alignment error (sigma arc min)"
+#---------------------------------------------------------------------------
+#
+# MEG grating setup  (UseGratingEffFiles = "no")
+#
+#---------------------------------------------------------------------------
+MEGVig,r,h,0.93,0.0,,"Enter MEG Grating Vignetting Factor"
+megGold,r,h,0.02,0.0,,"Enter MEG gold thickness (microns)"
+megChromium,r,h,0,0.0,,"Enter MEG chromium thickness (microns)"
+megNickel,r,h,0,0.0,,"Enter MEG nickel thickness (microns)"
+megPolyimide,r,h,0.5,0.0,,"Enter MEG polyimide thickness (microns)"
+megPeriod,r,h,0.4001,0.1,,"Enter MEG period (microns)"
+megdPoverP,r,h,1.6e-4,0,1.0,"Enter MEG dP/P"
+megBarHeight,r,h,0.38,0.0,,"Enter MEG bar height (microns)"
+megBarWidth,r,h,0.2080,0.0,,"Enter MEG bar width (microns)"
+megNumOrders,i,h,23,0,100,"Enter MEG num orders (2n+1)"
+megTheta,r,h,5.0,,,"Enter MEG dispersion angle"
+megdTheta,r,h,0.36,-90,90,"Enter MEG alignment error (sigma arc min)"
+#---------------------------------------------------------------------------
+#
+# LEG grating setup  (UseGratingEffFiles = "no")
+#
+#---------------------------------------------------------------------------
+LEGVig,r,h,0.93,0.0,,"Enter LEG Grating Vignetting Factor"
+legGold,r,h,0.0,0.0,,"Enter LEG gold thickness (microns)"
+legChromium,r,h,0,0.0,,"Enter LEG chromium thickness (microns)"
+legNickel,r,h,0,0.0,,"Enter LEG nickel thickness (microns)"
+legPolyimide,r,h,0.0,0.0,,"Enter LEG polyimide thickness (microns)"
+legPeriod,r,h,0.991249,0.1,,"Enter LEG period (microns)"
+legdPoverP,r,h,8.67592e-5,0,1.0,"Enter LEG dP/P"
+legBarHeight,r,h,0.4758,0.0,,"Enter LEG bar height (microns)"
+legBarWidth,r,h,0.5154,0.0,,"Enter LEG bar width (microns)"
+legTheta,r,h,0.0,-90,90,"Enter LEG dispersion angle"
+legdTheta,r,h,0.0,,,"Enter LEG alignment error (sigma arc min)"
+legNumOrders,i,h,41,0,100,"Enter LEG num orders (2n+1)"
+legFineNumOrders,i,h,11,0,100,"Enter LETG Fine Grating num orders (2n+1)"
+legCoarseNumOrders,i,h,11,0,100,"Enter LETG Coarse Grating num orders (2n+1)"
+#legFineNumOrders,i,h,0,0,100,"Enter LETG Fine Grating num orders (2n+1)"
+#legCoarseNumOrders,i,h,0,0,100,"Enter LETG Coarse Grating num orders (2n+1)"
+#---------------------------------------------------------------------------
+#
+# ACIS-S setup
+#
+#---------------------------------------------------------------------------
+ACISPixelsX,i,h,1024,1,,"Enter ACIS-S number of pixels in X Direction"
+ACISPixelsY,i,h,1024,1,,"Enter ACIS-S number of pixels in Y Direction"
+ACISPixelSize,r,h,0.024,0.0001,,"Enter ACIS-S pixel size (mm)"
+ACISFanoFactor,r,h,0.115,0.0,,"Enter ACIS-S fano factor"
+ACISReadoutTime,r,h,2.7,0.0,,"Enter ACIS-S readout time (sec)"
+ACIS-S-FsBsConf,s,h,"fbfbff",,,"Enter ACIS-S fs/bs configuration"
+ACIS-S-FsReadNoise,r,h,4.0,0.0,,"Enter ACIS-S FS read noise"
+ACIS-S-FsEnergyGain,r,h,0.00368,0,,"Enter ACIS-S FS energy gain (KeV/electron)"
+ACIS-S-FsQEFile,f,h,"ACIS_QE_FI.dat",,,"Enter ACIS-S FS QE filename"
+ACIS-S-BsReadNoise,r,h,4.0,0.0,,"Enter ACIS-S BS read noise"
+ACIS-S-BsEnergyGain,r,h,0.00368,0,,"Enter ACIS-S BS energy gain (KeV/electron)"
+ACIS-S-BsQEFile,f,h,"ACIS_QE_BI.dat",,,"Enter ACIS-S BS QE filename"
+ACIS-I-QEFile,f,h,"ACIS_QE_FI.dat",,,"Enter ACIS-I QE filename"
+#---------------------------------------------------------------------------
+#
+# HRC-I setup
+#
+#---------------------------------------------------------------------------
+HRC-IPixelSize,r,h,6.4e-3,1e-8,,"Enter HRC Pixel size (mm)"
+HRC-IQEFile,fer,h,"qe_hrcs_p2500_al1000.dat",,,"Enter HRC QE File 0"
+#---------------------------------------------------------------------------
+#
+# HRC-S setup
+#
+#---------------------------------------------------------------------------
+HRCPixelSize,r,h,6.4e-3,1e-8,,"Enter HRC Pixel size (mm)"
+HRCQEFile0,fer,h,"qe_hrcs_p2500_al1000.dat",,,"Enter HRC QE File 0"
+HRCQEFile1,fer,h,"qe_hrcs_p2500_al300.dat",,,"Enter HRC QE File 1"
+HRCQEFile2,fer,h,"qe_hrcs_p2000_al2000.dat",,,"Enter HRC QE File 2"
+HRCQEFile3,fer,h,"qe_hrcs_p2000_al300.dat",,,"Enter HRC QE File 3"
+HRCIonOffsetT,r,h,4,0,10,"Enter Top Ion Shield Offset (mm)"
+HRCIonOffsetL,r,h,19.7,0,120,"Enter Left Ion Shield Offset (mm)"
+HRCIonOffsetR,r,h,11.7,0,120,"Enter Right Ion Shield Offset (mm)"
+HRCDrake,b,a,yes,,,"Use Drake flat (yes/no)"
+mode,s,hl,"hl","ql|hl|q|h",,"Enter mode for parameter file."
+#---------------------------------------------------------------------------
+#
+# The Drake Flat
+#
+#---------------------------------------------------------------------------
+#DrakeOffsetX,r,a,0.0,0,,"Enter the Drake X offset of lower plate (mm)"
+DrakeOffsetX,r,a,28.3,0,,"Enter the Drake X offset of lower plate (mm)"
+DrakeOffsetZ,r,a,5.0,0,,"Enter the Drake Z offset of lower plate (mm)"
+DrakeGapY1,r,a,28.7,,,"Enter the Drake Gap Offset Y1"
+DrakeGapY2,r,a,36.7,,,"Enter the Drake Gap Offset Y2"
+DrakeN,i,a,2,0,4,"Enter the number of Drake facets"
+DrakeLength,r,a,100,0.0,,"Enter length of Drake plate"
+DrakeOptConstCr,f,a,"chromium.dat",,,"Enter the Chromium Optical constant filename for the Drake"
+DrakeOptConstC,f,a,"carbon.dat",,,"Enter the Carbon Optical constant filename for the Drake"
+DrakeHeight1,r,a,25.3,0,,"Enter the height of drake flat 1 (mm)"
+DrakeTheta1,r,a,4.5,0.0,,"Enter the  angle of drake flat 1 (degrees)"
+DrakeHeight2,r,a,34.4,0,,"Enter the height of drake flat 2 (mm)"
+DrakeTheta2,r,a,7,0.0,,"Enter the  angle of drake flat 2 (degrees)"
+DrakeHeight3,r,a,0,0,,"Enter the height of drake flat 3 (mm)"
+DrakeTheta3,r,a,0,0.0,,"Enter the  angle of drake flat 3 (degrees)"
+DrakeHeight4,r,a,0,0,,"Enter the height of drake flat 4 (mm)"
+DrakeTheta4,r,a,0,0.0,,"Enter the  angle of drake flat 4 (degrees)"
