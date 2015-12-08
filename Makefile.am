@@ -110,3 +110,144 @@ src/marxpileup.c
 # TBD: Missing: bestfocus detinfo geff geffdump
 # TBD: are rfl and sky2chip ever used? They are not installed...
 # Maybe I can remove them?
+# TBD: marx/data/src/ has programs again. What do I do with those?
+
+# TBD: remove data files  / scripts in the lists below that are unused.
+caldatarootdir = $(pkgdatadir)/data
+acisdatadir = $(caldatarootdir)/acis
+caldbdatadir = $(caldatarootdir)/caldb
+eamirrordatadir = $(caldatarootdir)/ea-mirror
+gratingdatadir = $(caldatarootdir)/grating
+hrcdatadir = $(caldatarootdir)/hrc
+hrmadatadir = $(caldatarootdir)/hrma
+obsdatadir = $(caldatarootdir)/obs
+pixlibdatadir = $(caldatarootdir)/pixlib
+
+dist_caldataroot_DATA = \
+data/FORMAT.TXT \
+data/README \
+data/marxcaldb.par
+
+dist_acisdata_DATA = \
+data/acis/README
+
+dist_caldbdata_DATA = \
+data/caldb/acisD1997-04-17qeN0006.fits \
+data/caldb/hetgD1996-11-01greffpr001N0007.fits \
+data/caldb/acisD1999-07-22subpixN0001_marx.fits \
+data/caldb/letgD1996-11-01greffpr001N0007.fits \
+data/caldb/acisD1999-08-13contamN0009_marx.fits \
+data/caldb/telD1999-07-23aimptsN0002.fits \
+data/caldb/acisfef.fits \
+data/caldb/telD1999-07-23geomN0006.fits \
+data/caldb/fixfef.sl
+
+dist_eamirrordata_DATA = \
+data/ea-mirror/Ae_s1346.dat \
+data/ea-mirror/README \
+data/ea-mirror/Mirror_EE.bin \
+data/ea-mirror/mirr-ee.bin
+
+dist_gratingdata_DATA = \
+data/grating/README \
+data/grating/hetgmp1D1996-11-01marxsectorN0002.tbl \
+data/grating/hetgmp3D1996-11-01marxsectorN0002.tbl \
+data/grating/hetgmp4D1996-11-01marxsectorN0003.tbl \
+data/grating/hetgmp6D1996-11-01marxsectorN0003.tbl \
+data/grating/letgD1996-11-01greffMARXpr001N0004.dat \
+data/grating/optical-constants.dat \
+data/grating/optical-constants.xray
+
+dist_hrcdata_DATA = \
+data/hrc/README \
+data/hrc/gold.xray \
+data/hrc/carbon.dat \
+data/hrc/carbon.xray \
+data/hrc/chromium.dat \
+data/hrc/chromium.xray \
+data/hrc/gold.dat \
+data/hrc/hrc_i_geom.txt \
+data/hrc/hrc_s_geom.txt \
+data/hrc/mcp_qe_i.v2.2.dat \
+data/hrc/mcp_qe_s.v3.dat \
+data/hrc/uvis_s1.v4.dat \
+data/hrc/uvis_s2.v4.dat \
+data/hrc/uvis_s34.v4.dat \
+data/hrc/uvis_s56.v4.dat \
+data/hrc/uvis_s56.v4.dat \
+data/hrc/uvis_i.v4.dat
+
+dist_hrmadata_DATA = \
+data/hrma/EKCHDOS01.rdb \
+data/hrma/EKCHDOS02.rdb \
+data/hrma/EKCHDOS03.rdb \
+data/hrma/EKCHDOS04.rdb \
+data/hrma/EKCHDOS05.rdb \
+data/hrma/EKCHDOS06.rdb \
+data/hrma/README \
+data/hrma/corr_1.dat \
+data/hrma/corr_3.dat \
+data/hrma/corr_4.dat \
+data/hrma/corr_6.dat \
+data/hrma/ideal.rdb \
+data/hrma/iridium.dat \
+data/hrma/iridium.xray \
+data/hrma/iridium_2000.dat \
+data/hrma/scat_h1_M.bin \
+data/hrma/scat_h3_M.bin \
+data/hrma/scat_h4_M.bin \
+data/hrma/scat_h6_M.bin \
+data/hrma/scat_p1_M.bin \
+data/hrma/scat_p3_M.bin \
+data/hrma/scat_p4_M.bin \
+data/hrma/scat_p6_M.bin
+
+dist_obsdata_DATA = \
+data/obs/acis_i_obs.par \
+data/obs/acis_s_obs.par \
+data/obs/hrc_i_obs.par \
+data/obs/hrc_s_obs.par
+
+dist_pixlibdata_DATA = \
+data/pixlib/pix_corner_lsi.par \
+data/pixlib/pix_sim_table_flight.par
+
+dist_doc_DATA = \
+doc/README \
+doc/dump.txt \
+doc/parms.txt \
+doc/tma.txt \
+doc/aimpoint.txt \
+doc/marx.html \
+doc/source.tex
+
+hrmadocdir = $(docdir)/hrma
+examplesdocdir = $(docdir)/examples
+usersrcdocdir = $(examplesdocdir)/user-source
+
+dist_hrmadoc_DATA = \
+doc/hrma/DG-19961223-1.txt \
+doc/hrma/JPH-19960304.txt \
+doc/hrma/JWA-19960603.txt \
+doc/hrma/LVS-19960614.txt \
+doc/hrma/PZ-19951128.txt \
+doc/hrma/RJE-19961220.txt \
+doc/hrma/TJG-19961007A.txt \
+doc/hrma/TJG-19961007B.txt \
+doc/hrma/TJG-19961007C.txt \
+doc/hrma/WAP-19950929.txt \
+doc/hrma/WAP-19960328.txt \
+doc/hrma/WAP-19960410.txt \
+doc/hrma/WAP-19961008.txt \
+doc/hrma/WAP-19961108.txt \
+doc/hrma/WAP-19970327.txt \
+doc/hrma/fields.txt \
+doc/hrma/hrma-OLD.txt
+
+dist_usersrcdoc_DATA = \
+doc/examples/user-source/Makefile \
+doc/examples/user-source/README \
+doc/examples/user-source/eventlist.c \
+doc/examples/user-source/image.c \
+doc/examples/user-source/point.c \
+doc/examples/user-source/user.h 
