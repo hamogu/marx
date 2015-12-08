@@ -113,7 +113,10 @@ src/marxpileup.c
 # TBD: marx/data/src/ has programs again. What do I do with those?
 
 # TBD: remove data files  / scripts in the lists below that are unused.
+
 caldatarootdir = $(pkgdatadir)/data
+
+parfilesdir = $(pkgdatadir)/pfiles
 acisdatadir = $(caldatarootdir)/acis
 caldbdatadir = $(caldatarootdir)/caldb
 eamirrordatadir = $(caldatarootdir)/ea-mirror
@@ -122,6 +125,11 @@ hrcdatadir = $(caldatarootdir)/hrc
 hrmadatadir = $(caldatarootdir)/hrma
 obsdatadir = $(caldatarootdir)/obs
 pixlibdatadir = $(caldatarootdir)/pixlib
+
+dist_parfiles_DATA = \
+par/marx.par \
+par/marxasp.par \
+par/marxpileup.par
 
 dist_caldataroot_DATA = \
 data/FORMAT.TXT \
