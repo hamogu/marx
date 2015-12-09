@@ -107,9 +107,6 @@ src/henke.c \
 src/acissim.h \
 src/acissim.c \
 src/marxpileup.c
-
-## tools that go into the /lib/marx subdirectory because they are not used often
-#pkglib_PROGRAMS = bestfocus detinfo geff geffdump
 bestfocus_SOURCES = src/bestfocus.c
 detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c

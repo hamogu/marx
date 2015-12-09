@@ -7,9 +7,9 @@ The files in this directory include:
 
   mirr-ee.bin  
 
-    This file is created when marx is compiled.  It contains the same
-    data as Mirror_EE.bin but arranged in a format more suitable to
-    marx (see ../../libsrc/fix_ee.c).
+    This contains the same data as Mirror_EE.bin but arranged in a format
+    more suitable to marx. It was generated from Mirror_EE.bin using
+    src/fix_ee.c and is included here in binary form for simplicity.
 
   Ae_s1346.dat
   
