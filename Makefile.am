@@ -92,7 +92,8 @@ LDADD = jdmath/libjdmath.a jdfits/libjdfits.a pfile/libpfile.a libmarx.a
 
 
 
-bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup
+bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup \
+               bestfocus detinfo geff geffdump
 
 marx_SOURCES = libsrc/_marx.h src/marx.c
 marx2dpde_SOURCES = src/marx2dpde.c
@@ -107,7 +108,13 @@ src/acissim.h \
 src/acissim.c \
 src/marxpileup.c
 
-# TBD: Missing: bestfocus detinfo geff geffdump
+## tools that go into the /lib/marx subdirectory because they are not used often
+#pkglib_PROGRAMS = bestfocus detinfo geff geffdump
+bestfocus_SOURCES = src/bestfocus.c
+detinfo_SOURCES = src/detinfo.c
+geff_SOURCES = src/geff.c
+geffdump_SOURCES = src/geffdump.c
+
 # TBD: are rfl and sky2chip ever used? They are not installed...
 # Maybe I can remove them?
 # TBD: marx/data/src/ has programs again. What do I do with those?

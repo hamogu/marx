@@ -97,6 +97,22 @@ Match use of long and double types in fits output to standard CIAO products.
 
 Previously an ASOL file name > 63 characters would crash marx2fits.
 Now, it cuts the pathname to shorten the string.
+=======
+Upcoming version
+============================================================================
+
+Changes in the directory structure
+----------------------------------
+All executables are not installed in the ``/bin`` directory. (Previously, some
+rarely used executables were found in ``/lib/marx``.) This change brings |marx| in
+line with the GNU coding standards and reduces the number of marx
+directories that need to be included in the ``PATH`` variable.
+
+The following change is only relevant for developers:
+The internal structure of the |marx| source code repository has also changed.
+It is now flatter with fewer subdirectories, making it more convenient to
+handle with automake scripts. 
+See the git commit messages for details.
 
 ============================================================================
 Marx 5.1 Release Notes

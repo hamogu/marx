@@ -22,3 +22,8 @@ src/btread.c \
 src/makefits.c \
 src/ieee.c \
 src/copyfits.c 
+
+bin_PROGRAMS = fitsdump
+
+fitsdump_SOURCES = src/fitsdump.c
+fitsdump_LDADD = libjdfits.a
