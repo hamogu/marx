@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Process this file with autoconf to produce a configure script.
 AC_INIT([marx],[6.0],[marx-help@space.mit.edu],[],[http://space.mit.edu/cxc/marx/])
 
@@ -18,14 +17,7 @@ AC_PROG_CC
 AC_CONFIG_MACRO_DIR([build-aux])
 
 AC_CONFIG_SUBDIRS(jdmath pfile jdfits rsp)
-=======
-AC_INIT([marx], 5.1, [marx-help@space.mit.edu])
-AM_INIT_AUTOMAKE
 
-AC_CONFIG_SUBDIRS(jdmath pfile jdfits)
-
-AC_CONFIG_SRCDIR(libsrc/diffract.c)
->>>>>>> flatten marx directory and convert to automake
 
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
@@ -34,7 +26,6 @@ AC_CANONICAL_HOST
 
 AC_PATH_XTRA
 
-<<<<<<< HEAD
 # Make cfitsio a mandatory dependency for now
 # In principle, that's optional, but lets get this build system working
 # before I add options.
@@ -68,17 +59,6 @@ AS_IF([test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes
 
 AM_CONDITIONAL([HAVE_LIBDL], [test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes"]) 
  
-=======
-# TBD: for marxasp
-#JD_CHECK_FOR_LIBRARY(cfitsio, fitsio.h)
-
-#Check these header since they cause trouble
-AC_CHECK_HEADERS( \
-stdlib.h \
-unistd.h \
-)
-
-
 AC_CHECK_FUNCS( timegm )
 
 AC_CHECK_HEADERS(dlfcn.h)
@@ -95,41 +75,23 @@ AC_CHECK_LIB(dl,dlopen,[
 	AC_MSG_WARN(cannot perform dynamic linking)])
 AC_SUBST(DYNAMIC_LINK_LIB)
 
-case "$host_os" in
-  linux )
-    DYNAMIC_LINK_FLAGS="-Wl,-export-dynamic"
-    ;;
-  * )
-    DYNAMIC_LINK_FLAGS=""
-    ;;
-esac
-AC_SUBST(DYNAMIC_LINK_FLAGS)
-
-
->>>>>>> flatten marx directory and convert to automake
 dnl  Check sizeof various types
 AC_CHECK_SIZEOF(short)
 AC_CHECK_SIZEOF(int)
 AC_CHECK_SIZEOF(long)
 AC_CHECK_SIZEOF(float)
 AC_CHECK_SIZEOF(double)
-<<<<<<< HEAD
 # Need to use SIZEOF_INT_P etc in the program for this to make sense
 # I think original intention was to raise error if length is different
 # then expected. 
 
 
-=======
-
-#JD_LARGE_FILE_SUPPORT
->>>>>>> flatten marx directory and convert to automake
 # TBD: Is this needed here? Or enough in jdfits and pfile?
 AC_SYS_LARGEFILE
 AC_FUNC_FSEEKO
 AC_TYPE_OFF_T
 AC_CHECK_SIZEOF(off_t)
 
-<<<<<<< HEAD
 # Define preprocessor FSEEK to be either fseek or fseeko
 if test "x$ac_cv_func_fseeko" != xyes; then
   AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
@@ -144,15 +106,6 @@ AC_CONFIG_HEADERS(libsrc/config.h:libsrc/config.hin)
 
 AC_CONFIG_FILES([Makefile par/marx.par par/marxasp.par par/marxpileup.par])
 AC_OUTPUT
-=======
-AC_CONFIG_HEADER(libsrc/config.h:libsrc/config.hin)
-
-
-AC_OUTPUT(Makefile)
-# TBD: marxrsp
-# marxrsp/Makefile)
->>>>>>> flatten marx directory and convert to automake
-
 
 echo ""
 echo "You are compiling MARX with the following compiler configuration:"
@@ -167,8 +120,6 @@ echo "MARX parameter files will be installed in $prefix/share/marx/pfiles/."
 echo ""
 echo "To continue the build process, run 'make'."
 echo ""
-<<<<<<< HEAD
-
 
 ### Notes
 # Would like to use ASCDS_LIB and ASCDS_LIB/../include as default
@@ -191,5 +142,3 @@ echo ""
 #
 # This way, if the user sets CFLAGS, his choice is respected (though it
 # might make the build crash - but that's his problem).
-=======
->>>>>>> flatten marx directory and convert to automake

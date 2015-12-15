@@ -27,7 +27,7 @@ endif
 
 include_HEADERS = libsrc/marx.h libsrc/marx-feat.h
 
-lib_LIBRARIES = libmarx.a
+lib_LIBRARIES = libmarx.a libcfits.a
 libmarx_a_SOURCES = \
 libsrc/argcargv.h \
 libsrc/argcargv.c \
@@ -110,7 +110,7 @@ libsrc/qefuns.c
 LDADD = jdmath/libjdmath.a jdfits/libjdfits.a pfile/libpfile.a libmarx.a
 
 bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup \
-               bestfocus detinfo geff geffdump
+               bestfocus detinfo geff geffdump marxrsp rspdump
 
 marx_SOURCES = libsrc/_marx.h src/marx.c
 marx2dpde_SOURCES = src/marx2dpde.c
@@ -128,10 +128,6 @@ bestfocus_SOURCES = src/bestfocus.c
 detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c
 geffdump_SOURCES = src/geffdump.c
-
-# TBD: marx/data/src/ has programs again. What do I do with those?
-
-# TBD: remove data files  / scripts in the lists below that are unused.
 
 caldatarootdir = $(pkgdatadir)/data
 
