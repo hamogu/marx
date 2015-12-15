@@ -103,7 +103,6 @@ fi
 
 
 AC_CONFIG_HEADERS(libsrc/config.h:libsrc/config.hin)
-
 AC_CONFIG_FILES([Makefile par/marx.par par/marxasp.par par/marxpileup.par])
 AC_OUTPUT
 

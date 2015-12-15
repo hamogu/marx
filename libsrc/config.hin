@@ -1,5 +1,11 @@
 /* libsrc/config.hin.  Generated from configure.ac by autoheader.  */
 
+/* Def of fseek / fseeko */
+#undef FSEEK
+
+/* Def of ftell / ftello */
+#undef FTELL
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
