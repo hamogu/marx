@@ -25,5 +25,17 @@ AC_CHECK_SIZEOF(double, 8)
 AC_CHECK_LIB(m, erf)
 AC_CHECK_FUNCS( isinf isnan finite erf )
 
-AC_CONFIG_HEADER(src/sysconf.h:src/config.hin)
+AC_FUNC_FSEEKO
+
+# Define preprocessor FSEEK to be other fseek or fseeko
+if test "x$ac_cv_func_fseeko" != xyes; then
+  AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
+  AC_DEFINE([FTELL(a)], [ftello(a)],[Def of ftell / ftello])
+else
+  AC_DEFINE([FSEEK(a,b,c)], [fseek(a,b,c)],[Def of fseek / fseeko])
+  AC_DEFINE([FTELL(a)], [ftell(a)],[Def of ftell / ftello])
+fi
+
+
+AC_CONFIG_HEADER(src/config.h)
 AC_OUTPUT(Makefile demo/Makefile)

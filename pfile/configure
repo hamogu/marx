@@ -4819,6 +4819,24 @@ _ACEOF
 
 
 
+# Define preprocessor FSEEK to be other fseek or fseeko
+if test "x$ac_cv_func_fseeko" != xyes; then
+
+$as_echo "#define FSEEK(a,b,c) fseeko(a,b,c)" >>confdefs.h
+
+
+$as_echo "#define FTELL(a) ftello(a)" >>confdefs.h
+
+else
+
+$as_echo "#define FSEEK(a,b,c) fseek(a,b,c)" >>confdefs.h
+
+
+$as_echo "#define FTELL(a) ftell(a)" >>confdefs.h
+
+fi
+
+
 ac_config_headers="$ac_config_headers src/config.h:src/config.hin"
 
 ac_config_files="$ac_config_files Makefile"

@@ -8,16 +8,18 @@ AM_CPPFLAGS = \
 -I$(top_builddir)/jdmath/src -I$(top_srcdir)/jdmath/src \
 -I$(top_builddir)/jdfits/src -I$(top_srcdir)/jdfits/src \
 -I$(top_builddir)/pfile/src -I$(top_srcdir)/pfile/src \
--I$(top_builddir)/cfitsio -I$(top_srcdir)/cfitsio
+-I$(top_builddir)/libsrc -I$(top_srcdir)/libsrc
 
-include_HEADERS = libsrc/marx.h rsp/cfits.h
+include_HEADERS = libsrc/marx.h rsp/cfits.h libsrc/marx-feat.h
 
 lib_LIBRARIES = libmarx.a libcfits.a
 libmarx_a_SOURCES = \
 libsrc/argcargv.h \
 libsrc/argcargv.c \
-libsrc/marx-feat.h \
 libsrc/_marx.h \
+libsrc/chandra.h \
+libsrc/acis.h \
+libsrc/hrc.h \
 libsrc/caldb.c \
 libsrc/photon.c \
 libsrc/acis_geom.c \
@@ -84,7 +86,7 @@ bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup \
 
 marx_SOURCES = libsrc/_marx.h src/marx.c
 marx2dpde_SOURCES = src/marx2dpde.c
-marx2fits_SOURCES = libsrc/marx-feat.h src/marx2fits.c
+marx2fits_SOURCES = src/marx2fits.c
 marx2img_SOURCES = src/marx2img.c
 marxasp_SOURCES = src/marxasp.c
 marxcat_SOURCES = src/marxcat.c
@@ -99,7 +101,7 @@ detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c
 geffdump_SOURCES = src/geffdump.c
 
-marxrsp_LDADD = $(LDADD) cfitsio/libcfitsio.a libcfits.a
+marxrsp_LDADD = $(LDADD) libcfits.a
 rspdump_LDADD = $(marxrsp_LDADD)
 
 marxrsp_SOURCES = \

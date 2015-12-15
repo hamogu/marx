@@ -5133,12 +5133,9 @@ _ACEOF
   LIBS="-lcfitsio $LIBS"
 
 else
-  as_fn_error $? "cfitsio library not found. Specify path to cfitsio with \"./configure LDFLAGS=-L/path/to/cfitsio\"" "$LINENO" 5
+  as_fn_error $? "cfitsio library not found. Specify path to cfitsio with \"./configure LDFLAGS=-L/path/to/cfitsio.a\"" "$LINENO" 5
 fi
 
-
-
-#Check these header since they cause trouble
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for grep that handles long lines and -e" >&5
 $as_echo_n "checking for grep that handles long lines and -e... " >&6; }
 if ${ac_cv_path_GREP+:} false; then :
@@ -5398,6 +5395,16 @@ fi
 done
 
 
+ac_fn_c_check_header_mongrel "$LINENO" "fitsio.h" "ac_cv_header_fitsio_h" "$ac_includes_default"
+if test "x$ac_cv_header_fitsio_h" = xyes; then :
+
+else
+  as_fn_error $? "cfitsio header file not found. Specify path with \".configure CFLAGS=-I/path/to/fitsio.h\"" "$LINENO" 5
+fi
+
+
+
+#Check these header since they cause trouble
 for ac_header in \
 stdlib.h \
 unistd.h \
@@ -5995,6 +6002,24 @@ cat >>confdefs.h <<_ACEOF
 #define SIZEOF_OFF_T $ac_cv_sizeof_off_t
 _ACEOF
 
+
+
+# Define preprocessor FSEEK to be other fseek or fseeko
+if test "x$ac_cv_func_fseeko" != xyes; then
+
+$as_echo "#define FSEEK(a,b,c) fseeko(a,b,c)" >>confdefs.h
+
+
+$as_echo "#define FTELL(a) ftello(a)" >>confdefs.h
+
+else
+
+$as_echo "#define FSEEK(a,b,c) fseek(a,b,c)" >>confdefs.h
+
+
+$as_echo "#define FTELL(a) ftell(a)" >>confdefs.h
+
+fi
 
 
 ac_config_headers="$ac_config_headers libsrc/config.h:libsrc/config.hin"
@@ -7602,8 +7627,6 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
-# TBD: marxrsp
-# marxrsp/Makefile)
 
 
 echo ""

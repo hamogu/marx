@@ -1,5 +1,11 @@
 /* src/config.hin.  Generated from configure.ac by autoheader.  */
 
+/* Def of fseek / fseeko */
+#undef FSEEK
+
+/* Def of ftell / ftello */
+#undef FTELL
+
 /* Define to 1 if fseeko (and presumably ftello) exists and is declared. */
 #undef HAVE_FSEEKO
 

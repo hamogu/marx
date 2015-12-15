@@ -14,8 +14,8 @@ AC_PATH_XTRA
 
 # TBD: for marxrsp
 #JD_CHECK_FOR_LIBRARY(cfitsio, fitsio.h)
-AC_CHECK_LIB(cfitsio, ffgky, [], [AC_MSG_ERROR([cfitsio library not found. Specify path to cfitsio with "./configure LDFLAGS=-L/path/to/cfitsio"])])
-
+AC_CHECK_LIB(cfitsio, ffgky, [], [AC_MSG_ERROR([cfitsio library not found. Specify path to cfitsio with "./configure LDFLAGS=-L/path/to/cfitsio.a"])])
+AC_CHECK_HEADER([fitsio.h],[],[AC_MSG_ERROR([cfitsio header file not found. Specify path with ".configure CFLAGS=-I/path/to/fitsio.h"])])
 
 #Check these header since they cause trouble
 AC_CHECK_HEADERS( \
@@ -65,12 +65,20 @@ AC_FUNC_FSEEKO
 AC_TYPE_OFF_T
 AC_CHECK_SIZEOF(off_t)
 
+# Define preprocessor FSEEK to be other fseek or fseeko
+if test "x$ac_cv_func_fseeko" != xyes; then
+  AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
+  AC_DEFINE([FTELL(a)], [ftello(a)],[Def of ftell / ftello])
+else
+  AC_DEFINE([FSEEK(a,b,c)], [fseek(a,b,c)],[Def of fseek / fseeko])
+  AC_DEFINE([FTELL(a)], [ftell(a)],[Def of ftell / ftello])
+fi
+
+
 AC_CONFIG_HEADER(libsrc/config.h:libsrc/config.hin)
 
 
 AC_OUTPUT(Makefile)
-# TBD: marxrsp
-# marxrsp/Makefile)
 
 
 echo ""

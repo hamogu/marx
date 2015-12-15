@@ -37,6 +37,15 @@ AC_FUNC_FSEEKO
 AC_TYPE_OFF_T
 AC_CHECK_SIZEOF(off_t)
 
+# Define preprocessor FSEEK to be other fseek or fseeko
+if test "x$ac_cv_func_fseeko" != xyes; then
+  AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
+  AC_DEFINE([FTELL(a)], [ftello(a)],[Def of ftell / ftello])
+else
+  AC_DEFINE([FSEEK(a,b,c)], [fseek(a,b,c)],[Def of fseek / fseeko])
+  AC_DEFINE([FTELL(a)], [ftell(a)],[Def of ftell / ftello])
+fi
+
 AC_CONFIG_HEADER(src/config.h:src/config.hin)
 AC_OUTPUT(Makefile)
 
