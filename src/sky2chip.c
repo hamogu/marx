@@ -40,6 +40,15 @@ static void usage (void)
    exit (1);
 }
 
+
+/*  A simple command line tool to convert sky positions to XY on chip.
+ *
+ *  RA and DEC are given in arcmin.
+ *  It is not clear to me how Ra/Dec alone are sufficient to calculate
+ *  X, Y. The pointig direction and roll angle are also important.
+ *  I assume, this program putsi n some standard value.
+ *  It was probably written to help with testing something.
+ */
 int main (int argc, char **argv)
 {
    char *name;

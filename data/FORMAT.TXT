@@ -23,5 +23,7 @@ After that, the data follows ordered according to columns.
 
 The .dat files were generated from ASCII tables via tbl2bdat.c and may
 be converted back to ASCII via bdat2tbl.c.  See the Makefile.
+(These programs are not distributed, because they are not relevantfor users.
+Check out the full source repository to obtain them.)
 
 

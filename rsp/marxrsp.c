@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <cfits.h>
+#include "cfits.h"
 #include <errno.h>
 
 #include <marx.h>

@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
+
 SUBDIRS = jdmath jdfits pfile
 
 #   When a file to be included is generated during the build and not part of a distribution tarball, its location is under $(builddir), not under $(srcdir). This matters especially for packages that use header files placed in sub-directories and want to allow builds outside the source tree (see VPATH Builds). In that case we recommend to use a pair of -I options, such as, e.g., ‘-Isome/subdir -I$(srcdir)/some/subdir’ or ‘-I$(top_builddir)/some/subdir -I$(top_srcdir)/some/subdir’. Note that the reference to the build tree should come before the reference to the source tree, so that accidentally leftover generated files in the source directory are ignored.
@@ -6,12 +7,12 @@ SUBDIRS = jdmath jdfits pfile
 AM_CPPFLAGS = \
 -I$(top_builddir)/jdmath/src -I$(top_srcdir)/jdmath/src \
 -I$(top_builddir)/jdfits/src -I$(top_srcdir)/jdfits/src \
--I$(top_builddir)/pfile/src -I$(top_srcdir)/pfile/src
+-I$(top_builddir)/pfile/src -I$(top_srcdir)/pfile/src \
+-I$(top_builddir)/cfitsio -I$(top_srcdir)/cfitsio
 
+include_HEADERS = libsrc/marx.h rsp/cfits.h
 
-include_HEADERS = libsrc/marx.h
-
-lib_LIBRARIES = libmarx.a
+lib_LIBRARIES = libmarx.a libcfits.a
 libmarx_a_SOURCES = \
 libsrc/argcargv.h \
 libsrc/argcargv.c \
@@ -70,30 +71,16 @@ libsrc/ixomirror.c \
 libsrc/ffield.c \
 libsrc/qefuns.c
 
-
-## TBD: Should be used during install to reformat data file. 
-#libsrc/fix_ee.c 
-# Not sure this is used at all. Can it be removed?
-#libsrc/dump_ee.c 
-
-
-# TBD: These are used for interpreted marx in SLANG, I assume:
-#libsrc/interp.c
-#libsrc/disperse.c
-
-# TBD: What are those good for?
-#libsrc/parm.h
-#libsrc/parm.c
-
+libcfits_a_SOURCES = \
+rsp/cfits.h \
+rsp/cfits.c
 
 # TBD: Can turn this into marx_LDADD, marx2fits_LDADD etc.?
 # Or does every program need all libraries?
 LDADD = jdmath/libjdmath.a jdfits/libjdfits.a pfile/libpfile.a libmarx.a
 
-
-
 bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup \
-               bestfocus detinfo geff geffdump
+               bestfocus detinfo geff geffdump marxrsp rspdump
 
 marx_SOURCES = libsrc/_marx.h src/marx.c
 marx2dpde_SOURCES = src/marx2dpde.c
@@ -112,11 +99,21 @@ detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c
 geffdump_SOURCES = src/geffdump.c
 
-# TBD: are rfl and sky2chip ever used? They are not installed...
-# Maybe I can remove them?
-# TBD: marx/data/src/ has programs again. What do I do with those?
+marxrsp_LDADD = $(LDADD) cfitsio/libcfitsio.a libcfits.a
+rspdump_LDADD = $(marxrsp_LDADD)
 
-# TBD: remove data files  / scripts in the lists below that are unused.
+marxrsp_SOURCES = \
+rsp/argcargv.h \
+rsp/argcargv.c \
+rsp/rsp.c \
+rsp/marxrsp.c
+
+rspdump_SOURCES = \
+rsp/argcargv.h \
+rsp/argcargv.c \
+rsp/rsp.c \
+rsp/rspdump.c
+
 
 caldatarootdir = $(pkgdatadir)/data
 

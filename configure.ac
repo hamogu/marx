@@ -1,4 +1,4 @@
-AC_INIT([marx], 5.1, [marx-help@space.mit.edu])
+AC_INIT([marx], 5.2, [marx-help@space.mit.edu])
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SUBDIRS(jdmath pfile jdfits)
@@ -12,8 +12,10 @@ AC_CANONICAL_HOST
 
 AC_PATH_XTRA
 
-# TBD: for marxasp
+# TBD: for marxrsp
 #JD_CHECK_FOR_LIBRARY(cfitsio, fitsio.h)
+AC_CHECK_LIB(cfitsio, ffgky, [], [AC_MSG_ERROR([cfitsio library not found. Specify path to cfitsio with "./configure LDFLAGS=-L/path/to/cfitsio"])])
+
 
 #Check these header since they cause trouble
 AC_CHECK_HEADERS( \

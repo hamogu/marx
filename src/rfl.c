@@ -41,6 +41,8 @@ static void usage (char *pgm) /*{{{*/
 
 /*}}}*/
 
+/* Simple command line tool to dump reflectivities from a binary file to stdout.
+ */
 int main (int argc, char **argv) /*{{{*/
 {
    char *file;
