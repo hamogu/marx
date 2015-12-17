@@ -23,6 +23,7 @@ AM_CPPFLAGS = \
 
 if HAVE_LIBDL
   AM_LDFLAGS=-rdynamic
+  # AM_LDFLAGS="-Wl,-export-dynamic"
 endif
 
 include_HEADERS = libsrc/marx.h libsrc/marx-feat.h

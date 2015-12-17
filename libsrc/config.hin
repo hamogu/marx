@@ -18,6 +18,9 @@
 /* Define to 1 if you have the `cfitsio' library (-lcfitsio). */
 #undef HAVE_LIBCFITSIO
 
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
@@ -44,6 +47,9 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
+
+/* dynamic linkin available for user source */
+#undef MARX_HAS_DYNAMIC_LINKING
 
 /* Name of package */
 #undef PACKAGE

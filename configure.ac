@@ -61,6 +61,7 @@ AM_CONDITIONAL([HAVE_LIBDL], [test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv
  
 AC_CHECK_FUNCS( timegm )
 
+dnl JD used to check header and lib with an AND condition.
 AC_CHECK_HEADERS(dlfcn.h)
 # Can I simplify this logic?
 AC_CHECK_LIB(dl,dlopen,[
