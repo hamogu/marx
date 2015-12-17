@@ -12,8 +12,6 @@ AC_CANONICAL_HOST
 
 AC_PATH_XTRA
 
-# TBD: for marxrsp
-#JD_CHECK_FOR_LIBRARY(cfitsio, fitsio.h)
 AC_CHECK_LIB(cfitsio, ffgky, [], [AC_MSG_ERROR([cfitsio library not found. Specify path to cfitsio with "./configure LDFLAGS=-L/path/to/cfitsio.a"])])
 AC_CHECK_HEADER([fitsio.h],[],[AC_MSG_ERROR([cfitsio header file not found. Specify path with ".configure CFLAGS=-I/path/to/fitsio.h"])])
 
@@ -26,30 +24,12 @@ unistd.h \
 
 AC_CHECK_FUNCS( timegm )
 
+dnl JD used to check header and lib with an AND condition.
 AC_CHECK_HEADERS(dlfcn.h)
-# Can I simplify this logic?
-AC_CHECK_LIB(dl,dlopen,[
-	AC_CHECK_HEADER(dlfcn.h, [
-		DYNAMIC_LINK_LIB="-ldl"
-		AC_DEFINE(HAVE_DLFCN_H)
-	       ],[
-	        DYAMIC_LINK_LIB=""
-		AC_MSG_WARN(cannot perform dynamic linking)
-               ])],[
-	DYAMIC_LINK_LIB=""
-	AC_MSG_WARN(cannot perform dynamic linking)])
-AC_SUBST(DYNAMIC_LINK_LIB)
-
-case "$host_os" in
-  linux )
-    DYNAMIC_LINK_FLAGS="-Wl,-export-dynamic"
-    ;;
-  * )
-    DYNAMIC_LINK_FLAGS=""
-    ;;
-esac
-AC_SUBST(DYNAMIC_LINK_FLAGS)
-
+AC_CHECK_LIB(dl, dlopen)
+AS_IF([test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes"],
+  [AC_DEFINE([MARX_HAS_DYNAMIC_LINKING], [], [dynamic linkin available for user source])],
+ [AC_MSG_WARN("No dynamic linking. Source type USER unavailable.")])
 
 dnl  Check sizeof various types
 AC_CHECK_SIZEOF(short)
@@ -65,7 +45,7 @@ AC_FUNC_FSEEKO
 AC_TYPE_OFF_T
 AC_CHECK_SIZEOF(off_t)
 
-# Define preprocessor FSEEK to be other fseek or fseeko
+# Define preprocessor FSEEK to be either fseek or fseeko
 if test "x$ac_cv_func_fseeko" != xyes; then
   AC_DEFINE([FSEEK(a,b,c)], [fseeko(a,b,c)],[Def of fseek / fseeko])
   AC_DEFINE([FTELL(a)], [ftello(a)],[Def of ftell / ftello])

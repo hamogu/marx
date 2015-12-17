@@ -10,6 +10,10 @@ AM_CPPFLAGS = \
 -I$(top_builddir)/pfile/src -I$(top_srcdir)/pfile/src \
 -I$(top_builddir)/libsrc -I$(top_srcdir)/libsrc
 
+if HAVE_LIBDL
+  AM_LDFLAGS="-Wl,-export-dynamic"
+endif
+
 include_HEADERS = libsrc/marx.h rsp/cfits.h libsrc/marx-feat.h
 
 lib_LIBRARIES = libmarx.a libcfits.a

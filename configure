@@ -627,8 +627,6 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-DYNAMIC_LINK_FLAGS
-DYNAMIC_LINK_LIB
 EGREP
 GREP
 X_EXTRA_LIBS
@@ -5087,8 +5085,6 @@ fi
 fi
 
 
-# TBD: for marxrsp
-#JD_CHECK_FOR_LIBRARY(cfitsio, fitsio.h)
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for ffgky in -lcfitsio" >&5
 $as_echo_n "checking for ffgky in -lcfitsio... " >&6; }
 if ${ac_cv_lib_cfitsio_ffgky+:} false; then :
@@ -5448,7 +5444,6 @@ fi
 
 done
 
-# Can I simplify this logic?
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for dlopen in -ldl" >&5
 $as_echo_n "checking for dlopen in -ldl... " >&6; }
 if ${ac_cv_lib_dl_dlopen+:} false; then :
@@ -5486,42 +5481,22 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dl_dlopen" >&5
 $as_echo "$ac_cv_lib_dl_dlopen" >&6; }
 if test "x$ac_cv_lib_dl_dlopen" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBDL 1
+_ACEOF
 
-	ac_fn_c_check_header_mongrel "$LINENO" "dlfcn.h" "ac_cv_header_dlfcn_h" "$ac_includes_default"
-if test "x$ac_cv_header_dlfcn_h" = xyes; then :
-
-		DYNAMIC_LINK_LIB="-ldl"
-		$as_echo "#define HAVE_DLFCN_H 1" >>confdefs.h
-
-
-else
-
-	        DYAMIC_LINK_LIB=""
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: cannot perform dynamic linking" >&5
-$as_echo "$as_me: WARNING: cannot perform dynamic linking" >&2;}
+  LIBS="-ldl $LIBS"
 
 fi
 
+if test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes"; then :
+
+$as_echo "#define MARX_HAS_DYNAMIC_LINKING /**/" >>confdefs.h
 
 else
-
-	DYAMIC_LINK_LIB=""
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: cannot perform dynamic linking" >&5
-$as_echo "$as_me: WARNING: cannot perform dynamic linking" >&2;}
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: \"No dynamic linking. Source type USER unavailable.\"" >&5
+$as_echo "$as_me: WARNING: \"No dynamic linking. Source type USER unavailable.\"" >&2;}
 fi
-
-
-
-case "$host_os" in
-  linux )
-    DYNAMIC_LINK_FLAGS="-Wl,-export-dynamic"
-    ;;
-  * )
-    DYNAMIC_LINK_FLAGS=""
-    ;;
-esac
-
-
 
 # The cast to long int works around a bug in the HP C Compiler
 # version HP92453-01 B.11.11.23709.GP, which incorrectly rejects

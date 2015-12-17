@@ -29,12 +29,6 @@
 /* Set this to 1 for HRC Drake Flat support */
 #define MARX_HAS_DRAKE_FLAT		1
 
-#ifdef HAVE_DLFCN_H
-# define MARX_HAS_DYNAMIC_LINKING	1
-#else
-# define MARX_HAS_DYNAMIC_LINKING	0
-#endif
-
 #define MARX_HAS_DITHER			1
 
 #define MARX_HAS_ACIS_STREAK		1
