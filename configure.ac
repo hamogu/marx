@@ -28,9 +28,11 @@ dnl JD used to check header and lib with an AND condition.
 AC_CHECK_HEADERS(dlfcn.h)
 AC_CHECK_LIB(dl, dlopen)
 AS_IF([test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes"],
-  [AC_DEFINE([MARX_HAS_DYNAMIC_LINKING], [], [dynamic linkin available for user source])],
- [AC_MSG_WARN("No dynamic linking. Source type USER unavailable.")])
+  [AC_DEFINE([MARX_HAS_DYNAMIC_LINKING], [1], [Define to 1 if dynamic linking is available for USER source])],
+ [AC_MSG_WARN("No dynamic linking. Source type USER unavailable.");AC_DEFINE([MARX_HAS_DYNAMIC_LINKING], [0], [Define to 1 if dynamic linking is available for USER source])])
 
+AM_CONDITIONAL([HAVE_LIBDL], [test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes"]) 
+ 
 dnl  Check sizeof various types
 AC_CHECK_SIZEOF(short)
 AC_CHECK_SIZEOF(int)

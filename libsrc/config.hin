@@ -48,7 +48,7 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
-/* dynamic linkin available for user source */
+/* Define to 1 if dynamic linking is available for USER source */
 #undef MARX_HAS_DYNAMIC_LINKING
 
 /* Name of package */

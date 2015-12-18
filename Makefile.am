@@ -11,7 +11,7 @@ AM_CPPFLAGS = \
 -I$(top_builddir)/libsrc -I$(top_srcdir)/libsrc
 
 if HAVE_LIBDL
-  AM_LDFLAGS="-Wl,-export-dynamic"
+  AM_LDFLAGS=-rdynamic
 endif
 
 include_HEADERS = libsrc/marx.h rsp/cfits.h libsrc/marx-feat.h
@@ -119,6 +119,15 @@ rsp/argcargv.h \
 rsp/argcargv.c \
 rsp/rsp.c \
 rsp/rspdump.c
+
+dist_pkglibexec_SCRIPTS = \
+tools/idl/get_hetg_spect.pro \
+tools/idl/get_letg_spect.pro \
+tools/idl/make_image.pro \
+tools/idl/read_marx_file.pro \
+tools/idl/tg_extract.pro \
+tools/scripts/marxflux \
+tools/scripts/xspec2marx
 
 
 caldatarootdir = $(pkgdatadir)/data
