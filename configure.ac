@@ -76,6 +76,8 @@ AC_CHECK_LIB(dl,dlopen,[
 	AC_MSG_WARN(cannot perform dynamic linking)])
 AC_SUBST(DYNAMIC_LINK_LIB)
 
+AM_CONDITIONAL([HAVE_LIBDL], [test "x$ac_cv_header_dlfcn_h" = "xyes" -a "x$ac_cv_lib_dl_dlopen" = "xyes"]) 
+ 
 dnl  Check sizeof various types
 AC_CHECK_SIZEOF(short)
 AC_CHECK_SIZEOF(int)

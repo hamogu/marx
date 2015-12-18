@@ -130,6 +130,15 @@ detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c
 geffdump_SOURCES = src/geffdump.c
 
+dist_pkglibexec_SCRIPTS = \
+tools/idl/get_hetg_spect.pro \
+tools/idl/get_letg_spect.pro \
+tools/idl/make_image.pro \
+tools/idl/read_marx_file.pro \
+tools/idl/tg_extract.pro \
+tools/scripts/marxflux \
+tools/scripts/xspec2marx
+
 caldatarootdir = $(pkgdatadir)/data
 
 parfilesdir = $(pkgdatadir)/pfiles
