@@ -1,4 +1,7 @@
-AC_INIT([jdmath], 1.83, [marx-help@space.mit.edu])
+AC_INIT([jdmath], [see jdmath.h], [marx-help@space.mit.edu])
+# Version is for informational porpuses here only.
+# See jdmath.h for the version definition.
+
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SRCDIR(src/vector.c)
@@ -25,7 +28,10 @@ AC_CHECK_SIZEOF(double, 8)
 AC_CHECK_LIB(m, erf)
 AC_CHECK_FUNCS( isinf isnan finite erf )
 
+AC_SYS_LARGEFILE
 AC_FUNC_FSEEKO
+AC_TYPE_OFF_T
+AC_CHECK_SIZEOF(off_t)
 
 # Define preprocessor FSEEK to be other fseek or fseeko
 if test "x$ac_cv_func_fseeko" != xyes; then

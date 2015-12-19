@@ -1,5 +1,8 @@
 # Process this file with autoconf to produce a configure script.
 AC_INIT([marx],[6.0],[marx-help@space.mit.edu],[],[http://space.mit.edu/cxc/marx/])
+AM_INIT_AUTOMAKE
+
+AC_CONFIG_SUBDIRS(jdmath pfile jdfits . rsp)
 
 # Maybe it's easier to put things in directories named
 # for GNU standards?
@@ -105,9 +108,12 @@ else
 fi
 
 
+
 AC_CONFIG_HEADERS(libsrc/config.h:libsrc/config.hin)
 AC_CONFIG_FILES([Makefile par/marx.par par/marxasp.par par/marxpileup.par])
 AC_OUTPUT
+
+>>>>>>> Use version information from configure, version is always string
 
 echo ""
 echo "You are compiling MARX with the following compiler configuration:"
