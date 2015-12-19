@@ -29,9 +29,8 @@
 
 static void usage (void)
 {
-   fprintf (stderr, "fitsdump v%d.%02d\n",
-	    JDFITS_VERSION/100,
-	    JDFITS_VERSION - 100*(JDFITS_VERSION/100));
+   fprintf (stderr, "fitsdump v%s\n",
+	    JDFITS_VERSION);
 
    fprintf (stderr, "\
 Usage: fitsdump [Options] [-e <extension name>] <fitsfile>\n\

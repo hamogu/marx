@@ -119,7 +119,7 @@ static void message_copyright (FILE *fp)
      return;
 
    fprintf (fp, "MARX version %s, Copyright (C) 2002-2018 Massachusetts Institute of Technology\n\n",
-	    MARX_VERSION_STRING);
+	    PACKAGE_VERSION);
 }
 
 static void usage (void) /*{{{*/
@@ -670,14 +670,14 @@ static void version (void) /*{{{*/
 {
    message_copyright (stderr);
 #if 0
-   fprintf (stderr, "MARX version: %s\n", MARX_VERSION_STRING);
+   fprintf (stderr, "MARX version: %s\n", MARX_VERSION);
 #endif
-   fprintf (stderr, "JDMATH library version: %d.%02d\n",
-	    (JDMATH_VERSION / 100), (JDMATH_VERSION % 100));
-   fprintf (stderr, "PFILE library version: %d.%02d\n",
-	    (PFILE_VERSION / 100), (PFILE_VERSION % 100));
-   fprintf (stderr, "JDFITS library version: %d.%02d\n",
-	    (JDFITS_VERSION / 100), (JDFITS_VERSION % 100));
+   fprintf (stderr, "JDMATH library version: %s\n",
+	    JDMATH_VERSION);
+   fprintf (stderr, "PFILE library version: %s\n",
+	    PFILE_VERSION);
+   fprintf (stderr, "JDFITS library version: %s\n",
+	    JDFITS_VERSION);
 
    fprintf (stderr, "\n");
 

@@ -324,8 +324,8 @@ the '=' sign.\n\
 See your program's user manual for more information.\n",
 	  stderr);
 
-   fprintf (stderr, "pfile library version: %u.%u\n\n",
-	    PFILE_VERSION / 100, PFILE_VERSION % 100);
+   fprintf (stderr, "pfile library version: %s\n\n",
+	    PFILE_VERSION);
 
    if (quit) exit (1);
 }

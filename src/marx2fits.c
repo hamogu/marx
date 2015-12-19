@@ -3207,7 +3207,7 @@ int main (int argc, char **argv) /*{{{*/
    char *fits_file;
    JDFits_Type *ft;
 
-   sprintf (Marx2fits_Pgm, "marx2fits v%s", MARX_VERSION_STRING MARX2FITS_PATCHLVL);
+   sprintf (Marx2fits_Pgm, "marx2fits v%s", MARX_VERSION MARX2FITS_PATCHLVL);
 
    while (1)
      {

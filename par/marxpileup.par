@@ -1,6 +1,0 @@
-MarxOutputDir,f,a,"/tmp/marx",,,"Enter MARX output directory"
-Alpha,r,a,0.5,,,"Enter grade migration factor"
-FrameTime,r,a,3.2,0.0,,"Enter frame time"
-FrameTransferTime,r,h,0.041,0,,"Enter ACIS frame transfer time (sec)"
-Verbose,i,h,2,,,"Enter verbosity level"
-mode,s,hl,"hl","ql|hl|q|h",,"Enter mode for parameter file."

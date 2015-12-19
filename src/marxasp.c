@@ -1101,7 +1101,7 @@ int main (int argc, char **argv)
    JDFits_Type *f;
    Param_File_Type *p;
 
-   sprintf (MarxAsp_Pgm, "%s v%s", Program_Name, MARX_VERSION_STRING);
+   sprintf (MarxAsp_Pgm, "%s v%s", Program_Name, MARX_VERSION);
 
    p = marx_pf_parse_cmd_line ("marxasp.par", NULL, argc, argv);
 

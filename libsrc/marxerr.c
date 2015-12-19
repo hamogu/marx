@@ -94,7 +94,7 @@ char *marx_make_version_string (void) /*{{{*/
 {
    static char buf[512];
 
-   sprintf (buf, "%s#", MARX_VERSION_STRING);
+   sprintf (buf, "%s#", MARX_VERSION);
 
 #if defined(__DATE__) && defined(__TIME__)
    sprintf (buf + strlen (buf), " %s %s", __DATE__, __TIME__);

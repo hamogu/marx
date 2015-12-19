@@ -23,7 +23,7 @@
 #ifndef _PF_H_LOADED_
 #define _PF_H_LOADED_
 
-#define PFILE_VERSION 241	       /* 2.4.1 */
+#define PFILE_VERSION "2.4.1"
 
 #define PF_MAX_LINE_LEN 1024
 

@@ -31,3 +31,4 @@ extern double _JDM_nvector_sum (double *, unsigned int);
 extern int _JDM_init_machine_constants (void (*)(double *, double *));
 
 #define JDMATH_SING_MATRIX_ERROR	9
+

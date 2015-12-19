@@ -637,7 +637,7 @@ static int cp_to_new_file (char *name,
 static char *Pgm_Name;
 static void usage (void)
 {
-   fprintf (stderr, "marxcat version: %s\n", MARX_VERSION_STRING);
+   fprintf (stderr, "marxcat version: %s\n", MARX_VERSION);
    fprintf (stderr, "Usage: %s [--help] DIR1 [DIR2 [DIR3 ...]] NEWDIR\n", Pgm_Name);
    exit (1);
 }

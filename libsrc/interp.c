@@ -627,18 +627,6 @@ static void interp_marx_error (char *s)
    marx_error (s);
 }
 
-static char Simulator_Version[40];
-static void make_simulator_version_string (void)
-{
-   int a, b, c;
-   a = MARX_VERSION / 10000;
-   b = MARX_VERSION % 10000;
-   c = b % 100;
-   b = b / 100;
-
-   sprintf (Simulator_Version, "%d.%02d.%02d", a, b, c);
-}
-
 static char *make_date (int what)
 {
    static char date[20];
@@ -759,7 +747,7 @@ static SLang_Name_Type Sim_Intrinsics[] =
    MAKE_VARIABLE(".X_DETECTOR", &Focus_Detector_Offset, FLOAT_TYPE, 0),
    MAKE_VARIABLE(".GRATING_VIGNETTING_FACTOR", &Grating_Vignetting_Factor, FLOAT_TYPE, 0),
    MAKE_VARIABLE(".MIRROR_VIGNETTING_FACTOR", &Mirror_Vignetting_Factor, FLOAT_TYPE, 0),
-   MAKE_VARIABLE(".SIMULATOR_VERSION", Simulator_Version, STRING_TYPE, 1),
+   MAKE_VARIABLE(".SIMULATOR_VERSION", MARX_VERSION, STRING_TYPE, 1),
    MAKE_VARIABLE(".SIM_LIB_DIR", Sim_Lib_Dir, STRING_TYPE, 1),
 
    SLANG_END_TABLE

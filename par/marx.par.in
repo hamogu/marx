@@ -1,5 +1,5 @@
 #-*-sh-*--------------------------------------------------------------------
-# MIT MARX Simulator Parameter file       Flight / Version 5.4 (Dec 2018)
+# MIT MARX Simulator Parameter file       Flight / Version @PACKAGE_VERSION@
 #----------------------------------------------------------------------------
 #
 # Simulation setup and control

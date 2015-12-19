@@ -1,5 +1,5 @@
 #-*-sh-*---------------------------------------------------------------------
-# MIT MARXASP Parameter file       Flight / Version 5.4 (Dec 2018)
+# MIT MARXASP Parameter file       Flight / Version @PACKAGE_VERSION@
 #   Creates an aspect solution file for the MARX internal dither model
 #----------------------------------------------------------------------------
 #

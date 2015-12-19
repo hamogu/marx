@@ -1,4 +1,4 @@
-AC_INIT([marx], 5.2, [marx-help@space.mit.edu])
+AC_INIT([marx], 5.2, [marx-help@space.mit.edu], [], [http://space.mit.edu/cxc/marx/])
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SUBDIRS(jdmath pfile jdfits)
@@ -60,7 +60,7 @@ fi
 AC_CONFIG_HEADER(libsrc/config.h:libsrc/config.hin)
 
 
-AC_OUTPUT(Makefile)
+AC_OUTPUT(Makefile par/marx.par par/marxasp.par par/marxpileup.par)
 
 
 echo ""

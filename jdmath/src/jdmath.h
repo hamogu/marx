@@ -18,7 +18,7 @@
 #ifndef JDMATH_H_INCLUDED
 #define JDMATH_H_INCLUDED
 
-#define JDMATH_VERSION 183	       /* 1.83 */
+#define JDMATH_VERSION "1.83"
 #include <stdio.h>
 #include <math.h>
 
