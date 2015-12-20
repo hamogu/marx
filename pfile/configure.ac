@@ -1,10 +1,13 @@
-AC_INIT([pfile], [see pfile.h], [marx-help@space.mit.edu])
+AC_INIT([pfile], [2.4.1], [marx-help@space.mit.edu])
 # Version is for informational porpuses here only.
 # See pfile.h for the version definition.
 
+AC_CONFIG_SRCDIR(src/pfile.c)
+AC_CONFIG_AUX_DIR(build-aux)
+AC_CONFIG_MACRO_DIR(build-aux)
+
 AM_INIT_AUTOMAKE
 
-AC_CONFIG_SRCDIR(src/pfile.c)
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL

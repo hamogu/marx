@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
+ACLOCAL_AMFLAGS = -I build-aux
 
 lib_LIBRARIES = libpfile.a
 include_HEADERS = src/pfile.h

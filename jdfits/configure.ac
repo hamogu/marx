@@ -1,10 +1,13 @@
-AC_INIT([jdfits], [see jdfits.h], [marx-help@space.mit.edu])
-# Version is for informational porpuses here only.
+AC_INIT([jdfits], [1.66], [marx-help@space.mit.edu])
+# Version is for informational purposes here only.
 # See jdfits.h for the version definition.
+
+AC_CONFIG_SRCDIR(src/fitsio.c)
+AC_CONFIG_AUX_DIR(build-aux)
+AC_CONFIG_MACRO_DIR(build-aux)
 
 AM_INIT_AUTOMAKE
 
-AC_CONFIG_SRCDIR(src/fitsio.c)
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 AC_PROG_INSTALL

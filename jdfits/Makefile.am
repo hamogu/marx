@@ -1,4 +1,5 @@
 AUTOMAKE_OPTIONS = subdir-objects
+ACLOCAL_AMFLAGS = -I build-aux
 
 lib_LIBRARIES = libjdfits.a
 include_HEADERS = src/jdfits.h

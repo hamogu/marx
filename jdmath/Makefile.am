@@ -1,6 +1,7 @@
 # TBD: include targets or subdir for demo and test.
 
 AUTOMAKE_OPTIONS = subdir-objects
+ACLOCAL_AMFLAGS = -I build-aux
 
 include_HEADERS = src/jdmath.h
 
