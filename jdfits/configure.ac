@@ -28,11 +28,11 @@ AC_CHECK_HEADERS
 AC_C_BIGENDIAN
 
 # Check sizeof various types
-AC_CHECK_SIZEOF(short, 2)
-AC_CHECK_SIZEOF(int, 4)
-AC_CHECK_SIZEOF(long, 4)
-AC_CHECK_SIZEOF(float, 4)
-AC_CHECK_SIZEOF(double, 8)
+AC_CHECK_SIZEOF(short)
+AC_CHECK_SIZEOF(int)
+AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(float)
+AC_CHECK_SIZEOF(double)
 AC_CHECK_LIB(m, erf)
 AC_CHECK_FUNCS( isinf isnan finite erf )
 
