@@ -1,10 +1,10 @@
 AC_INIT([marx], 5.2, [marx-help@space.mit.edu], [], [http://space.mit.edu/cxc/marx/])
 
-AC_CONFIG_SUBDIRS(jdmath pfile jdfits)
-
 AC_CONFIG_SRCDIR(libsrc/diffract.c)
-AC_CONFIG_AUX_DIR(build-aux)
-AC_CONFIG_MACRO_DIR(build-aux)
+AC_CONFIG_AUX_DIR([build-aux])
+AC_CONFIG_MACRO_DIR([build-aux])
+
+AC_CONFIG_SUBDIRS(jdmath pfile jdfits)
 
 AM_INIT_AUTOMAKE
 
