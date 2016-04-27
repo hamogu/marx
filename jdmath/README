@@ -1,0 +1,19 @@
+jdmath is a C library for mathematical functions.
+
+It was written for ray-tracing and concentrates on the function for vectors in
+3-dimansioan space. There are, for example, functions to rotate a vector, find the
+angle between two vectors, form the dor or cross product of vectors and the like.
+
+jdmath  is used in the marx program
+(The marx web page is at <http://space.mit.edu/cxc/marx/>), which provides many
+exmaples for the use of jdmath.
+
+jdmath is still under development.  Please send all
+comments, modifications, bug reports, or bug fixes to marx-help@space.mit.edu so
+that they may be incorporated into the distribution.
+
+There is no documentaton on the library.  After building it, you should be
+left with a file called `jdmath.h' (and the library!) which is to be included
+into any file that uses routines from library.  Look in this file for what
+functions are available.
+

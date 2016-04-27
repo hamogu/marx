@@ -3,6 +3,19 @@
 MARX Installation Notes.  For details, see
 <http://space.mit.edu/ASC/marx/inbrief/install.html>.
 
+Prerequisites
+=============
+
+MARX now requires the CFITSIO library to work. (Up until MARX version 5.2
+this was an optional dependency.) It is not included in the release because
+you most likely already have one or more copies on your system. MARX will attempt
+to find a version of CFITSIO during the installation, but if it's installed in a
+non-standard location, you might have to provide the path to the ``configure``
+script (see below for details).
+
+Building and installing MARX
+============================
+
 Before building marx, you need to decide where you want to install it.
 A good choice for a multi-user system is under /usr/local/.  If you
 want to install it for personal use, something like $HOME/marx/ might
@@ -12,24 +25,8 @@ configure script as follows:
 
    # ./configure --prefix=/usr/local
 
-If you intend to build marxrsp (see below for details), then add the
-location of where libcfitsio is located to the configure line, e.g.,
-
-   # ./configure --prefix=/usr/local --with-cfitsio=/opt
-
-   This form assumes that libcfitsio and fitsio.h are in the lib/ and
-   include/ subdirectories of a common root directory (/opt in this
-   example.  If this is not the case, then you will have to use the
-   --with-cfitsiolib and --with-cfitsioinc options, as indicated by
-   running `./configure --help | grep cfitsio`:
-
-     --with-cfitsio=DIR      Use DIR/lib and DIR/include for cfitsio
-     --with-cfitsiolib=DIR   cfitsio library in DIR
-     --with-cfitsioinc=DIR   cfitsio include files in DIR
-
-   NOTE: If you used "--with-cfitsio=$HEADAS" to link to the version
-   of CFITSIO distributed with HEASOFT, then see the important note
-   below in the MARXRSP section of this document.
+(See below for instruction if the script stoped because it failed to find
+CFITSIO.)
 
 The configure step may take a few minutes to complete, depending upon
 the speed of your system.  This script probes your system to see what
@@ -59,42 +56,45 @@ So, you may have to perform the install script using something like
 
    # sudo make install
 
-===========================================================================
-MARXRSP
-===========================================================================
-Note: You do not need marxrsp to run marx.  This program is optional!!
 
-To build marxrsp, you first need to get the CFITSIO library if you do
-not already have it.  It is not included in this distribution because
-you probably already have it if you have ftools.  In any case, after
-locating your CFITSIO distribution, or building and installing
-CFITSIO, and running configure as described above, then do:
 
-   make marxrsp
-   make install
+Find a copy of CFITSIO
+======================
+If the ``configure`` script above failed to find CFITSIO, you might not have
+it installed or have it installed in a non-standard configuration. In this case
+you need to install it or (if already installed) tell the configure script where
+to find it.
 
-If marxrsp failed to build, then most likely you do not have CFITSIO
-properly installed, or you specified the wrong CFITSIO location when
-you configured marx.
+CFITSIO can be installed in many ways. You need to find one copy of
+``libcfitsio.a`` and ``fitsio.h``. Pick one of te following options:
 
-Note to HEASOFT users:
+- If you have `CIAO`_ installed, you find these files in ``CIAO_PATH/ots/lib/``
+  and ``CIAO_PATH/ots/include``.
+- Install CFITSIO through your package manager, e.g.
 
-  If you tried to compile against the version of CFITSIO distributed
-  with HEASOFT, you should be aware that the CFITSIO library
+  - Debian/Ubuntu: ``sudo apt-get install Libcfitsio-dev``
+  - Fedora/openSuSE/...: ``sudo yum install cfitsio-devel``
+  - MacPorts: ``sudo port install cfitsio``
+  - See the documentation for your package manager for other systems.
+
+- Install from source from
+  https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
+- HEASOFT (ftools):   If you tried to compile against the version of CFITSIO
+  distributed with HEASOFT, you should be aware that the CFITSIO library
   distributed with it has been renamed to include the version number
   in the name of the library.  The reason for this is that shared
   versions of the CFITSIO library are generally not backward binary
-  compatible with one another.  In this case, you will need to edit
-  marxrsp/Makefile and explicitly add the version number.  For
-  example, if you used
+  compatible with one another.
+  Look in the $HEADAS directory to see what libcfitsio is called.
+  Let's assume that you see something like ``libcfitsio_3.27.dylib`` in
+  the $HEADAS directory.
+  You can make a softlink ``ln -s libcfitsio_3.27.dynlib cfitsio.dynlib``.
 
-     --with-cfitsio=$HEADAS
+If ``configure`` does not find the CFITSIO library files, you need to tell it where to
+look:
 
-  then look in the $HEADAS directory to see what libcfitsio is called.
-  Let's assume that you see something like libcfitsio_3.27.dylib in
-  the $HEADAS directory.  Then in marxrsp/Makefile change "-lcfitsio" to
-  "-lcfitsio_3.27".  Keep in mind that after doing this, marxrsp will be
-  tied to this particular version of the CFITSIO library, and you will
-  not be able to update HEASOFT without breaking marxrsp.  For this
-  reason, it is recommended that you download CFITSIO from
-  http://heasarc.nasa.gov/ and install it separately.
+Set ``LDFLAGS=-L/path_to_cfitsio_a`` and ``CFLAGS=-I/path_to_fitsio.h``. E.g. if you have
+the static library ``cfitsio.a`` in ``/opt/local/lib`` and the header file ``fitsio.h`` in
+``/opt/local/include/`` you do:
+
+    ./configure --prefix=/where/to/install LDFLAGS=-L/opt/local/lib CFLAGS=-I/opt/local/include

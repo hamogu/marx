@@ -1,8 +1,15 @@
-Note:  Recently Bill Pence released a CFITSIO library.  Since this
-library still in a very early development stage, you are encouraged to
-use the official CFITSIO library.
+jdfits is a C library to read and write fits files.
 
-This is a C fitsio library that is still under development.  Please send all
+jdfits was programmed before the NASA/HEADAS CFITSIO library became widely
+available. Today, CFITSIO is easier to use and already installed on many user's
+machines.
+
+While jdfits is a stand-alone library and can be included in any program, we
+recommend to use CFITSIO for all new work. jdfits is still used in the marx
+program (The marx web page is at <http://space.mit.edu/cxc/marx/>), but even there
+new functions now depend on CFITSIO.
+
+jdfits is still under development.  Please send all
 comments, modifications, bug reports, or bug fixes to davis@space.mit.edu so
 that they may be incorporated into the distribution.
 
