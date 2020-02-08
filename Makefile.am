@@ -1,9 +1,19 @@
 AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = -I build-aux
 
-SUBDIRS = jdmath jdfits pfile
+SUBDIRS = jdmath jdfits pfile . rsp
 
-#   When a file to be included is generated during the build and not part of a distribution tarball, its location is under $(builddir), not under $(srcdir). This matters especially for packages that use header files placed in sub-directories and want to allow builds outside the source tree (see VPATH Builds). In that case we recommend to use a pair of -I options, such as, e.g., ‘-Isome/subdir -I$(srcdir)/some/subdir’ or ‘-I$(top_builddir)/some/subdir -I$(top_srcdir)/some/subdir’. Note that the reference to the build tree should come before the reference to the source tree, so that accidentally leftover generated files in the source directory are ignored.
+#   When a file to be included is generated during the build and not
+#   part of a distribution tarball, its location is under $(builddir),
+#   not under $(srcdir). This matters especially for packages that use
+#   header files placed in sub-directories and want to allow builds
+#   outside the source tree (see VPATH Builds). In that case we
+#   recommend to use a pair of -I options, such as, e.g.,
+#   ‘-Isome/subdir -I$(srcdir)/some/subdir’ or
+#   ‘-I$(top_builddir)/some/subdir -I$(top_srcdir)/some/subdir’. Note
+#   that the reference to the build tree should come before the
+#   reference to the source tree, so that accidentally leftover
+#   generated files in the source directory are ignored.
 
 AM_CPPFLAGS = \
 -I$(top_builddir)/jdmath/src -I$(top_srcdir)/jdmath/src \
@@ -15,9 +25,9 @@ if HAVE_LIBDL
   AM_LDFLAGS=-rdynamic
 endif
 
-include_HEADERS = libsrc/marx.h rsp/cfits.h libsrc/marx-feat.h
+include_HEADERS = libsrc/marx.h libsrc/marx-feat.h
 
-lib_LIBRARIES = libmarx.a libcfits.a
+lib_LIBRARIES = libmarx.a
 libmarx_a_SOURCES = \
 libsrc/argcargv.h \
 libsrc/argcargv.c \
@@ -70,6 +80,7 @@ libsrc/s-line.c \
 libsrc/s-rayfile.c \
 libsrc/s-disk.c \
 libsrc/s-user.c \
+libsrc/s-simput.c \
 libsrc/ixoccd.h \
 libsrc/ixocatgs.c \
 libsrc/ixoccd.c \
@@ -78,16 +89,12 @@ libsrc/ixomirror.c \
 libsrc/ffield.c \
 libsrc/qefuns.c
 
-libcfits_a_SOURCES = \
-rsp/cfits.h \
-rsp/cfits.c
-
 # TBD: Can turn this into marx_LDADD, marx2fits_LDADD etc.?
 # Or does every program need all libraries?
 LDADD = jdmath/libjdmath.a jdfits/libjdfits.a pfile/libpfile.a libmarx.a
 
 bin_PROGRAMS = marx marx2dpde marx2fits marx2img marxasp marxcat marxpileup \
-               bestfocus detinfo geff geffdump marxrsp rspdump
+               bestfocus detinfo geff geffdump
 
 marx_SOURCES = libsrc/_marx.h src/marx.c
 marx2dpde_SOURCES = src/marx2dpde.c
@@ -105,21 +112,6 @@ bestfocus_SOURCES = src/bestfocus.c
 detinfo_SOURCES = src/detinfo.c
 geff_SOURCES = src/geff.c
 geffdump_SOURCES = src/geffdump.c
-
-marxrsp_LDADD = $(LDADD) libcfits.a
-rspdump_LDADD = $(marxrsp_LDADD)
-
-marxrsp_SOURCES = \
-rsp/argcargv.h \
-rsp/argcargv.c \
-rsp/rsp.c \
-rsp/marxrsp.c
-
-rspdump_SOURCES = \
-rsp/argcargv.h \
-rsp/argcargv.c \
-rsp/rsp.c \
-rsp/rspdump.c
 
 dist_pkglibexec_SCRIPTS = \
 tools/idl/get_hetg_spect.pro \
