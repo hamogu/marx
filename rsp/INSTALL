@@ -1,0 +1,98 @@
+-*- text -*-
+
+MARX Installation Notes.  For details, see
+<http://space.mit.edu/ASC/marx/inbrief/install.html>.
+
+Prerequisites
+=============
+
+marxrsp requires the CFITSIO library to work. MARX will attempt
+to find a version of CFITSIO during the installation, but if it's installed in a
+non-standard location, you might have to provide the path to the ``configure``
+script (see below for details).
+
+Building and installing MARX
+============================
+
+Before building marx, you need to decide where you want to install it.
+A good choice for a multi-user system is under /usr/local/.  If you
+want to install it for personal use, something like $HOME/marx/ might
+be more appropriate.  For the purposes of this document, assume that
+it is to be installed under /usr/local/.  Start by running the
+configure script as follows:
+
+   # ./configure --prefix=/usr/local
+
+(See below for instruction if the script stoped because it failed to find
+CFITSIO.)
+
+The configure step may take a few minutes to complete, depending upon
+the speed of your system.  This script probes your system to see what
+tools and libraries are available, and then creates the necessary
+makefiles.  If all went well, you will see something like:
+
+   MARX executables will be installed in /usr/local/bin/.
+   MARX documentation will be installed in /usr/local/share/doc/marx/.
+   MARX data files will be installed in /usr/local/share/marx/data/.
+   MARX parameter files will be installed in /usr/local/share/marx/pfiles/.
+
+   To continue the build process, run `make`.
+
+The next step in the build process is to run the `make` program:
+
+   # make
+
+This will build the marx executables and needed libraries but will not
+install them.  Assuming a successful build, run `make install` to
+perform the installation:
+
+   # make install
+
+NOTE: This step may require root privileges if you do not have write
+permission to create files under the selected installation directory.
+So, you may have to perform the install script using something like
+
+   # sudo make install
+
+
+
+Find a copy of CFITSIO
+======================
+If the ``configure`` script above failed to find CFITSIO, you might not have
+it installed or have it installed in a non-standard configuration. In this case
+you need to install it or (if already installed) tell the configure script where
+to find it.
+
+CFITSIO can be installed in many ways. You need to find one copy of
+``libcfitsio.a`` and ``fitsio.h``. Pick one of te following options:
+
+- If you have `CIAO`_ installed, you find these files in ``CIAO_PATH/ots/lib/``
+  and ``CIAO_PATH/ots/include``.
+- Install CFITSIO through your package manager, e.g.
+
+  - Debian/Ubuntu: ``sudo apt-get install Libcfitsio-dev``
+  - Fedora/openSuSE/...: ``sudo yum install cfitsio-devel``
+  - MacPorts: ``sudo port install cfitsio``
+  - See the documentation for your package manager for other systems.
+
+- Install from source from
+  https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
+- HEASOFT (ftools):   If you tried to compile against the version of CFITSIO
+  distributed with HEASOFT, you should be aware that the CFITSIO library
+  distributed with it has been renamed to include the version number
+  in the name of the library.  The reason for this is that shared
+  versions of the CFITSIO library are generally not backward binary
+  compatible with one another.
+  Look in the $HEADAS directory to see what libcfitsio is called.
+  Let's assume that you see something like ``libcfitsio_3.27.dylib`` in
+  the $HEADAS directory.
+  You can make a softlink ``ln -s libcfitsio_3.27.dynlib cfitsio.dynlib``.
+
+If ``configure`` does not find the CFITSIO library files, you need to tell it where to
+look:
+
+Set ``LDFLAGS=-L/path_to_cfitsio_a`` and ``CFLAGS=-I/path_to_fitsio.h``. E.g. if you have
+the static library ``cfitsio.a`` in ``/opt/local/lib`` and the header file ``fitsio.h`` in
+``/opt/local/include/`` you do:
+
+    ./configure --prefix=/where/to/install LDFLAGS=-L/opt/local/lib CFLAGS=-I/opt/local/include

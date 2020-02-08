@@ -1,0 +1,23 @@
+marxrsp folds a MARX simulation through a FITS RMF file.
+
+marxrsp is not required to use marx, it is an optional tool to help
+with calibration.
+This tool allows the user to fold the results of a marx simulation
+through a FITS response matrix file (RMF). Traditionally, RMF files
+are used to describe the response of a given detector such as an ACIS
+CCD. The RMF file, also known as a redistribution matrix file,
+describes the mapping of photon energy into detected pulse
+height. marxrsp reads the energy vector for a group of simulated
+events and uses the specified RMF file to calculate the appropriate
+pulse height values. By default, marx calculates a pulse height array
+(pha.dat) for ACIS simulations using an approximate, built–in
+redistribution function.
+
+marxrsp is a post-processing tool for  marx program
+(The marx web page is at <http://space.mit.edu/cxc/marx/>), which provides
+exmaples for the use of jdmath.
+
+marxrsp is still under development.  Please send all
+comments, modifications, bug reports, or bug fixes to marx-help@space.mit.edu so
+that they may be incorporated into the distribution.
+
